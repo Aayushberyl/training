@@ -1,0 +1,61 @@
+LINUX COMMANDS AAYUSH JOSHI
+
+1) ls = list files and directories
+2) ls -R = list files recursively
+3) ls -a = list all files either hidden or visible files 
+4) touch .2txt = Create an Empty and Hidden File With Filename 2 using (.) operator 
+5) pwd = prints the working directory
+6) cd = change directory , ex=cd .. <-- this used to go-back
+7) mkdir = make directory , ex=mkdir joshi <-- Creates Folder With Name joshi
+8) rmdir = remove directory , ex=rmdir joshi <-- Removes Directory
+9) touch = create blank file , ex=touch 1.txt <-- Creates Empty File  
+10) mv = move command , ex=mv 1.txt /home/aayush <-- Moves File To Destined Address
+11) cp = copy command , ex=cp 1.txt /home/aayush <-- Copy File To Destined Address
+12) sudo = This Command is Used By Root User/Super User
+13) sudo su = Used When You Always Used to Perform Super User Commands (Not Recommended)
+14) sudo apt-get or sudo apt = Using This We Can Install Various Softwares
+15) sudo apt update = It Shows Update About Your Existing Apps and Fetch Info.
+16) sudo apt upgrade = It Simply Update The Softwares asking You for Y and N Command
+17) cat = Multipurpose Command (Create,display,copy file,etc.) ex=cat > demo.txt <-- Create and cat demo.txt <-- Display's the Content
+18) more = Displays Full Content means if Content is big it will show all
+19) less = Displays Less Content adjust accordingly with width and height
+20) tac = Displays Content in Reverse Order , ex=tac demo.txt
+21) head = Displays First 10 Lines of Content , ex=head demo.txt
+22) tail = Displays Last 10 Lines of Content , ex=tail demo.txt
+23) comm = is used to compare two files or streams
+24) gzip = Used to Truncate and Compresses File
+25) gunzip = Used to Decompress a File
+26) find = Used To Find a Particular File within a Directory , ex=find . -1.txt"*.pdf" <-- Returns Found or Not
+27) locate = Search The File in Database
+28) date = Display Date And Time
+29) zcat = Displays Compressed Files
+30) df = Displays Disk Space Used in File System. (used-available-mounted directory)
+31) mount = Used To Connect External Devie FS to Systems FS
+32) exit = Exit from Command Shell
+33) clear = Clear The Command Shell
+34) ip = (formerly- ipconfig) Used to assign IP Address , Initialize , Disable an Interface
+35) ssh = Used To Create Remote Connection Through SSH Protocol
+36) ping = Used To Check Connectivity Between 2 Nodes , ex=ping google.com <-- Returns time and all
+ctrl + C to Stop Ping Responses
+37) host = To get IP Addr or Domain Name Using any One , ex=host google.com <-- Returns IP Addr of Google
+38) history = Used to get the History of all Commands
+39) echo/printf = Used To Print The Statements
+40)  wc = Used ti count no of words (no of lines , word count , byte ,character count)
+	wc options <-- -m(char count) , -l(line count) , -w(word count) , -c(byte count) , -L(length of longest word)
+41) top = Used to see top processes consuming max no. of resources
+42) ps = lists all running processes
+43) ps -a = lists all the running processes including background processes
+44) kill pid = it kills the running processes which have process id as pid
+45) whoami = displays current login user info
+46) uname = displays current running kernel
+47) diff = shows difference between two files
+48) free = displays how much free ram is avavilable in your system
+49) find = used to find files and directories
+50) groups = tells you to which group do you belong
+51) gzip = allows you to compress file
+52) df = displays disk space usage 
+53) netstat = displays all network connections on system
+54) netstat -a = list all sockets listing and non-listing
+55) netstat -atu = it shows active internet connections means about servers
+56) rsync = for remote synchronization
+
