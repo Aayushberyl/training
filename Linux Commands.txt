@@ -1,4 +1,4 @@
-LINUX COMMANDS AAYUSH JOSHI
+		LINUX COMMANDS AAYUSH JOSHI
 
 1) ls = list files and directories
 2) ls -R = list files recursively
@@ -58,4 +58,3 @@ ctrl + C to Stop Ping Responses
 54) netstat -a = list all sockets listing and non-listing
 55) netstat -atu = it shows active internet connections means about servers
 56) rsync = for remote synchronization
-
