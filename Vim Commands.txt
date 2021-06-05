@@ -1,4 +1,4 @@
-			VIM Editor Commands
+		VIM Editor Commands By Aayush
 
 doubts - 16,17
 
