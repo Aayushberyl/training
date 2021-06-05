@@ -1,4 +1,4 @@
-GIT Commands and installation
+		 GIT Commands and installation
 
 Intro - git is a versioning tool used to maintain versions and codes.
 Advantages - helps to share code , maintain backups , performance , security , flexibility , wild acceptance.

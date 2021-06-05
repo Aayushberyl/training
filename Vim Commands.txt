@@ -1,6 +1,6 @@
-		VIM Editor Commands By Aayush
+		  VIM Editor Commands By Aayush
 
-doubts - 16,17
+doubts - 16,17 
 
 1) vim - to open vim editor
 2) vim filename - to create or to open any file in vim editor

@@ -1,4 +1,4 @@
-		LINUX COMMANDS AAYUSH JOSHI
+			LINUX COMMANDS AAYUSH JOSHI
 
 1) ls = list files and directories
 2) ls -R = list files recursively
