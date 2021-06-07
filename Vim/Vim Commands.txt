@@ -1,0 +1,36 @@
+		  VIM Editor Commands By Aayush
+
+doubts - 16,17 
+
+1) vim - to open vim editor
+2) vim filename - to create or to open any file in vim editor
+3) :w - to save the changes done in file
+4) :q - to quit the vim editor
+5) :wq - save the changes and exit from vim editor
+6) :q! or ZZ - to quit the vim editor without saving the changes
+7) i - to insert anything 
+8) Esc - to exit from editor menu and come back to command menu
+9) v - visual mode (used to highlight a block of text and then execute vim commands )
+10) yy - to copy a line in vim editor mode
+11) p - to paste a line in vim editor mode
+12) :put - to paste in command mode
+13) u - to undo any change
+14) gg - used to go to top of the file i.e, on top line
+15) G - used to go to bottom of file i.e, on last line 
+16) /word - used to search any word i.e, in place of word write word you want to search
+17) ?word - used to search from the end 
+18) :%s/oldword/newword - all old string will get replace by new string
+19) :%s/oldword/newword/c - ask you to replace at which places
+20) :split filename - used to split screen in vertical mode
+21) :vsplit filename - used to split screen in horizontal mode
+22) ctrl+w - to navigate inbetween split windows
+23) :help - used to open help menu
+24) :set insearch - search successively means as you type it starts searching
+25) :set hlsearch - it highlights all searched keywords
+26) :set cindent - sets indent according to C style indentation
+27) ctrl + r - Redo the Change
+28) x - delete 1 character
+29) dd - delete a line , ex=7dd deletes 7 lines of a code
+30) dw - delete a word
+31) e - move to next word , basically jumpes to next word
+32) r - replaces a letter
