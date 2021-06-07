@@ -1,0 +1,153 @@
+	    DATABASE CONCEPTS AND COMMANDS (POSTGRESQL)
+
+Database = It is a collection of data in form of tables which stores data in form of rows(tuples) and columns(attributes).
+
+To Install Postgresql in ubuntu (linux)
+sudo apt-get update <-- this shows updates 
+Run command --> sudo get-apt install postgresql
+
+The main files are stored in /etc/postgresql/13/main/  <-- postgresql.conf
+
+Commands
+
+1) service postgresql = to use postgresql
+
+beryl@beryl-Latitude-E6520:~$ service postgresql
+Usage: /etc/init.d/postgresql {start|stop|restart|reload|force-reload|status} [version ..]
+
+2) service postgresql status = shows status of postgresql
+
+beryl@beryl-Latitude-E6520:~$ service postgresql status
+● postgresql.service - PostgreSQL RDBMS
+   Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor prese
+   Active: active (exited) since Mon 2021-06-07 10:33:26 IST; 2h 32min ago
+  Process: 1511 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+ Main PID: 1511 (code=exited, status=0/SUCCESS)
+
+Jun 07 10:33:26 beryl-Latitude-E6520 systemd[1]: Starting PostgreSQL RDBMS...
+Jun 07 10:33:26 beryl-Latitude-E6520 systemd[1]: Started PostgreSQL RDBMS.
+lines 1-8/8 (END)
+
+3) sudo su postgres = for first time to use postgresql use postgres username
+
+beryl@beryl-Latitude-E6520:~$ sudo su postgres
+[sudo] password for beryl: 
+postgres@beryl-Latitude-E6520:/home/beryl$ 
+
+4) psql = for command line (it is a command line tool)
+
+postgres@beryl-Latitude-E6520:/home/beryl$ psql
+Password for user postgres: 
+psql (13.2 (Ubuntu 13.2-1.pgdg18.04+1), server 10.16 (Ubuntu 10.16-1.pgdg18.04+1))
+
+
+5) \l = to show existing databases
+
+                                    List of databases
+           Name           |  Owner   | Encoding | Collate | Ctype |   Access privileges   
+--------------------------+----------+----------+---------+-------+-----------------------
+ highchartsJS_development | postgres | UTF8     | en_IN   | en_IN | 
+ highchartsJS_test        | postgres | UTF8     | en_IN   | en_IN | 
+ postgres                 | postgres | UTF8     | en_IN   | en_IN | 
+ template0                | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+                          |          |          |         |       | postgres=CTc/postgres
+ template1                | postgres | UTF8     | en_IN   | en_IN | =c/postgres          +
+                          |          |          |         |       | postgres=CTc/postgres
+(5 rows)
+
+6) \du = it list out all the users present in postgres
+
+                                   List of roles
+ Role name |                         Attributes                         | Member of 
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+7) ALTER USER postgres WITH PASSWORD "password..."; = This will alter the default password which is postgres
+
+ALTER ROLE = means you have successfully altered the password
+
+postgres=# ALTER USER postgres WITH PASSWORD 'postgres';
+ALTER ROLE
+
+8) CREATE USER aayush WITH PASSWORD 'password...'; = create a new user named aayush with your desired password.
+
+postgres=# CREATE USER aayush WITH PASSWORD 'password...';
+CREATE ROLE
+
+9) ALTER USER aayush WITH SUPERUSER; = This will alter user with superuser privileges.
+
+postgres=# ALTER USER aayush WITH SUPERUSER;
+ALTER ROLE
+
+10) DROP USER username = This will delete user.
+
+postgres=# CREATE USER user_1 WITH PASSWORD 'test121';
+CREATE ROLE
+postgres=# \du
+postgres=# DROP USER user_1;
+DROP ROLE
+
+11) man psql = This command shows full description about postgreSQL and syntax , commands etc.
+
+beryl@beryl-Latitude-E6520:~$ man psql
+
+12) Installed (pgadmin III) - GUI s/w for postgreSQL = connect your local db using remote and enter your username and go into postgreSQL
+
+13) \help = It displays all commands necessary in postgreSQL
+
+		DATA TYPES IN POSTGRESQL
+
+Data types should be consistent , validate , compact , performance efficient
+
+Users can create their own custom data type using CREATE TYPE SQL command
+
+1) NUMERICAL DATA TYPES = It consist of two-byte, four-byte, and eight-byte integers, four-byte and eight-byte floating-point numbers, and selectable-precision decimals.
+
+2) MONETARY DATA TYPES = The money type stores a currency amount with a fixed fractional precision.
+
+3) CHARACTER DATA TYPES = character and text comes under this data type.
+
+4) BINARY DATA TYPES = The bytea data type allows storage of binary strings.
+
+5) DATE/TIME DATA TYPES = It shows date and time according to query
+
+6) Enumerated Type = enum types that comprise a static, ordered set of values.
+ex = CREATE TYPE week AS ENUM ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+
+7) NETWORK ADDRESS DATA TYPE = It offers to store IPv4, IPv6, and MAC addresses.
+
+8) ARRAY DATA TYPES = It is used to define column  of a table as a variable multidimensional array.
+
+ex = CREATE TABLE monthly_savings (
+   name text,
+   saving_per_quarter integer[],
+   scheme text[][]
+);
+
+8.1) Inserting into arrays = INSERT INTO monthly_savings 
+VALUES (‘Manisha’, 
+‘{20000, 14600, 23500, 13250}’, 
+‘{{“FD”, “MF”}, {“FD”, “Property”}}’); 
+
+8.2) Accessing Arrays = SELECT name FROM monhly_savings WHERE saving_per_quarter[2] > saving_per_quarter[4];
+
+8.3) Modifying Arrays = UPDATE monthly_savings SET saving_per_quarter = '{25000,25000,27000,27000}'
+WHERE name = 'Manisha';
+
+8.4) Searching Arrays = SELECT * FROM monthly_savings WHERE 10000 = ANY (saving_per_quarter);
+
+9) COMPOSITE DATA TYPES = declaring data type = CREATE TYPE inventory_item AS (
+   name text,
+   supplier_id integer,
+   price numeric
+);
+
+9.1) Inserting Values = INSERT INTO on_hand VALUES (ROW('fuzzy dice', 42, 1.99), 1000);
+
+9.2) Accessing Data = SELECT (item).name FROM on_hand WHERE (item).price > 9.99;
+
+10) RANGE TYPES = It represent data types that uses a range of data.
+
+11) OBJECT IDENTIFIER TYPES =OIDs are used internally by PostgreSQL as primary keys for various system tables.
+
+12) PSEUDO TYPES = They are special-purpose entries. ex = 
