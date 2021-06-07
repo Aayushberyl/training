@@ -150,4 +150,4 @@ WHERE name = 'Manisha';
 
 11) OBJECT IDENTIFIER TYPES =OIDs are used internally by PostgreSQL as primary keys for various system tables.
 
-12) PSEUDO TYPES = They are special-purpose entries. ex = 
+12) PSEUDO TYPES = They are special-purpose entries. ex = any , anyelement , anyarray , record , trigger , void .
