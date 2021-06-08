@@ -21,7 +21,7 @@ after installation
 1) git config --global user.name Aayushberyl = To configure your username on git
 2) git config --global user.email aayush.beryl@berylsystems.com = To configure your email on git
 3) git init = Used to initialize an empty git repository
-4) git config --global --get-all user.name = Dsiplays all username
+4) git config --global --get-all user.name = Displays all username
 5) git config --global --replace-all user.name Aayushberyl = replaces all username
 6) git config --global --replace-all user.email aayush.joshi@berylsystems.com = replaces all emails
 7) code . = it opens vs code (or any code editor)

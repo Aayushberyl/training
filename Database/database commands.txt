@@ -8,7 +8,9 @@ Run command --> sudo get-apt install postgresql
 
 The main files are stored in /etc/postgresql/13/main/  <-- postgresql.conf
 
-Commands
+-----------------------------------------------------------------------------
+	
+	Commands
 
 1) service postgresql = to use postgresql
 
@@ -41,7 +43,7 @@ Password for user postgres:
 psql (13.2 (Ubuntu 13.2-1.pgdg18.04+1), server 10.16 (Ubuntu 10.16-1.pgdg18.04+1))
 
 
-5) \l = to show existing databases
+5) \l = to show/list existing databases
 
                                     List of databases
            Name           |  Owner   | Encoding | Collate | Ctype |   Access privileges   
@@ -62,7 +64,7 @@ psql (13.2 (Ubuntu 13.2-1.pgdg18.04+1), server 10.16 (Ubuntu 10.16-1.pgdg18.04+1
 -----------+------------------------------------------------------------+-----------
  postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 
-7) ALTER USER postgres WITH PASSWORD "password..."; = This will alter the default password which is postgres
+7) ALTER USER postgres WITH PASSWORD 'password...'; = This will alter the default password which is postgres
 
 ALTER ROLE = means you have successfully altered the password
 
@@ -94,6 +96,8 @@ beryl@beryl-Latitude-E6520:~$ man psql
 12) Installed (pgadmin III) - GUI s/w for postgreSQL = connect your local db using remote and enter your username and go into postgreSQL
 
 13) \help = It displays all commands necessary in postgreSQL
+
+------------------------------------------------------------------------------------
 
 		DATA TYPES IN POSTGRESQL
 
@@ -151,3 +155,311 @@ WHERE name = 'Manisha';
 11) OBJECT IDENTIFIER TYPES =OIDs are used internally by PostgreSQL as primary keys for various system tables.
 
 12) PSEUDO TYPES = They are special-purpose entries. ex = any , anyelement , anyarray , record , trigger , void .
+
+----------------------------------------------------------------------------------------------
+
+		DATABASE DDL AND DML COMMANDS
+
+1) CREATE DATABASE training = It creates database named training.
+
+postgres=# CREATE DATABASE training;
+CREATE DATABASE
+
+2) \c dbname or \connect dbname = It is used to switch the databases.
+
+postgres=# \connect training
+psql (13.2 (Ubuntu 13.2-1.pgdg18.04+1), server 10.16 (Ubuntu 10.16-1.pgdg18.04+1))
+You are now connected to database "training" as user "postgres".
+
+3) CREATE TABLE tablename (attributes dtype(size),...); = This will create table with given attributes.
+
+4) \d tablename = This will describes the table schema.
+
+training-# \d student
+                   Table "public.student"
+  Column  |      Type      | Collation | Nullable | Default 
+----------+----------------+-----------+----------+---------
+ rollno   | integer        |           |          | 
+ s_name   | character(255) |           |          | 
+ courseid | integer        |           |          | 
+
+5) DROP DATABASE aayush; = This will drop the database.
+
+training=# DROP DATABASE training;
+ERROR:  cannot drop the currently open database
+training=# exit
+postgres@beryl-Latitude-E6520:/home/beryl$ psql
+Password for user postgres: 
+psql (13.2 (Ubuntu 13.2-1.pgdg18.04+1), server 10.16 (Ubuntu 10.16-1.pgdg18.04+1))
+Type "help" for help.
+
+postgres=# DROP DATABASE training;
+DROP DATABASE
+
+6) DROP TABLE tablename = This drops the table from database.
+
+training=# drop table student;
+DROP TABLE
+
+7) INSERT INTO tablename VALUES(data acc to attributes) = This insert data in table.
+
+8) SELECT * or attname FROM tablename = This Displays data of table accordin to given condition
+
+9) ALTER TABLE tablename (ADD,DROP,DELETE,UPDATE,RENAME TO,etc) = This Alters the table means changes the table config
+
+10) OPERATORS = used to specify condition. ex=> =,>,<,+,-,*,/,%,^,!,!= or <> , AND , NOT , OR , & , | , ~ , << , >> , #
+
+12) EXPRESSIONS = are like formulas or methods to get the desired output. ex= select * from employee where salary=20000;
+
+training=# select current_timestamp;
+        current_timestamp         
+----------------------------------
+ 2021-06-08 15:23:47.453259+05:30
+(1 row)
+
+13) WHERE CLAUSE = it is used to specify a condition.
+
+training=# select * from employee where salary>20000 and salary<50000;
+ id | name  | age |                      address                       | salary 
+----+-------+-----+----------------------------------------------------+--------
+  1 | Rahul |  20 | Faridabad                                          |  30000
+  4 | Mohan |  25 | Okhla                                              |  40000
+(2 rows)
+
+14) AND OR CLAUSE = it is used to specify get output based on and or conditions.
+
+15) UPDATE QUERY = it is used to modify existing table records.
+
+training=# update employee set salary=60000 where id=3;
+UPDATE 1
+
+** modified row will display at last
+
+16) DELETE QUERY = it deletes particular row based on some conditions.
+   ** If you want to delete all the records from employee table, you don't need where clause 
+simply write : delete from employee;
+
+training=# delete from employee where id=5;
+DELETE 1
+
+17) LIKE CLAUSE = it is used to match text values against a pattern using wildcards (%,_). 
+    here % means it may represent 0,1 or multiple numbers or characters.
+    and _ underscore represents a single character or number.
+    ** if either of two is not used in conjunction with LIKE clause , then like act as equal operator.
+
+training=# select * from employee where salary::text LIKE '40%';
+ id | name  | age |                      address                       | salary 
+----+-------+-----+----------------------------------------------------+--------
+  4 | Mohan |  25 | Okhla                                              |  40000
+(1 row)
+
+
+training=# select * from employee where address like 'Far%';
+ id | name  | age |                      address                       | salary 
+----+-------+-----+----------------------------------------------------+--------
+  1 | Rahul |  20 | Faridabad                                          |  30000
+(1 row)
+
+18) LIMIT CLAUSE = it is used to limit the output rows. and OFFSET is used to give the rownum to start.
+
+training=# select * from employee limit 3 offset 1;
+
+ id |  name   | age |                      address                       | salary 
+----+---------+-----+----------------------------------------------------+--------
+  2 | Karan   |  21 | Gurugram                                           |  20000
+  4 | Mohan   |  25 | Okhla                                              |  40000
+  3 | Rishabh |  23 | Noida                                              |  60000
+(3 rows)
+
+
+19) ORDER BY CLAUSE = This is used to sort data in ascending or descending order,based on one or more columns.
+    by default it sort data in ascending order.
+
+training=# select * from employee order by id;
+
+ id |  name   | age |                      address                       | salary 
+----+---------+-----+----------------------------------------------------+--------
+  1 | Rahul   |  20 | Faridabad                                          |  30000
+  2 | Karan   |  21 | Gurugram                                           |  20000
+  3 | Rishabh |  23 | Noida                                              |  60000
+  4 | Mohan   |  25 | Okhla                                              |  40000
+(4 rows)
+
+20) GROUP BY CLAUSE = This is to group together those rows in a table that have identical data.it is used to delete redundancy.
+    ** We can use only those attribute which is written with group by clause otherwise we need to use aggregate functions
+     ex= select name,sum(salary) from employee group by name; <-- here we cannot write group by anything other than this.
+
+training=# SELECT name,sum(salary) FROM employee GROUP BY name;
+  name   |  sum  
+---------+-------
+ Rahul   | 30000
+ Mohan   | 40000
+ Rishabh | 60000
+ Karan   | 20000
+(4 rows)
+
+21) HAVING CLAUSE = it is used on particular output.here we cannot use where because it works on whole table. 
+
+training=# SELECT salary,count(*) FROM employee GROUP BY salary having salary>20000;
+ salary | count 
+--------+-------
+  60000 |     1
+  30000 |     1
+  40000 |     1
+(3 rows)
+
+22) WITH CLAUSE = it provides a way to write complex queries as simple queries.it is also known as CTE's (Common Table Expressions)
+
+23) DISTINCT CLAUSE = it is used to display distinct data means no redundancy.
+
+ id |  name   | age |                      address                       | salary 
+----+---------+-----+----------------------------------------------------+--------
+  1 | Rahul   |  20 | Faridabad                                          |  30000
+  2 | Karan   |  21 | Gurugram                                           |  20000
+  4 | Mohan   |  25 | Okhla                                              |  40000
+  3 | Rishabh |  23 | Noida                                              |  60000
+  5 | Kunal   |  19 | Mirzapur                                           |  60000
+(5 rows)
+
+
+training=# select salary from employee;
+ salary 
+--------
+  30000
+  20000
+  40000
+  60000
+  60000
+(5 rows)
+
+training=# select distinct(salary) from employee;
+ salary 
+--------
+  60000
+  20000
+  30000
+  40000
+(4 rows)
+
+----------------------------------------------------------------------------
+
+	CREATED A EMPLOYEE TABLE AND DEPARTMENT TABLE
+
+training=# CREATE TABLE COMPANY(ID INT PRIMARY KEY NOT NULL,NAME TEXT NOT NULL,AGE INT NOT NULL,ADDRESS CHAR(50),SALARY REAL);
+CREATE TABLE
+training=# \d
+          List of relations
+ Schema |  Name   | Type  |  Owner   
+--------+---------+-------+----------
+ public | company | table | postgres
+(1 row)
+
+training=# \d company
+                  Table "public.company"
+ Column  |     Type      | Collation | Nullable | Default 
+---------+---------------+-----------+----------+---------
+ id      | integer       |           | not null | 
+ name    | text          |           | not null | 
+ age     | integer       |           | not null | 
+ address | character(50) |           |          | 
+ salary  | real          |           |          | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (id)
+
+training=# create table department (id int primary key not null , dept char(50) not null , emp_id int not null);
+CREATE TABLE
+training=# \d
+           List of relations
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | company    | table | postgres
+ public | department | table | postgres
+(2 rows)
+
+
+		INSERTING DATA IN TABLES
+
+training=# insert into company values(2,'Karan',21,'Gurugram',20000),(3,'Rishabh',23,'Noida',50000),(4,'Mohan',25,'Okhla',40000);
+INSERT 0 3
+
+training=# select * from company;
+
+
+<pre> id |  name   | age |                      address                       | salary 
+----+---------+-----+----------------------------------------------------+--------
+  1 | Rahul   |  20 | Faridabad                                          |  30000
+  2 | Karan   |  21 | Gurugram                                           |  20000
+  3 | Rishabh |  23 | Noida                                              |  50000
+  4 | Mohan   |  25 | Okhla                                              |  40000
+(4 rows)
+</pre>
+
+		AGGREGATE FUNCTIONS (MIN,MAX,AVG,SUM,COUNT)
+
+1) MAX = It displays max value.
+training=# select max(salary) from company;
+  max  
+-------
+ 50000
+(1 row)
+
+2) MIN = it displays min value.
+
+training=# select min(salary) from company;
+  min  
+-------
+ 20000
+(1 row)
+
+3) COUNT = This count no. of rows.
+
+training=# select count(*) from company;
+ count 
+-------
+     4
+(1 row)
+
+4) SUM = Displays sum of particular attribute column.
+
+training=# select sum(salary) from company;
+  sum   
+--------
+ 140000
+(1 row)
+
+5) AVG = it displays average of the particular column.
+
+training=# select avg(salary) from company;
+  avg  
+-------
+ 35000
+(1 row)
+
+	RENAMING TABLE NAME FROM COMPANY TO EMPLPOYEE
+
+training=# alter table company rename to employee;
+ALTER TABLE
+
+
+			SQL QUERRIES PRACTICE
+
+Q1)select name of an employee who is working in SDE department.
+
+training=# select name from company where id=(select emp_id from department where dept='SDE');
+ name  
+-------
+ Karan
+(1 row)
+
+Q2) Display How many employees taking salary with salary
+
+training=# select count(name),salary from employee group by salary;
+ count | salary 
+-------+--------
+     1 |  20000
+     1 |  50000
+     1 |  30000
+     1 |  40000
+(4 rows)
+
+Q3) 
