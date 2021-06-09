@@ -341,7 +341,217 @@ training=# select distinct(salary) from employee;
   40000
 (4 rows)
 
+24) UNION CLAUSE = It is used to combine results of two or more selected statements avoiding redundant data.
+
+25) UNION ALL CLAUSE = It is used to combine results of two or more selected statements including redundant data.
+
+26) NULL = It is used to represent a missing value.
+   **IS NULL = it specifies that data is null.you cannot insert data in that particular problem.
+   **IS NOT NULL = it specifies that column is not null.
+   **NOT NULL = it specifies that value of particular column cannot be null.
+
+27) ALIAS = it is used to rename a table's column for purpose of particular postgresql query.
+
+training=# select e.id,e.name,d.dept,e.salary from employee as e,department as d where e.id=d.emp_id order by id;
+
+
+ id |  name   |                        dept                        | salary 
+----+---------+----------------------------------------------------+--------
+  1 | Rahul   | Manager                                            |  30000
+  2 | Karan   | SDE                                                |  20000
+  3 | Rishabh | IT                                                 |  60000
+  4 | Mohan   | HR                                                 |  40000
+(4 rows)
+
+
+28) TRIGGERS = They are database callback functions which are automatically performed when specific db event occurs.	
+
+29) ALTER TABLE = it is used to do manipulations on table as well as data.
+
+30) TRUNCATE = it is used to delete complete data from an existing table in one go. It is a DDL command
+
+31) CREATE VIEW = It is used to make the view that the user is desired to see.
+
+training=# create view employee_details as select name,salary from employee;
+CREATE VIEW
+
+training=# select * from employee_details;
+  name   | salary 
+---------+--------
+ Rahul   |  30000
+ Karan   |  20000
+ Mohan   |  40000
+ Rishabh |  60000
+ Kunal   |  60000
+(5 rows)
+
+
+32) DROP VIEW = It is used to drop the view.
+
+training=# drop view employee_details;
+DROP VIEW
+
+33) TRANSACTIONS = it is the propagation of one or more changes in dastabase.
+    **ACID PROPERTIES <-- Atomicity,Consistency,Isolation,Durability
+    **TCL COMMANDS = Begin,Commit or end,Rollback.
+34) select NOW() = it is used to display current date and time according tom your time zone.
+training=# select now();
+               now                
+----------------------------------
+ 2021-06-09 16:22:56.169075+05:30
+(1 row)
+
+35) Current date = it displays current date.
+
+training=# select current_date;
+ current_date 
+--------------
+ 2021-06-09
+(1 row)
+
+
+36) AGE(argument) = it displays age according to current timestamp.
+
+                                                                                                                              name                                                                                                                               |           age           
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------
+ Aditya                                                                                                                                                                                                                                                          | 25 years 25 days
+ Isha                                                                                                                                                                                                                                                            | 20 years 9 mons 29 days
+ Garima                                                                                                                                                                                                                                                          | 19 years 7 mons 4 days
+(3 rows)
+
+---------------------------------------------------------------------------
+
+			CONSTRAINTS IN POSTGRESQL
+
+These are the rules that ensures accuracy and reliability of data.
+
+** Constraints could be column and row level.
+** Many Constraints can be used at a time on a single column.
+** Commonly used Constraints are :
+
+1) NOT NULL = It ensures that data should not be null.
+
+2) UNIQUE = used to prevent duplicacy. It ensures that all values in column must be different.
+
+3) PRIMARY KEY = It is used to idedntify each row/column uniquely. (UNIQUE + NOT NULL) 
+   ** When multiple fields are used as primary key then it is known as COMPOSITE KEY.
+   ** To drop primary key we use this syntax = ALTER TABLE table_name DROP CONSTRAINT primary_key_constraint;
+
+4) FOREIGN KEY = It is used to maintain referential integrity. Basically the primary key in referenced table acts as a foreign key in the referencing table. Using references keyword we can add foreign key ex = emp_id references COMPANY6(ID)
+
+5) CHECK = It ensures that all values must satisfy certain conditions. ex = salary int check(salary>0)
+
+6) EXCLUSION = It ensure that if any two rows are compared on the specified columns or expressions using the specified operators, at least one of these operator comparisons will return false or null.
+Syntax=EXCLUDE USING gist (name with = , age with <>) here gist is type of index used to build and used for enforcement.
+
+7) AUTO INCREMENT = it increments value by 1.by default increment value is 1.
+
+8) PRIVILEGES = it is the permissions given to a user. generally they use GRANT/REVOKE.
+
+testdb=# GRANT ALL ON employee TO manisha;
+GRANT
+
+testdb=# REVOKE ALL ON COMPANY FROM manisha;
+REVOKE
+
+
+** When we want to auto increment primary key we use serial keyword. ex=ALTER TABLE tbname ADD COLUMN ID SERIAL PRIMARY KEY;
+
 ----------------------------------------------------------------------------
+
+				POSTGRESQL JOINS
+
+** JOINS are used to combine records from 2 or more tables in a database.
+
+1) CROSS JOIN = Its is basically cartesian product used to evaluate the output based on some input conditions.
+** No. of columns in cartesian product is (m+n) and No. of Rows in Cartesian product is (m*n)
+
+select * from employee cross join department; 	OR	select * from employee,department; <-- Both will give same o/p i.e, Cartesian Product.
+
+2) INNER JOIN = it creates table by combining column values of 2 tables based upon join-predicate.
+
+** When 2 tables have same column name so we can use USING clause otherwise ON.
+
+training=# select name from employee inner join department on employee.id=department.emp_id;
+  name   
+---------
+ Rahul
+ Karan
+ Rishabh
+ Mohan
+(4 rows)
+
+** Using WHERE clause with ON clause..
+
+training=# select name from employee join department on employee.id=department.emp_id where dept='IT';
+  name   
+---------
+ Rishabh
+(1 row)
+
+
+3) LEFT OUTER JOIN = here inner join is performed first,then all rows of first table + the common rows result in output. 
+
+training=# select * from employee left outer join department on department.emp_id = employee.id order by employee.id;
+
+
+ id |  name   | age |                      address                       | salary | id |                        dept                        | emp_id 
+----+---------+-----+----------------------------------------------------+--------+----+----------------------------------------------------+--------
+  1 | Rahul   |  20 | Faridabad                                          |  30000 |  1 | Manager                                            |      1
+  2 | Karan   |  21 | Gurugram                                           |  20000 |  2 | SDE                                                |      2
+  3 | Rishabh |  23 | Noida                                              |  60000 |  3 | IT                                                 |      3
+  4 | Mohan   |  25 | Okhla                                              |  40000 |  4 | HR                                                 |      4
+  5 | Kunal   |  19 | Mirzapur                                           |  60000 |    |                                                    |       
+(5 rows)
+
+
+4) RIGHT OUTER JOIN=here inner join is performed first,then all rows of second table + the common rows result in output.
+
+training=# select * from employee right outer join department on department.emp_id = employee.id order by employee.id;
+
+
+ id |  name   | age |                      address                       | salary | id |                        dept                        | emp_id 
+----+---------+-----+----------------------------------------------------+--------+----+----------------------------------------------------+--------
+  1 | Rahul   |  20 | Faridabad                                          |  30000 |  1 | Manager                                            |      1
+  2 | Karan   |  21 | Gurugram                                           |  20000 |  2 | SDE                          training=# select * from employee right outer join department on department.emp_id = employee.id order by employee.id;
+                      |      2
+  3 | Rishabh |  23 | Noida                                              |  60000 |  3 | IT                                                 |      3
+  4 | Mohan   |  25 | Okhla                                              |  40000 |  4 | HR                                                 |      4
+(4 rows)
+
+5) FULL OUTER JOIN = It is basically union of the two tables.
+
+training=# select * from employee full outer join department on department.emp_id = employee.id order by employee.id;
+
+
+ id |  name   | age |                      address                       | salary | id |                        dept                        | emp_id 
+----+---------+-----+----------------------------------------------------+--------+----+----------------------------------------------------+--------
+  1 | Rahul   |  20 | Faridabad                                          |  30000 |  1 | Manager                                            |      1
+  2 | Karan   |  21 | Gurugram                                           |  20000 |  2 | SDE                                                |      2
+  3 | Rishabh |  23 | Noida                                              |  60000 |  3 | IT                                                 |      3
+  4 | Mohan   |  25 | Okhla                                              |  40000 |  4 | HR                                                 |      4
+  5 | Kunal   |  19 | Mirzapur                                           |  60000 |    |                                                    |       
+(5 rows)
+
+
+6) NATURAL JOIN = it joins 2 tables based on common column name.
+
+select name from employee natural join department == select name from employee,department where employee.id=department.id 
+
+training=# select * from employee natural join department;
+
+
+ id |  name   | age |                      address                       | salary |                        dept                        | emp_id 
+----+---------+-----+----------------------------------------------------+--------+----------------------------------------------------+--------
+  1 | Rahul   |  20 | Faridabad                                          |  30000 | Manager                                            |      1
+  2 | Karan   |  21 | Gurugram                                           |  20000 | SDE                                                |      2
+  4 | Mohan   |  25 | Okhla                                              |  40000 | HR                                                 |      4
+  3 | Rishabh |  23 | Noida                                              |  60000 | IT                                                 |      3
+(4 rows)
+
+
+----------------------------------------------------------------------------
+
 
 	CREATED A EMPLOYEE TABLE AND DEPARTMENT TABLE
 
