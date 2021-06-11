@@ -298,7 +298,7 @@ training=# SELECT name,sum(salary) FROM employee GROUP BY name;
  Karan   | 20000
 (4 rows)
 
-21) HAVING CLAUSE = it is used on particular output.here we cannot use where because it works on whole table. 
+21) HAVING CLAUSE = it is used on particular output.here we cannot use where because where works on whole table. 
 
 training=# SELECT salary,count(*) FROM employee GROUP BY salary having salary>20000;
  salary | count 
@@ -412,6 +412,13 @@ training=# select current_date;
 
 36) AGE(argument) = it displays age according to current timestamp.
 
+airlines=# select age(timestamp '2000-07-24');
+           age            
+--------------------------
+ 20 years 10 mons 18 days
+(1 row)
+
+
                                                                                                                               name                                                                                                                               |           age           
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------
  Aditya                                                                                                                                                                                                                                                          | 25 years 25 days
@@ -453,6 +460,16 @@ GRANT
 
 testdb=# REVOKE ALL ON COMPANY FROM manisha;
 REVOKE
+
+
+9) ABS(Numeric Value) = It converts negative value into positive value.
+
+airlines=# select abs(-45);
+ abs 
+-----
+  45
+(1 row)
+
 
 
 ** When we want to auto increment primary key we use serial keyword. ex=ALTER TABLE tbname ADD COLUMN ID SERIAL PRIMARY KEY;
@@ -644,6 +661,15 @@ training=# select avg(salary) from company;
 -------
  35000
 (1 row)
+
+6) ARRAY_AGG function = It is used to concatenate the input values including null into an array.
+
+airlines=# select array_agg(salary) from employees;
+                         array_agg                         
+-----------------------------------------------------------
+ {140000,80000,35000,90000,50000,110000,85000,90000,45000}
+(1 row)
+
 
 	RENAMING TABLE NAME FROM COMPANY TO EMPLPOYEE
 
