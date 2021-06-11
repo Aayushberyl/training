@@ -285,11 +285,16 @@ airlines=# select e.ename from employees e,certified c,aircraft a where e.eid=c.
 
 i. A customer wants to travel from Madison to New York with no more than two changes of flight. List the choice of departure times from Madison if the customer wants to arrive in New York by 6 p.m.
 
-airlines=# select departs from flights where source='Madison'and destination='New York' and arrives<'18:00:00';
- departs  
-----------
- 15:00:00
-(1 row)
+airlines=# select f1.departs,f1.source,f1.destination from flights f1,flights f2 where f1.source='Madison' and f1.arrives<'18:00:00' and f1.destination!=f2.source and f2.destination='New York' and f2.arrives<(select max(arrives) from flights where destination='New York') order by departs ;
+
+
+ departs  |        source        |     destination      
+----------+----------------------+----------------------
+ 09:00:00 | Madison              | New Delhi           
+ 15:00:00 | Madison              | New York            
+(2 rows)
+
+
 
 -------------------------------------------------------------------------------------------------------------------------
 
@@ -302,4 +307,53 @@ airlines=# select (select avg(e.salary) from employees e,certified c where e.eid
 -------------------
  2777.777777777777
 (1 row)
+
+
+k. Print the name and salary of every non-pilot whose salary is more than the average salary for pilots.
+
+airlines=# select distinct(e.ename),e.salary from employees e,certified c where e.eid not in (select distinct(eid) from certified) and e.salary > (select avg(salary) from employees e,certified c where e.eid in (select distinct(eid) from certified));
+
+        ename         | salary 
+----------------------+--------
+ Aditya               | 140000
+(1 row)
+
+
+l. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles.
+
+airlines=# select distinct(ename) from employees e,certified c where e.eid=c.eid and c.aid in (select aid from aircraft where cruisingrange>1000);
+
+        ename         
+----------------------
+ Garima              
+ Saloni              
+ Isha                
+ Anjali              
+ Anita               
+(5 rows)
+
+
+m. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles, but on at least two such aircrafts.
+
+airlines=# select distinct(ename) from employees e,certified c where e.eid=c.eid and c.eid in (select eid from certified group by eid having count(*)>1) and c.aid in (select aid from aircraft where cruisingrange>1000) ;
+
+        ename         
+----------------------
+ Garima              
+ Isha                
+ Anjali              
+(3 rows)
+
+
+n. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles and who are certified on some Boeing aircraft.
+
+airlines=# select distinct(ename) from employees e,certified c where e.eid=c.eid and c.aid in (select aid from aircraft where cruisingrange>1000 and aname='Boeing') ;
+
+        ename         
+----------------------
+ Anjali              
+ Isha                
+ Saloni              
+(3 rows)
+
 
