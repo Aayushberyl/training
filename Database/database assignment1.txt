@@ -254,7 +254,7 @@ airlines=# select aid from aircraft where cruisingrange>(select distance from fl
 
 g. Identify the routes that can be piloted by every pilot who makes more than $100,000.
 
-airlines=# select distinct source,destination from flights where distance <(select min(cruisingrange) from aircraft where aid in(select aid from certified where eid in (select eid from employees where salary>100000)));
+airlines=# select distinct source,destination from flights where distance <(select m(cruisingrange) from aircraft where aid in(select aid from certified where eid in (select eid from employees where salary>100000)));
 
 
         source        |     destination      
