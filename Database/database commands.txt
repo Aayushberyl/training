@@ -677,6 +677,44 @@ training=# alter table company rename to employee;
 ALTER TABLE
 
 
+-------------------------------------------------------------------------------------------------------------------------
+
+			STEPS TO CREATE A DUMP FILE IN PSQL
+
+
+
+1) First create a folder where you want to create backup file. <-- mkdir Desktop/sql_backup
+
+2) Give permissions to that folder using chmod command. <-- chmod 0777 sql_backup
+
+3) Now in postgres move to that folder you created for backup cd Desktop/sql_backup/
+
+4) Then Create dump using dump command. <-- pd_dump -h localhost dbname > backupname.sql then enter your postgres user password.
+
+   ex = pg_dump -h localhost airlines > sql_dump.sql
+
+
+
+				RESTORE A DUMP FILE IN PSQL
+
+1) pg_restore -U username -d dbname < filename.sql
+
+  ** If this command didn't work , use <-- psql -d dbanme < dumpfilename.sql
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+		SCP COMMAND TO SECURELY TRANSFER FILES OR FOLDERS
+
+
+1) scp filename hostname@hostipaddr:hostpath
+  they say yes
+  then enter hostserver password
+  then file will be transferred.
+
+2) to get your ip you can use ifconfig command.
+
 			SQL QUERRIES PRACTICE
 
 Q1)select name of an employee who is working in SDE department.
