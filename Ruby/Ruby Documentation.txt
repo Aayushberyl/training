@@ -1,0 +1,74 @@
+					RUBY PROGRAMMING LANGUAGE
+
+** Ruby is a pure object-oriented and server-side scripting and programming language. It was created in 1993 by Yukihiro Matsumoto of Japan.
+
+** Ruby can be embedded into html and is much scalable.
+
+** Ruby can be used for developing internet and intranet applications.It can easily be connected to DB2, MySQL, Oracle, and Sybase.
+
+** The 4 pillars of OOP's are --> Data Encapsulation , Data Abstraction , Polymorphism , Inheritance
+
+** CLASS is a collection of data members and member functions. It's like a blueprint for objects (real life entity).
+** OBJECT is an instance of a class.
+   cust1 = Customer. new <-- Creating an object from Customer class.
+
+** VARIABLES in Ruby 
+a) Local = defined inside a method. not accessible outside the method. begin with a lowercase or _ .
+b) Instance = available across the methods for any instance or object. They are preceded by the at sign (@) followed by the variable name.
+c) Class = available across different objects.They are preceded by the sign @@ and are followed by the variable name.
+d) Global = accessible by all classes. They are always preceded by the dollar sign ($).
+
+** CONSTANTS in Ruby = Constants begin with an uppercase letter. ex=Car,River etc.
+
+** PSEUDO-VARIABLES IN Ruby = They are special variables that have the appearance of local variables but behave like constants. You cannot assign any value to these variables.
+
+self − The receiver object of the current method.
+
+true − Value representing true.
+
+false − Value representing false.
+
+nil − Value representing undefined.
+
+__FILE__ − The name of the current source file.
+
+__LINE__ − The current line number in the source file.
+
+
+
+
+				METHOD INITIALIZATION IN RUBY
+
+
+class Customer
+   @@no_of_customers = 0
+   def initialize(id, name, addr)
+      @cust_id = id
+      @cust_name = name
+      @cust_addr = addr
+   end
+end
+
+cust1 = Customer. new(1,'Aditya','Faridabad')	<-- Creating objects of class Customer
+cust2 = Customer. new(2,'Aqib','Badarpur')	<-- Creating objects of class Customer
+
+
+				METHODS OR FUNCTIONS IN RUBY
+
+
+** Each method in a class starts with the keyword def followed by the method name.
+** The method name always preferred in lowercase letters. You end a method in Ruby by using the keyword end.
+
+class Sample
+   def hello
+      puts "Hello Ruby!"
+   end
+end
+
+# Now using above class to create objects
+object = Sample. new	<-- Creation of object using class Sample
+object.hello		<-- Accessing method in class Sample
+
+
+
+
