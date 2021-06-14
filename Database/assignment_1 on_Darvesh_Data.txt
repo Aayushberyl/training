@@ -1,0 +1,158 @@
+a. Find the names of aircraft such that all pilots certified to operate them earn more than $80,000.
+
+postgres=# select distinct(aname) from aircraft where aid in (select distinct(aid) from certified c,employees e where e.eid=c.eid and e.salary>80000);
+   aname    
+------------
+ Airbus-121
+ Airbus-122
+ Boeing-123
+ Boeing-125
+(4 rows)
+
+b. For each pilot who is certified for more than three aircraft, find the eid and the maximum cruisingrange of the aircraft for which she or he is certified.
+
+postgres=# select certified.eid,max(aircraft.cruise_range) from certified inner join aircraft on certified.aid=aircraft.aid group by certified.eid having count(*)>3;
+ eid |  max  
+-----+-------
+ 124 | 12960
+ 122 | 10560
+(2 rows)
+
+
+c. Find the names of pilots whose salary is less than the price of the cheapest route from Los Angeles to Honolulu.
+
+postgres=# select distinct(ename) from employees inner join certified on employees.eid=certified.eid where employees.salary<(select min(price) from flight where source='LA' and destination='Honolulu');
+  ename  
+---------
+ rakesh
+ rajesh
+ ramesh
+ prakash
+(4 rows)
+
+
+d. For all aircraft with cruisingrange over 1000 miles, find the name of the aircraft and the average salary of all pilots certified for this aircraft.
+
+postgres=# select a.aname,avg(e.salary) from aircraft a,employees e,certified c where c.aid=a.aid and c.eid=e.eid and a.cruise_range>1000 group by a.aid;
+    aname    |         avg         
+-------------+---------------------
+ Boeing-123  | 110000.000000000000
+ Boeing-125  | 105500.000000000000
+ Airbus-121  |  95000.000000000000
+ Vistara-120 |  75000.000000000000
+ Vistara-128 |  75000.000000000000
+(5 rows)
+
+
+e. Find the names of pilots certified for some Boeing aircraft.
+
+postgres=# select distinct(e.ename) from employees e,certified c where e.eid=c.eid and c.aid in (select aid from aircraft where aname::text like 'Boeing%');
+  ename  
+---------
+ prakash
+ rakesh
+(2 rows)
+
+
+f. Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago.
+
+postgres=# select aid from aircraft where cruise_range>(select distance from flight where source='LA' and destination='Chicago');
+  aid  
+-------
+ 12734
+ 12735
+ 12741
+(3 rows)
+
+g. Identify the routes that can be piloted by every pilot who makes more than $100,000.
+
+postgres=# select distinct source,destination from flight where distance <(select max(cruise_range) from aircraft where aid in(select aid from certified where eid in (select eid from employees where salary>100000)));
+ source | destination 
+--------+-------------
+ LA     | Chicago
+ LA     | Honolulu
+ USA    | LA
+(3 rows)
+
+
+h. Print the enames of pilots who can operate planes with cruisingrange greaterthan 3000 miles but are not certified on any Boeing aircraft.
+
+postgres=# select distinct(e.ename) from employees e,certified c,aircraft a where e.eid=c.eid and a.aid=c.aid and a.cruise_range>3000 and a.aname::text not like'Boeing%';
+  ename  
+---------
+ prakash
+ rajesh
+ ramesh
+(3 rows)
+
+
+i. A customer wants to travel from Madison to New York with no more than two changes of flight. List the choice of departure times from Madison if the customer wants to arrive in New York by 6 p.m.
+
+
+postgres=# select departs from flight as f 
+where f.arrives='18:00' and f.source= 'Maddison' and f.destination = 'NY'
+union
+select f1.departs from flight f1,flight f2
+where f2.arrives ='18:00' and f1.arrives < f2.departs and f1.source = 'Maddison' and f1.destination =f2.source and f2.destination = 'NY' 
+union
+select f1.departs from flight f1,flight f2, flight f3
+where f1.arrives ='18:00' and f1.arrives < f2.departs and f1.source = 'Maddison' and f1.destination =f2.source and f2.destination =f3.source and f1.arrives < f2.departs and f3.destination = 'NY';
+ departs  
+----------
+ 15:01:00
+ 15:30:00
+ 15:00:00
+(3 rows)
+
+
+
+j. Compute the difference between the average salary of a pilot and the average salary of all employees (including pilots).
+
+postgres=# select (select avg(e.salary) from employees e,certified c where e.eid in (select distinct(eid) from certified)) - (select avg(salary) from employees) AS Difference;
+    difference     
+-------------------
+ 4277.777777777778
+(1 row)
+
+
+k. Print the name and salary of every non-pilot whose salary is more than the average salary for pilots.
+
+postgres=# select distinct(e.ename),e.salary from employees e,certified c where e.eid not in (select distinct(eid) from certified) and e.salary > (select avg(salary) from employees e,certified c where e.eid in (select distinct(eid) from certified));
+ ename  | salary 
+--------+--------
+ deepak |  99000
+ deepak | 100000
+(2 rows)
+
+
+l. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles.
+
+postgres=# select distinct(ename) from employees e,certified c where e.eid=c.eid and c.aid in (select aid from aircraft where cruise_range>1000);
+  ename  
+---------
+ prakash
+ rajesh
+ rakesh
+ ramesh
+(4 rows)
+
+
+m. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles, but on at least two such aircrafts.
+
+postgres=# select distinct(ename) from employees e ,certified c,aircraft a where e.eid=c.eid and c.aid=a.aid and a.cruise_range>1000 group by ename having count(cruise_range)>1;
+  ename  
+---------
+ prakash
+ rajesh
+(2 rows)
+
+
+n. Print the names of employees who are certified only on aircrafts with cruisingrange longer than 1000 miles and who are certified on some Boeing aircraft.
+
+postgres=# select distinct(ename) from employees e ,certified c,aircraft a where e.eid=c.eid and c.aid=a.aid and a.cruise_range>1000 and a.aname::text like 'Boeing%';
+  ename  
+---------
+ prakash
+ rakesh
+(2 rows)
+
