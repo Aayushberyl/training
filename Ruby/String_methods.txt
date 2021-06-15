@@ -1,0 +1,232 @@
+1) 3.0.0 :001 > s=String.new
+ => "" 
+
+2) 3.0.0 :002 > s="Aayush"
+ => "Aayush" 
+
+3) 3.0.0 :005 > s*3
+ => "AayushAayushAayush" 
+
+4) 3.0.0 :005 > "Hello From " + self.to_s
+ => "Hello From main" 
+
+5) 3.0.0 :006 > "Hello From " + s
+ => "Hello From Aayush"
+
+6) 3.0.0 :007 > s.class
+ => String 
+
+7) 3.0.0 :010 > s.upcase
+ => "AAYUSH" 
+
+8) 3.0.0 :011 > s.downcase
+ => "aayush" 
+
+9) 3.0.0 :022 > s<<" Joshi"
+ => "Aayush Joshi" 
+
+10) 3.0.0 :024 > s=~/A/
+ => 0 
+3.0.0 :025 > s=~/a/
+ => 1 
+3.0.0 :026 > s=~/J/
+ => 7 
+
+11) 3.0.0 :027 > s[2]
+ => "y" 3.0.0 :091 > s.codepoints
+ => [65, 97, 121, 117, 115, 104, 32, 74, 111, 115, 104, 105] 
+3.0.0 :092 > s.each_codepoint.to_a
+ => [65, 97, 121, 117, 115, 104, 32, 74, 111, 115, 104, 105] 
+ => "A" 
+3.0.0 :030 > s[0]
+ => "A" 
+
+12) 3.0.0 :032 > s[1,12]
+ => "ayush Joshi" 
+
+13) 3.0.0 :035 > s[3,12]
+ => "ush Joshi"
+
+14) 3.0.0 :039 > s[/jo/]
+ => nil 
+3.0.0 :040 > s[/Jo/]
+ => "Jo" 
+
+15) 3.0.0 :048 > "%010d" %a
+ => "0000000025" 
+
+16) 3.0.0 :049 > s.byteslice(1)
+ => "a" 
+
+17) 3.0.0 :050 > s.byteslice(1,7)
+ => "ayush J" 
+
+18) 3.0.0 :051 > b="rajat"
+ => "rajat" 
+
+3.0.0 :052 > b.capitalize!
+ => "Rajat" 
+3.0.0 :053 > b
+ => "Rajat"
+
+19) 3.0.0 :057 > b.casecmp("Rajat")
+ => 0 
+3.0.0 :058 > b.casecmp("Raj")
+ => 1 
+3.0.0 :059 > b.casecmp("Rajat Joshi")
+ => -1 
+
+20) 3.0.0 :060 > s.casecmp?("Joshi")
+ => false 
+3.0.0 :061 > s.casecmp?("Aayush Joshi")
+ => true 
+3.0.0 :062 > s.casecmp?(1)
+ => nil 
+
+21) 3.0.0 :065 > s.center(40,"Hi ")
+ => "Hi Hi Hi Hi HiAayush JoshiHi Hi Hi Hi Hi" 
+
+22) 3.0.0 :066 > s.chars
+ => ["A", "a", "y", "u", "s", "h", " ", "J", "o", "s", "h", "i"] 
+
+23) 3.0.0 :073 > s.chomp("Joshi")
+ => "Aayush " 
+
+24)  => "Aayush Josh" 
+3.0.0 :079 > s
+
+25) 3.0.0 :080 > b.chr
+ => "R" 
+
+26) 3.0.0 :091 > s.codepoints
+ => [65, 97, 121, 117, 115, 104, 32, 74, 111, 115, 104, 105] 
+3.0.0 :092 > s.each_codepoint.to_a
+ => [65, 97, 121, 117, 115, 104, 32, 74, 111, 115, 104, 105] 
+
+27) 3.0.0 :093 > s.concat(" Faridabad")
+ => "Aayush Joshi Faridabad" 
+3.0.0 :094 > s
+ => "Aayush Joshi Faridabad" 
+
+28) 3.0.0 :096 > s.count("ay")
+ => 5 
+3.0.0 :097 > s.count("a")
+ => 4 
+3.0.0 :098 > s.count("ayush")
+ => 10 
+
+29) 3.0.0 :102 > s.crypt("Aayush")
+ => "AaJMs99whLWHM" 
+3.0.0 :103 > s
+ => "Aayush Joshi Faridabad" 
+
+30) 3.0.0 :107 > s.delete("Aayu")
+ => "sh Joshi Fridbd" 
+3.0.0 :108 > s
+ => "Aayush Joshi Faridabad" 
+3.0.0 :110 > s.delete_prefix("Aa")
+ => "yush Joshi Faridabad" 
+3.0.0 :111 > s.delete("Jos")
+ => "Aayuh hi Faridabad" 
+3.0.0 :112 > s.delete_suffix("bad")
+ => "Aayush Joshi Farida" 
+
+32) 3.0.0 :113 > s.dump
+ => "\"Aayush Joshi Faridabad\"" 
+3.0.0 :114 > s
+
+33) 3.0.0 :117 > s.each_byte{|j| print j," "}
+65 97 121 117 115 104 32 74 111 115 104 105 32 70 97 114 105 100 97 98 97 100  => "Aayush Joshi Faridabad" 
+
+34) 3.0.0 :119 > s.each_char{|j| print j," "}
+A a y u s h   J o s h i   F a r i d a b a d  => "Aayush Joshi Faridabad" 
+
+35) 3.0.0 :120 > s.each_codepoint{|j| print j," "}
+65 97 121 117 115 104 32 74 111 115 104 105 32 70 97 114 105 100 97 98 97 100  => "Aayush Joshi Faridabad" 
+
+36) 3.0.0 :121 > s.each_grapheme_.to_a.size
+ => 22 
+3.0.0 :122 > s.length
+ => 22 
+3.0.0 :123 > s.size
+ => 22 
+
+37) 3.0.0 :129 > s.empty?
+ => false 
+3.0.0 :130 > "".empty?
+ => true 
+
+38) 3.0.0 :136 > s.end_with?('abad')
+ => true 
+
+39) 3.0.0 :137 > s.eql?('Joshi')
+ => false 
+3.0.0 :138 > s.eql?('Aayush Joshi Faridabad')
+ => true 
+
+40) 3.0.0 :140 > s.freeze()
+ => "Aayush Joshi Faridabad" 
+ The freeze method in Ruby is used to ensure that an object cannot be modified. This method is a great way to create immutable objects.
+
+ 41) 3.0.0 :149 > a.hash
+ => 2044347726517620491 
+3.0.0 :150 > s.hash
+ => 3823996069254570106 
+
+42) 3.0.0 :152 > s.hex
+ => 170 
+
+43)  => "Aayush Joshi Faridabad" 
+3.0.0 :005 > s.include?("Far")
+ => true 
+
+44) 3.0.0 :006 > s<<"Game"
+ => "Aayush Joshi FaridabadGame" 
+3.0.0 :007 > s.replace("Aayush Joshi Faridabad")
+ => "Aayush Joshi Faridabad" 
+
+45) 3.0.0 :011 > b.insert(5," Joshi")
+ => "Rajat Joshi" 
+
+46) 3.0.0 :019 > s.intern
+ => :"Aayush Joshi Faridabad"
+
+47) 3.0.0 :028 > s.lstrip
+ => "Aayush Joshi     " 
+3.0.0 :029 > s.rstrip
+ => "    Aayush Joshi" 
+
+48) 3.0.0 :032 > s.match('A')
+ => #<MatchData "A"> 
+3.0.0 :033 > s.match('c')
+ => nil 
+3.0.0 :034 > s.match?('c')
+ => false 
+3.0.0 :035 > s.match?('a')
+ => true 
+
+
+49) 3.0.0 :041 > s.succ
+ => "Aayush Joshi Faridabae" 
+
+50) 3.0.0 :054 > "12".oct
+ => 10 
+3.0.0 :056 > s.ord
+ => 65 
+
+51) 3.0.0 :058 > s.partition(" ") 
+ => ["Aayush", " ", "Joshi Faridabad"] 
+
+52) 3.0.0 :058 > s.partition(" ") 
+ => ["Aayush", " ", "Joshi Faridabad"] 
+3.0.0 :059 > s.prepend("Hi ")
+ => "Hi Aayush Joshi Faridabad" 
+3.0.0 :060 > s
+ => "Hi Aayush Joshi Faridabad" 
+
+53)  3.0.0 :061 > s.reverse
+ => "dabadiraF ihsoJ hsuyaA iH" 
+3.0.0 :062 > s
+ => "Hi Aayush Joshi Faridabad" 
+
+54) 

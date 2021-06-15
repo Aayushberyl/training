@@ -35,6 +35,10 @@ __FILE__ − The name of the current source file.
 __LINE__ − The current line number in the source file.
 
 
+** Remember in Ruby, classes and methods may be considered constants too.
+
+
+The freeze method in Ruby is used to ensure that an object cannot be modified. This method is a great way to create immutable objects.
 
 
 				METHOD INITIALIZATION IN RUBY
