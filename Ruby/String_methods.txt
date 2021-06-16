@@ -184,6 +184,8 @@ A a y u s h   J o s h i   F a r i d a b a d  => "Aayush Joshi Faridabad"
  => "Aayush Joshi FaridabadGame" 
 3.0.0 :007 > s.replace("Aayush Joshi Faridabad")
  => "Aayush Joshi Faridabad" 
+3.0.1 :084 > "good morning".sub(/[a,e,i,o,u]/,"*")
+ => "g*od morning" 
 
 45) 3.0.0 :011 > b.insert(5," Joshi")
  => "Rajat Joshi" 
@@ -195,6 +197,8 @@ A a y u s h   J o s h i   F a r i d a b a d  => "Aayush Joshi Faridabad"
  => "Aayush Joshi     " 
 3.0.0 :029 > s.rstrip
  => "    Aayush Joshi" 
+3.0.1 :024 > s.lstrip.rstrip
+ => "Aayush Joshi Faridabad" 
 
 48) 3.0.0 :032 > s.match('A')
  => #<MatchData "A"> 
@@ -208,18 +212,22 @@ A a y u s h   J o s h i   F a r i d a b a d  => "Aayush Joshi Faridabad"
 
 49) 3.0.0 :041 > s.succ
  => "Aayush Joshi Faridabae" 
+3.0.1 :058 > s.next
+ => "Aayush Joshi Faridabae"
+3.0.1 :063 > "z".succ
+ => "aa" 
 
 50) 3.0.0 :054 > "12".oct
  => 10 
 3.0.0 :056 > s.ord
  => 65 
+3.0.1 :071 > 'b'.ord
+ => 98
 
 51) 3.0.0 :058 > s.partition(" ") 
  => ["Aayush", " ", "Joshi Faridabad"] 
 
-52) 3.0.0 :058 > s.partition(" ") 
- => ["Aayush", " ", "Joshi Faridabad"] 
-3.0.0 :059 > s.prepend("Hi ")
+52) 3.0.0 :059 > s.prepend("Hi ")
  => "Hi Aayush Joshi Faridabad" 
 3.0.0 :060 > s
  => "Hi Aayush Joshi Faridabad" 
@@ -229,4 +237,55 @@ A a y u s h   J o s h i   F a r i d a b a d  => "Aayush Joshi Faridabad"
 3.0.0 :062 > s
  => "Hi Aayush Joshi Faridabad" 
 
-54) 
+54)  => "Aayush Joshi Faridabad" 
+3.0.1 :003 > s.rindex("a")
+ => 20 
+3.0.1 :004 > s.index("a")
+ => 1 
+
+55) 3.0.1 :005 > s.rjust(25,'!!')
+ => "!!!Aayush Joshi Faridabad" 
+
+56) 3.0.1 :023 > s.ljust(25,"!!")
+ => "Aayush Joshi Faridabad!!!" 
+
+57) 3.0.1 :045 > s[0,17]
+ => "Aayush Joshi Fari" 
+
+58) 3.0.1 :050 > s.slice(2..15)
+ => "yush Joshi Far" 
+3.0.1 :051 > s.slice(2...15)
+ => "yush Joshi Fa"
+
+59) 3.0.1 :052 > s.split
+ => ["Aayush", "Joshi", "Faridabad"] 
+3.0.1 :053 > s.split('o')
+ => ["Aayush J", "shi Faridabad"] 
+3.0.1 :054 > s.split('a')
+ => ["A", "yush Joshi F", "rid", "b", "d"] 
+3.0.1 :059 > s.split(//,6)
+ => ["A", "a", "y", "u", "s", "h Joshi Faridabad"] 
+
+60) 3.0.1 :066 > "hello".squeeze
+ => "helo" 
+3.0.1 :067 > s.squeeze
+ => "Aayush Joshi Faridabad" 
+3.0.1 :068 > s.downcase.squeeze
+ => "ayush joshi faridabad" 
+
+61) 3.0.1 :072 > s.start_with?"Aayu"
+ => true 
+3.0.1 :073 > s.start_with?"Jos"
+ => false 
+
+62) 3.0.1 :077 > s
+ => "  Aayush Joshi Faridabad   " 
+3.0.1 :078 > s.strip!
+ => "Aayush Joshi Faridabad" 
+3.0.1 :079 > s
+ => "Aayush Joshi Faridabad" 
+
+63) 3.0.1 :001 > "hello".gsub(/[aeiou]/, '*')
+ => "h*ll*" 
+
+64) 
