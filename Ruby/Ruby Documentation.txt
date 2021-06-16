@@ -41,6 +41,7 @@ __LINE__ − The current line number in the source file.
 The freeze method in Ruby is used to ensure that an object cannot be modified. This method is a great way to create immutable objects.
 
 
+
 				METHOD INITIALIZATION IN RUBY
 
 
