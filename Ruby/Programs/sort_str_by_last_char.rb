@@ -1,13 +1,21 @@
 def sort_str(s)
-    b=[]
-    a=[]
+    a=Array.new
+    c=Array.new
     arr=s.split(" ")
     print arr
-    for i in 0...arr.length
-        b<<arr[i].split
+    arr.each do |i|
+        a=a.push(i.reverse)
     end
-    a<<b.chars
-    return print b,a
+    b=a.sort()
+    print ("\n")
+    print b
+    b.each do |i|
+        c=c.push(i.reverse)
+    end
+    print("\n")
+    print c
+    print("\n")
 end
-s="Hi How Are You"
+print "Enter String to sort by last character : "
+s=gets
 sort_str(s)
