@@ -287,5 +287,20 @@ A a y u s h   J o s h i   F a r i d a b a d  => "Aayush Joshi Faridabad"
 
 63) 3.0.1 :001 > "hello".gsub(/[aeiou]/, '*')
  => "h*ll*" 
+3.0.1 :073 > 'Aayush'.gsub('a','Z')
+ => "AZyush" 
 
-64) 
+64) 3.0.1 :080 > 'AaYUsh'.swapcase
+ => "aAyuSH" 
+
+65) 3.0.1 :081 > 'AaYUsh'.to_f
+ => 0.0 
+3.0.1 :082 > 'AaYUsh'.to_i
+ => 0 
+3.0.1 :083 > 'AaYUsh'.to_s
+ => "AaYUsh" 
+3.0.1 :084 > 'AaYUsh'.to_c
+ => (0+0i) 
+3.0.1 :086 > 'AaYUsh'.tr('YU','yu')
+ => "Aayush" 
+
