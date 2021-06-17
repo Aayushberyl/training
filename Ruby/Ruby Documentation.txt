@@ -289,7 +289,7 @@ ASCII (same as none). This is the default.
 
 EUC.
 
-3	$KCODE = 'n'
+3	$KCODE = 'n'Ruby arrays are ordered, integer-indexed collections of any object. Each element in an array is associated with and referred to by an index.
 
 None (same as ASCII).
 
@@ -310,6 +310,17 @@ this is test
 
 
 
+
+2) ARRAYS 
+
+Ruby arrays are ordered, integer-indexed collections of any object. Each element in an array is associated with and referred to by an index.
+
+Creating Array 
+
+names = Array.new
+
+nums = Array.new(10) { |e| e = e * 2 }
+puts "#{nums}"
 
 
 
