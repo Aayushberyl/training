@@ -1,15 +1,38 @@
-def palindrome(s)
-    a=s.chars
-    for i in a
-        for j in a
-            if a[i]==a[j]
-            
-        a.sort.join
-        return puts("#{s} is a Palindrome String")
+def make_hash(string)
+    hash={}
+    string.each_char do |i|
+        if hash.include?(i)
+            hash[i]=hash[i]+1
+        else
+            hash.store(i,1)
+        end
+    end
+    return hash
+end
+def is_palindrome(string)
+    hash=make_hash(string)
+    odd = 0
+    if string.length%2 != 0
+        hash.each do |k,v|
+            if v%2 != 0
+                odd = odd+1
+            end
+        end
+        if odd == 1
+            puts "True"
+        else
+            puts "False"
+        end
     else
-        return puts("#{s} is not a Palindrome String")
+        puts "even"
+        hash.each do |k,v|
+            if v%2 != 0
+                odd = odd+1
+            end
+        end
+        if odd > 0
+            puts "False"
+        end
     end
 end
-print("Enter String : ")
-s=gets.chomp
-palindrome(s)
+is_palindrome("aabbc")
