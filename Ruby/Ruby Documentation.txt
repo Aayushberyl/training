@@ -311,7 +311,7 @@ this is test
 
 
 
-2) ARRAYS 
+2) ARRAYS IN RUBY
 
 Ruby arrays are ordered, integer-indexed collections of any object. Each element in an array is associated with and referred to by an index.
 
@@ -323,9 +323,37 @@ nums = Array.new(10) { |e| e = e * 2 }
 puts "#{nums}"
 
 
+nums = Array[1, 2, 3, 4,5]
+
+nums = Array.[](1, 2, 3, 4,5)
+
+
+3) HASHES IN RUBY 
+
+A Hash is a collection of key-value pairs like this: "employee" = > "salary". It is similar to an Array, except that indexing is done via arbitrary keys of any object type, not an integer index.
 
 
 
+Creating Hashes
+
+months = Hash.new
+
+months = Hash.new("month")
+
+months = Hash.new "month"
+
+H = Hash["a" => 100, "b" => 200]
+
+puts "#{H['a']}"			---> 100
+puts "#{H['b']}"			---> 200
+
+
+3.0.1 :052 > months = {"1" => "January", "2" => "February"}
+ => {"1"=>"January", "2"=>"February"} 
+3.0.1 :053 > months.keys
+ => ["1", "2"] 
+3.0.1 :054 > months.values
+ => ["January", "February"] 
 
 
 
