@@ -1,0 +1,526 @@
+1) 3.0.1 :006 > h=Hash.new
+ => {} 
+3.0.1 :002 > h={}
+ => {} 
+3.0.1 :003 > h.class
+ => Hash 
+3.0.1 :004 > h=Hash[]
+ => {} 
+3.0.1 :005 > h.class
+ => Hash 
+
+2) 3.0.1 :007 > h={0=>"Sunday", 1=>"Monday", 2=>"Tuesday", 3=>"Wednesday", 4=>"Thursday", 5=>"Friday
+", 6=>"Saturday"}
+ => 
+{0=>"Sunday",
+... 
+3.0.1 :008 > h
+ => 
+{0=>"Sunday",
+ 1=>"Monday",
+ 2=>"Tuesday",
+ 3=>"Wednesday",
+ 4=>"Thursday",
+ 5=>"Friday",
+ 6=>"Saturday"}  3.0.1 :007 > h={0=>"Sunday", 1=>"Monday", 2=>"Tuesday", 3=>"Wednesday", 4=>"Thursday", 5=>"Friday
+", 6=>"Saturday"}
+ => 
+{0=>"Sunday",
+... 
+3.0.1 :008 > h
+ => 
+{0=>"Sunday",
+ 1=>"Monday",
+ 2=>"Tuesday",
+ 3=>"Wednesday",
+ 4=>"Thursday",
+ 5=>"Friday",
+ 6=>"Saturday"} 
+
+3.0.1 :009 > s={first:"January", second:"February" , third:"March" , fourth:"April" , fifth:"May"
+ , sixth:"June" , seventh:"July" , eightth:"August" , ninth:"September" , tenth:"October" , eleve
+nth:"November" , twelfth:"December" }
+ => 
+{:first=>"January",
+... 
+3.0.1 :010 > s
+ => 
+{:first=>"January",
+ :second=>"February",
+ :third=>"March",
+ :fourth=>"April",
+ :fifth=>"May",
+ :sixth=>"June",
+ :seventh=>"July",
+ :eightth=>"August",
+ :ninth=>"September",
+ :tenth=>"October",
+ :eleventh=>"November",
+ :twelfth=>"December"} 
+
+3) 3.0.1 :011 > h.keys
+ => [0, 1, 2, 3, 4, 5, 6] 
+3.0.1 :012 > h.values
+ => ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] 
+3.0.1 :013 > s.keys
+ => 
+[:first,
+ :second,
+ :third,
+ :fourth,
+ :sixth,
+ :seventh,
+ :eightth,
+ :ninth,
+ :tenth,
+ :eleventh,
+ :twelfth] 
+3.0.1 :014 > s.values
+ => 
+["January",
+ "February",
+ "March",
+ "April",
+ "May",
+ "June",
+ "July",
+ "August",
+ "September",
+ "October",
+ "November",
+ "December"]
+
+
+4) 3.0.1 :054 > h[1]
+ => "Monday
+3.0.1 :057 > s[:first]
+ => "January" 
+
+5) 3.0.1 :058 > h.store(9,"weekday")
+ => "weekday" 
+3.0.1 :059 > h
+ => 
+{0=>"Sunday",
+ 1=>"Monday",
+ 2=>"Tuesday",
+ 3=>"Wednesday",
+ 4=>"Thursday",
+ 5=>"Friday",
+ 6=>"Saturday",
+ 9=>"weekday"} 
+
+6) 3.0.1 :061 > h.delete(9)
+ => "weekday" 
+3.0.1 :062 > h
+ => 
+{0=>"Sunday",
+ 1=>"Monday",
+ 2=>"Tuesday",
+ 3=>"Wednesday",
+ 4=>"Thursday",
+ 5=>"Friday",
+ 6=>"Saturday"} 
+
+3.0.1 :063 > h[9]="Weekday"
+ => "Weekday" 
+3.0.1 :064 > h
+ => 
+{0=>"Sunday",
+ 1=>"Monday",
+ 2=>"Tuesday",
+ 3=>"Wednesday",
+ 5=>"Friday",
+ 9=>"Weekday"} 
+3.0.1 :065 > h[9]="Holiday"
+ => "Holiday" 
+3.0.1 :066 > h
+ => 
+{0=>"Sunday",
+ 1=>"Monday",
+ 2=>"Tuesday",
+ 3=>"Wednesday",
+ 4=>"Thursday",
+ 5=>"Friday",
+ 6=>"Saturday",
+ 9=>"Holiday"}
+
+7) 3.0.1 :067 > a0 = [ :foo, :bar ]
+3.0.1 :068 > a1 = [ :baz, :bat ]
+3.0.1 :069 > h = {a0 => 0, a1 => 1}
+ => {[:foo, :bar]=>0, [:baz, :bat]=>1} 
+3.0.1 :070 > a0
+ => [:foo, :bar] 
+3.0.1 :071 > a1
+ => [:baz, :bat] 
+3.0.1 :072 > a0.class
+ => Array 
+3.0.1 :073 > a1.class
+ => Array 
+3.0.1 :074 > h
+ => {[:foo, :bar]=>0, [:baz, :bat]=>1} 
+3.0.1 :075 > h.class
+ => Hash 
+
+8) 3.0.1 :080 > h[a0]
+ => 0 
+3.0.1 :081 > h.include?(a0)
+ => true 
+3.0.1 :082 > h.rehash
+ => {[:foo, :bar]=>0, [:baz, :bat]=>1} 
+3.0.1 :083 > h.include?(a0)
+ => true 
+
+9) 3.0.1 :101 > h.default
+ => nil 
+3.0.1 :103 > h[0]
+ => "Sunday" 
+3.0.1 :104 > h[9]
+ => nil 
+
+10) 3.0.1 :106 > h.each {|key,value| print " #{key}=#{value} "}
+ 0=Sunday  1=Monday  2=Tuesday  3=Wednesday  4=Thursday  5=Friday
+  6=Saturday
+
+  3.0.1 :258 > h.each_pair {|k,v| print " #{k}=#{v} "}
+ 0=Sunday  1=Monday  2=Tuesday  3=Wednesday  4=Thursday  5=Friday  6=Saturday 
+
+  3.0.1 :260 > h.each_key {|k| print " #{k} "}
+ 0  1  2  3  4  5  6 
+
+  3.0.1 :261 > h.each_value {|v| print " #{v} "}
+ Sunday  Monday  Tuesday  Wednesday  Thursday  Friday  Saturday
+
+11) 3.0.1 :107 > synonyms = Hash.new { |hash, key| hash[key] = [] }
+ => {} 
+3.0.1 :108 > synonyms.include?(:hello)
+ => false 
+3.0.1 :109 > synonyms[:hello] << :hi
+ => [:hi] 
+3.0.1 :110 > synonyms[:world] << :universe
+ => [:universe] 
+3.0.1 :111 > synonyms.keys
+ => [:hello, :world] 
+3.0.1 :112 > synonyms.values
+ => [[:hi], [:universe]] 
+
+12) 3.0.1 :113 > z= Hash.new { |hash, key| "Default value for #{key}" }
+ => {} 
+3.0.1 :116 > z[:nosuch]
+ => "Default value for nosuch" 
+3.0.1 :118 > z[:any]
+ => "Default value for any" 
+
+13) 3.0.1 :130 > Hash[ [:foo, 0], [:bar, 1] ]
+ => {[:foo, 0]=>[:bar, 1]} 
+3.0.1 :131 > Hash[ [ [:foo, 0], [:bar, 1] ] ]
+ => {:foo=>0, :bar=>1} 
+
+14) 3.0.1 :134 > h.to_h.class
+ => Hash 
+3.0.1 :135 > h.to_hash.class
+ => Hash 
+
+15) 3.0.1 :157 > h1 = {foo: 0, bar: 1}
+3.0.1 :158 > h2 = {foo: 0, bar: 1, baz: 2}
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :159 > h1<h2
+ => true 
+3.0.1 :160 > h1>h2
+ => false 
+3.0.1 :161 > h1<h1
+ => false 
+3.0.1 :162 > h2>h2
+ => false 
+3.0.1 :163 > h2>=h2
+ => true 
+3.0.1 :164 > h1<=h1
+ => true 
+
+16) 3.0.1 :173 > h1
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :166 > h2 = {foo: 0, bar: 1, baz: 2}
+3.0.1 :167 > h1[:baz]=3
+ => 3 
+3.0.1 :168 > h1
+ => {:foo=>0, :bar=>1, :baz=>3} 
+3.0.1 :169 > h2
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :170 > h1==h2
+ => false 
+3.0.1 :171 > h1[:baz]=2
+ => 2 
+3.0.1 :172 > h1==h2
+ => true 
+
+17) 3.0.1 :177 > h.any?("Sunday")
+ => false 
+3.0.1 :178 > h.any?(1)
+ => false 
+3.0.1 :179 > h.any?([1,"Monday"])
+ => true 
+3.0.1 :180 > h.any? {|key,value| key>3}
+ => true 
+3.0.1 :181 > h.any? {|key,value| key>6}
+ => false 
+3.0.1 :182 > h.any?
+ => true 
+3.0.1 :183 > x={}
+ => {} 
+3.0.1 :184 > x.any?
+ => false 
+
+18) 3.0.1 :185 > h.assoc(1)
+ => [1, "Monday"] 
+
+19) 3.0.1 :192 > x={Gamer:"Karan",Intelligent:"Rohan",Athelete:"Milkha"}
+ => {:Gamer=>"Karan", :Intelligent=>"Rohan", :Athelete=>"Milkha"} 
+3.0.1 :193 > x.class
+ => Hash 
+3.0.1 :194 > x.clear
+ => {} 
+3.0.1 :195 > x
+ => {} 
+
+20) 3.0.1 :196 > x={Gamer:"Karan",Intelligent:"Rohan",Athelete:nil}
+ => {:Gamer=>"Karan", :Intelligent=>"Rohan", :Athelete=>nil} 
+3.0.1 :197 > x.compact
+ => {:Gamer=>"Karan", :Intelligent=>"Rohan"} 
+3.0.1 :198 > x
+ => {:Gamer=>"Karan", :Intelligent=>"Rohan", :Athelete=>nil} 
+
+21) 3.0.1 :204 > s0 = 'x'
+3.0.1 :205 > s1 = 'x'
+ => "x" 
+3.0.1 :206 > m={}
+ => {} 
+3.0.1 :207 > m.compare_by_identity?
+ => false 
+3.0.1 :208 > m[s0]=0
+ => 0 
+3.0.1 :209 > m[s1]=1
+ => 1 
+3.0.1 :210 > m
+ => {"x"=>1} 
+
+22) 3.0.1 :213 > n={}
+3.0.1 :214 > n.compare_by_identity?
+ => true 
+3.0.1 :216 > n[s0]=0
+ => 0 
+3.0.1 :217 > n[s1]=1
+ => 1 
+3.0.1 :218 > n
+ => {"x"=>0, "x"=>1} 
+3.0.1 :219 > n.compare_by_identity
+ => {"x"=>0, "x"=>1} 
+3.0.1 :220 > n.compare_by_identity?
+ => true 
+
+23) 3.0.1 :226 > n.deconstruct_keys(n)
+ => {"x"=>0, "x"=>1} 
+
+24) 3.0.1 :234 > c={}
+ => {} 
+3.0.1 :235 > c.default=6
+ => 6 
+3.0.1 :236 > c
+ => {} 
+3.0.1 :237 > c.default
+ => 6 
+
+25) 3.0.1 :241 > n
+ => {"x"=>0, "x"=>1} 
+3.0.1 :242 > n.delete_if {|key,value| value>1}
+ => {"x"=>0, "x"=>1} 
+3.0.1 :243 > n.delete_if {|k,v| v>0}
+ => {"x"=>0} 
+3.0.1 :244 > n
+ => {"x"=>0}
+
+26) 3.0.1 :248 > v={foo: {bar: {baz: 2}}}
+ => {:foo=>{:bar=>{:baz=>2}}} 
+3.0.1 :250 > v.dig(:foo,:bar,:baz)
+ => 2 
+
+27) 3.0.1 :263 > h.empty?
+ => false 
+3.0.1 :264 > {}.empty?
+ => true 
+
+28) 3.0.1 :265 > h1
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :266 > h2
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :267 > h1.equal?h2
+ => false 
+3.0.1 :268 > h1.eql?h2
+ => true 
+
+29) 3.0.1 :270 > h.except(1,3,5)
+ => {0=>"Sunday", 2=>"Tuesday", 4=>"Thursday", 6=>"Saturday"} 
+
+30) 3.0.1 :273 > h.fetch(1)
+ => "Monday" 
+3.0.1 :274 > h[1]
+ => "Monday" 
+3.0.1 :283 > h.fetch_values(2,3,4,5)
+ => ["Tuesday", "Wednesday", "Thursday", "Friday"] 
+
+
+31) 3.0.1 :285 > h.select {|k,v|k>3}
+ => {4=>"Thursday", 5=>"Friday", 6=>"Saturday"} 
+
+32) 3.0.1 :288 > c = {foo: 0, bar: [:bat, [:baz, [:bat, ]]]}
+ => {:foo=>0, :bar=>[:bat, [:baz, [:bat]]]} 
+3.0.1 :289 > c.flatten
+ => [:foo, 0, :bar, [:bat, [:baz, [:bat]]]] 
+3.0.1 :290 > c.class
+ => Hash 
+3.0.1 :291 > c.flatten.class
+ => Array 
+
+33) 3.0.1 :296 > h.has_key?(4)
+ => true 
+3.0.1 :296 > h.has_key?(4)
+ => true 
+3.0.1 :297 > h.key?(4)
+ => true 
+3.0.1 :301 > h.include?4
+ => true 
+3.0.1 :302 > h.member?4
+ => true 
+3.0.1 :303 > h.has_value?("Saturday")
+ => true 
+3.0.1 :307 > h.has_value?("Saturday")
+ => true 
+3.0.1 :308 > h.value?("Saturday")
+ => true 
+
+34) 3.0.1 :311 > h1.hash
+ => -2487751933537396769 
+3.0.1 :312 > h2.hash
+ => -2487751933537396769 
+3.0.1 :313 > h1.hash.eql?h2.hash
+ => true 
+3.0.1 :314 > h1.hash==h2.hash
+ => true 
+
+35) 3.0.1 :001 > h1= {foo: 0, bar: 1, baz: 2}
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :002 > h1.replace({bat: 3, bam: 4})
+ => {:bat=>3, :bam=>4} 
+3.0.1 :003 > h1
+ => {:bat=>3, :bam=>4} 
+
+36) 3.0.1 :005 > h1
+ => {:bat=>3, :bam=>4} 
+3.0.1 :006 > h1.inspect
+ => "{:bat=>3, :bam=>4}" 
+3.0.1 :007 > h1.to_s
+ => "{:bat=>3, :bam=>4}" 
+
+37) 3.0.1 :008 > h1
+ => {:bat=>3, :bam=>4} 
+3.0.1 :009 > h1.invert
+ => {3=>:bat, 4=>:bam} 
+3.0.1 :010 > h1
+ => {:bat=>3, :bam=>4} 
+
+38) 3.0.1 :012 > h1.keep_if {|k,v| v>3}
+ => {:bam=>4} 
+3.0.1 :013 > h1
+ => {:bam=>4} 
+
+39) 3.0.1 :014 > h1.key(4)
+ => :bam 
+
+40) 3.0.1 :021 > h.each {|key,value| print " #{key}=#{value} "}
+ 0=Sunday  1=Monday  2=Tuesday  3=Wednesday  4=Thursday  5=Friday  6=Saturday
+3.0.1 :018 > h.length
+ => 7 
+3.0.1 :019 > h.size
+ => 7 
+
+41) 3.0.1 :024 > z1 = {bat: 3, bar: 4}
+3.0.1 :025 > z2 = {bam: 5, bat:6}
+ => {:bam=>5, :bat=>6} 
+3.0.1 :026 > z = {foo: 0, bar: 1, baz: 2}
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :027 > z.merge(z1,z2)
+ => {:foo=>0, :bar=>4, :baz=>2, :bat=>6, :bam=>5} 
+3.0.1 :035 > z.merge(z1,z2) {|k,v1,v2| v1+v2}
+ => {:foo=>0, :bar=>5, :baz=>2, :bat=>9, :bam=>5} 
+
+42) 3.0.1 :046 > h.assoc(3)                     -----> It takes key and returns 2d array containing key,value pair
+ => [3, "Wednesday"] 
+3.0.1 :047 > h.assoc("Saturday")
+ => nil 
+
+3.0.1 :044 > h.rassoc("Saturday")               ------> It takes value and returns 2d array containing key,value pair
+ => [6, "Saturday"] 
+3.0.1 :045 > h.rassoc(3)
+ => nil 
+
+43) 3.0.1 :048 > z
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :049 > z.rehash
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :050 > z
+ => {:foo=>0, :bar=>1, :baz=>2} 
+
+44) 3.0.1 :053 > z.reject {|k,v| k.start_with?('b')}
+ => {:foo=>0} 
+3.0.1 :054 > z
+ => {:foo=>0, :bar=>1, :baz=>2}
+
+45) 3.0.1 :055 > z
+ => {:foo=>0, :bar=>1, :baz=>2} 
+3.0.1 :056 > z.shift
+ => [:foo, 0] 
+3.0.1 :057 > z
+ => {:bar=>1, :baz=>2} 
+
+46) 3.0.1 :063 > z
+ => {:bar=>1, :baz=>2, :foo=>0} 
+3.0.1 :064 > z.slice(:bar,:baz)
+ => {:bar=>1, :baz=>2} 
+3.0.1 :065 > z
+ => {:bar=>1, :baz=>2, :foo=>0} 
+
+47) 3.0.1 :067 > z.store(:neil,"Armstrong")
+3.0.1 :067 > z
+ => {:bar=>1, :baz=>2, :foo=>0, :neil=>"Armstrong"} 
+3.0.1 :068 > z[:gamer]="fun"
+ => "fun" 
+3.0.1 :069 > z
+ => {:bar=>1, :baz=>2, :foo=>0, :neil=>"Armstrong", :gamer=>"fun"}
+
+48) 3.0.1 :080 > z.to_a
+ => [[:bar, 1], [:baz, 2], [:foo, 0], [:neil, "Armstrong"], [:gamer, "fun"]] 
+3.0.1 :081 > z
+ => {:bar=>1, :baz=>2, :foo=>0, :neil=>"Armstrong", :gamer=>"fun"}
+
+49) 3.0.1 :090 > z1=z.to_proc
+ => #<Proc:0x0000563fadd37910 (lambda)> 
+3.0.1 :091 > z1.class
+ => Proc 
+3.0.1 :088 > z1.call(:bar)
+ => 1 
+3.0.1 :089 > z1.call(:nosuch)
+ => nil 
+
+50) 3.0.1 :095 > z.transform_keys {|k,v| k.to_s}
+ => {"bar"=>1, "baz"=>2, "foo"=>0, "neil"=>"Armstrong", "gamer"=>"fun"} 
+
+51) z1={foo: 0, bar: 1, baz: 2}
+e = h.transform_keys
+3.0.1 :105 > e.each {|k| k.to_s}
+ => {"foo"=>0, "bar"=>1, "baz"=>2} 
+
+52) 3.0.1 :108 > z.transform_values{|v| v.to_s}
+ => {:bar=>"1", :baz=>"2", :foo=>"0", :neil=>"Armstrong", :gamer=>"fun"}
+
+53) 3.0.1 :109 > z
+ => {:bar=>1, :baz=>2, :foo=>0, :neil=>"Armstrong", :gamer=>"fun"} 
+3.0.1 :110 > z.values_at(:baz,:foo)
+ => [2, 0] 
