@@ -358,7 +358,83 @@ puts "#{H['b']}"			---> 200
 
 
 
+				FILE HANDLING(I/O) IN RUBY
+
+
+PUTC STATEMENT - Unlike the puts statement, which outputs the entire string onto the screen, the putc statement can be used to output one character at a time.
+
+str = "Hello Ruby!"
+putc str
+H
+
+CREATING A NEW FILE 
+
+aFile = File.new("filename", "mode")
+   # ... process the file
+aFile.close
+
+
+You can use File.open method to create a new file object and assign that file object to a file. However, there is one difference in between File.open and File.new methods. The difference is that the File.open method can be associated with a block, whereas you cannot do the same using the File.new method.
+
+File.open("filename", "mode") do |aFile|
+   # ... process the file
+end
+
+
+MODES
+
+1) r = read-only mode. file pointer is at beginning of file.
+2) r+ = read-write mode. file pointer will be at the beginning of the file.
+3) w = write-only mode. overwrites file if any same file exists.
+4) w+ = read-write mode. overwrites file if any same file exists.
+5) a = write-only mode. The file pointer is at the end of the file if the file exists. That is, the file is in the append mode. If the file does not exist, it creates a new file for writing.
+6) a+ = Read and write mode. The file pointer is at the end of the file if the file exists. The file opens in the append mode. If the file does not exist, it creates a new file for reading and writing.
+
+
+	The sysread Method
+
+You can use the method sysread to read the contents of a file. You can open the file in any of the modes when using the method sysread
+
+	The syswrite Method
+
+You can use the method syswrite to write the contents into a file. You need to open the file in write mode when using the method syswrite.
 
 
 
+puts File.readable?("discount.rb")				-----> True
+puts File.writable?("discount.rb")				-----> True
+puts File.executable?("discount.rb")				-----> False
+puts File.zero?("discount.rb")					-----> False
+puts File.size?("discount.rb")					-----> 288
+puts File::ftype("discount.rb")					-----> file
+puts File::ctime("discount.rb")					-----> 2021-06-17 15:00:04 +0530
+puts File::mtime("discount.rb")					-----> 2021-06-17 15:00:04 +0530
+puts File::atime("discount.rb")					-----> 2021-06-21 15:12:27 +0530
 
+
+
+			EXCEPTION HANDLING IN RUBY
+
+Everything from begin to rescue is protected. If an exception occurs during the execution of this block of code, control is passed to the block between rescue and end.
+
+begin  
+# -  
+rescue OneTypeOfException  
+# -  
+rescue AnotherTypeOfException  
+# -  
+else  
+# Other exceptions
+ensure
+# Always will be executed
+end
+
+
+
+The following is the flow of the process −
+
+An exception occurred at open.
+Went to rescue. fname was re-assigned.
+By retry went to the beginning of the begin.
+This time file opens successfully.
+Continued the essential process.
