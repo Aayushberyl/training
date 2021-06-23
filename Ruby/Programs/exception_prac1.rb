@@ -19,15 +19,15 @@ begin
 
     # Here i used rescue statements to let program run even if a error is raised
 
-    rescue ZeroDivisionError 
-        puts "You cannot divide any number by 0."
+rescue ZeroDivisionError 
+    puts "You cannot divide any number by 0."
     
-    rescue TypeError
-        puts "can't take string as an array index"
+rescue TypeError
+    puts "can't take string as an array index"
     
-    else  
-        puts "The division of #{a}/#{b} is #{c.round(2)} and yields remainder #{a%b}"
+else  
+    puts "The division of #{a}/#{b} is #{c.round(2)} and yields remainder #{a%b}"
     
-    ensure
-        puts "This is the ensure statement even if program raises an exception this will be executed.."
-    end
+ensure
+    puts "This is the ensure statement even if program raises an exception this will be executed.."
+end
