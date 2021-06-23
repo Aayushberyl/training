@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #!/usr/bin/env ruby
+=======
+>>>>>>> 50d869793171a02730dbc67fe8e4e4895f31239a
 module Play
     def cricket
         puts "Go and Play Cricket...I am in Play Module and cricket method"
