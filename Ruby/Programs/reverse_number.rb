@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 puts "Enter a number to reverse : "
 n=gets.to_i
 rev=0

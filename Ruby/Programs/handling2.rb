@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 aFile = File.new("input.txt", "r+")
 if aFile
    aFile.syswrite("ABCDEF\n")

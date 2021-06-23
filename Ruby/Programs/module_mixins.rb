@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 module Play
     def cricket
         puts "Go and Play Cricket...I am in Play Module and cricket method"

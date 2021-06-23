@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def temp_converter(unit,temp)
     if unit=="F" or "f"
         return temp_F=9.fdiv(5)*temp + 32

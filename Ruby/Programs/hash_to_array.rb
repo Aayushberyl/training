@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def hash_to_array(hash)
     arr=[]
     i=0

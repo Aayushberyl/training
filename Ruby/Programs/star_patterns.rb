@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 print "Enter N : "
 n=gets.to_i
 print "Enter Type of pattern in terms of 1 , 2 , 3 or 4 :"

@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def probability(a,n)
     count=0
     for i in 0...(a.size)

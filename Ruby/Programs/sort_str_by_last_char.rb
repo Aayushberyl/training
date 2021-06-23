@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def sort_str(s)
     a=Array.new
     c=Array.new

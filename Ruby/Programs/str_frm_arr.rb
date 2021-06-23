@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def str_frm_arr(a)
     arr=[]
     a.each do |i|

@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def index_caps(s)
     (s.chars).each do |i|
         if (i.ord)>=65 and (i.ord)<=90

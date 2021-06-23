@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def disc(price,discount)
     amount=(price-((price*discount)/100))
     return amount

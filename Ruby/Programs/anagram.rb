@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def anagram(s1,s2)
     if s1.length==s2.length
         if s1.downcase.chars.sort.join==s2.downcase.chars.sort.join

@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 begin
     file = open("file22.csv")
        raise "File opened successfully"

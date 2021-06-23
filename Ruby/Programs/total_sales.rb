@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def total_sales(arr,n)
 	sum=0
   for j in 0...arr[0].length

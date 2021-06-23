@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 print("Enter Voltage : ")
 v=gets.to_i
 print("Enter Current : ")

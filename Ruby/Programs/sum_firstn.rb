@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def sum_firstn(a,n)
     sum=0
     for i in 0...n

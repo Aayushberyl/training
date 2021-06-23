@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'csv'
 cs = CSV.read('file.csv')
 hash= cs.to_h

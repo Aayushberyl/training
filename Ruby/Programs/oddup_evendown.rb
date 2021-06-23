@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def oddup_evendown(arr,n)
     a=[]
     arr.each do |k|

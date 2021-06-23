@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def area(base,height)
     return puts "Area of Triangle is #{(base*height)/2}"
 end

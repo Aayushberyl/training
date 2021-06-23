@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 puts "Hello! World!"
 puts "addition of 1 + 2 is #{3}"
 for i in 1..10

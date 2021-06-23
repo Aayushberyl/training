@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 print "Enter N : "
 n=gets.to_i
 while n>0

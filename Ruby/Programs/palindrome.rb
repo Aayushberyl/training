@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 def make_hash(string)
     hash={}
     string.each_char do |i|
