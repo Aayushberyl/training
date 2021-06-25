@@ -1,0 +1,25 @@
+
+
+1) gem install rails to install rails
+
+2) creating a new project in rails => rails new "project name" -d "database name"
+
+3) make changes in database.yml file such as adding port number , host , username , password.
+
+4) run rake db:create command to create a database of same name as of project name.
+
+5) creating a new table => rails g model 'table_name'
+
+6) to generate model ----> rails generate model Product name:string description:text
+
+7) then updated no. of columns in corresponding rb file
+
+8) then db:migrate => to change the migration in db files
+
+9) to alter(add new column) the table use ---> rails generate migration add_email_to_students email:string
+
+10) to alter(remove a column) the table use ---> rails generate migration remove_email_to_students email:string
+
+11) can create table using this command ---> generate migration CreateProducts name:string part_number:string 
+
+12) 
