@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  univroll: 1
+  name: MyString
+  fees: 1
+
+two:
+  univroll: 1
+  name: MyString
+  fees: 1
