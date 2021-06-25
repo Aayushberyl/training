@@ -10,12 +10,16 @@
 
 5) creating a new table => rails g model 'table_name'
 
-6) then updated no. of columns in corresponding rb file
+6) to generate model ----> rails generate model Product name:string description:text
 
-7) then db:migrate => to change the migration in db files
+7) then updated no. of columns in corresponding rb file
 
-8) to alter(add new column) the table use ---> rails generate migration add_email_to_students email:string
+8) then db:migrate => to change the migration in db files
 
-9) to alter(remove a column) the table use ---> rails generate migration remove_email_to_students email:string
+9) to alter(add new column) the table use ---> rails generate migration add_email_to_students email:string
 
-10) 
+10) to alter(remove a column) the table use ---> rails generate migration remove_email_to_students email:string
+
+11) can create table using this command ---> generate migration CreateProducts name:string part_number:string 
+
+12) 
