@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_113322) do
+ActiveRecord::Schema.define(version: 2021_06_28_072526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_113322) do
     t.string "colname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["univroll"], name: "index_student_college_details_on_univroll"
   end
 
   create_table "students", force: :cascade do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_113322) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
     t.string "course"
+    t.bigint "contact_no"
   end
 
 end

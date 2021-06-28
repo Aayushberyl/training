@@ -927,4 +927,268 @@ student_management_system_development=# select * from student_college_details;
  #<StudentCollegeDetail:0x000056423fb595c8 id: 8, name: "Namit", fees: 50000>] 
 
 
-28) 
+28) ADDING INDEX TO TABLE COLUMN
+
+beryl@beryl-Latitude-E6520:~/Desktop/git/Ruby On Rails/student_management_system$ rails generate migration AddColumnModifiersToStudentCollegeDetails univroll:index
+Running via Spring preloader in process 6116
+      invoke  active_record
+      create    db/migrate/20210628045558_add_column_modifiers_to_student_college_details.rb
+
+
+beryl@beryl-Latitude-E6520:~/Desktop/git/Ruby On Rails/student_management_system$ rails db:migrate
+== 20210628045558 AddColumnModifiersToStudentCollegeDetails: migrating ========
+-- add_index(:student_college_details, :univroll)
+   -> 0.2932s
+== 20210628045558 AddColumnModifiersToStudentCollegeDetails: migrated (0.2934s) 
+
+
+29) USE OF ANNOTATE IN RAILS
+
+3.0.1 :015 > Student.annotate("Selecting user names").select(:name).where(name: 'Karan')
+  Student Load (31.9ms)  SELECT "students"."name" FROM "students" WHERE "students"."name" = $1 /* Selecting user names */  [["name", "Karan"]]
+ => [#<Student:0x000055a4bca415d0 id: nil, name: "Karan">]
+
+
+3.0.1 :022 > Student.annotate("Selecting user names").select(:name).where('age > ?', 20)
+  Student Load (1.5ms)  SELECT "students"."name" FROM "students" WHERE (age > 20) /* Selecting user names */
+ => 
+[#<Student:0x000055a4bd6ce1b8 id: nil, name: "Robin">,
+ #<Student:0x000055a4bd6ce0f0 id: nil, name: "Rashi">,
+ #<Student:0x000055a4bd6ce028 id: nil, name: "Anurag">,
+ #<Student:0x000055a4bd6cdf60 id: nil, name: "Vikas">,
+ #<Student:0x000055a4bd6cde98 id: nil, name: "Asmit">,
+ #<Student:0x000055a4bd6cddd0 id: nil, name: "Sagar">,
+ #<Student:0x000055a4bd6cdd08 id: nil, name: "Namit">,
+ #<Student:0x000055a4bd6cdc40 id: nil, name: "Darvesh">] 
+
+
+30) UPDATED CONTACT NUMBER
+
+3.0.1 :010 > for i in 1..10
+3.0.1 :011 >   Student.find_by(id: i).update(contact: 9891207939 + i)
+3.0.1 :012 > end
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Student Load (0.7ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Student Load (0.6ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Student Load (0.5ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Student Load (0.5ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 9], ["LIMIT", 1]]
+  Student Load (0.7ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 10], ["LIMIT", 1]]
+ => 1..10 
+
+
+
+31) USE OF WHERE CLAUSE
+
+3.0.1 :001 > Student.where(id:2)
+  Student Load (1.1ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1  [["id", 2]]
+ => 
+[#<Student:0x000055a4bc99f0c8
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.498875000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech",
+  contact: 9891207941>] 
+
+32) REVERSE ORDER METHOD IN RAILS
+
+
+
+3.0.1 :002 > Student.order('name ASC').reverse_order
+  Student Load (1.9ms)  SELECT "students".* FROM "students" ORDER BY name DESC
+ => 
+[#<Student:0x000055a4bdb77f48
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.541323000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA",
+  contact_no.: 9891207944>,
+ #<Student:0x000055a4bdb77e80
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.586786000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com",
+  contact_no.: 9891207946>,
+ #<Student:0x000055a4bdb77db8
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.472996000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207940>,
+ #<Student:0x000055a4bdb77cf0
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.498875000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207941>,
+ #<Student:0x000055a4bdb77c28
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.519615000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA",
+  contact_no.: 9891207942>,
+ #<Student:0x000055a4bdb77b60
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.607281000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy",
+ #<Student:0x000055a4bdb77a98
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.629199000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207948>,
+ #<Student:0x000055a4bdb779d0
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:12:12.316800000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch",
+  contact_no.: 9891207949>,
+ #<Student:0x000055a4bdb77908
+  id: 6,
+  name: "Asmit",
+  age: 25,
+  created_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.564035000 UTC +00:00,
+  email: "asmitjoshi12@gmail.com",
+  course: "BTC",
+  contact_no.: 9891207945>,
+ #<Student:0x000055a4bdb77840
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.529939000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207943>] 
+
+
+
+3.0.1 :003 > Student.order('id ASC').reverse_order
+  Student Load (1.0ms)  SELECT "students".* FROM "students" ORDER BY id DESC
+ => 
+[#<Student:0x000055a4bcd1a090
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:12:12.316800000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch",
+  contact_no.: 9891207949>,
+ #<Student:0x000055a4bcd19fc8
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.629199000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207948>,
+ #<Student:0x000055a4bcd19f00
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.607281000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy",
+  contact_no.: 9891207947>,
+ #<Student:0x000055a4bcd19dc0
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.586786000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com",
+  contact_no.: 9891207946>,
+ #<Student:0x000055a4bcd19cf8
+  id: 6,
+  name: "Asmit",
+  age: 25,
+  created_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.564035000 UTC +00:00,
+  email: "asmitjoshi12@gmail.com",
+  course: "BTC",
+  contact_no.: 9891207945>,
+ #<Student:0x000055a4bcd19c30
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.541323000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA",
+  contact_no.: 9891207944>,
+ #<Student:0x000055a4bcd19988
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.529939000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207943>,
+ #<Student:0x000055a4bcd198c0
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.519615000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA",
+  contact_no.: 9891207942>,
+ #<Student:0x000055a4bcd197f8
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.498875000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207941>,
+ #<Student:0x000055a4bcd19730
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.472996000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207940>] 
+
+
+
+

@@ -18,8 +18,8 @@
 
 9) to alter(add new column) the table use ---> rails generate migration add_email_to_students email:string
 
-10) to alter(remove a column) the table use ---> rails generate migration remove_email_to_students email:string
+10) to alter(remove a column) the table use ---> rails generate migration remove_email_from_students email:string
 
 11) can create table using this command ---> generate migration CreateProducts name:string part_number:string 
 
-12) 
+12) change column datatype ----> change_column :tablename, :columnname, :datatype
