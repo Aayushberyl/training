@@ -1,2 +1,0 @@
-class StudentCollegeDetail < ApplicationRecord
-end

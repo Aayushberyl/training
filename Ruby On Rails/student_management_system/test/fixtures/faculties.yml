@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  faculty_id: 1
+  faculty_name: MyString
+  faculty_salary: 1
+  faculty_course: MyString
+
+two:
+  faculty_id: 1
+  faculty_name: MyString
+  faculty_salary: 1
+  faculty_course: MyString

@@ -10,29 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_072526) do
+ActiveRecord::Schema.define(version: 2021_06_29_112527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "student_college_details", force: :cascade do |t|
-    t.integer "univroll"
-    t.string "name"
-    t.integer "fees"
-    t.string "colname"
+  create_table "certifications", force: :cascade do |t|
+    t.string "cert_name"
+    t.integer "cert_fees"
+    t.integer "cert_duration"
+  end
+
+  create_table "certifieds", force: :cascade do |t|
+    t.bigint "certification_id"
+    t.bigint "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["univroll"], name: "index_student_college_details_on_univroll"
+    t.index ["certification_id"], name: "index_certifieds_on_certification_id"
+    t.index ["student_id"], name: "index_certifieds_on_student_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "course_name"
+    t.integer "course_fee"
+    t.integer "course_duration"
+  end
+
+  create_table "faculties", force: :cascade do |t|
+    t.string "faculty_name"
+    t.integer "faculty_salary"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_faculties_on_course_id"
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "name"
+    t.string "student_name"
     t.integer "age"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "email"
-    t.string "course"
     t.bigint "contact_no"
+    t.date "enrolled_date"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_students_on_course_id"
   end
 
 end
