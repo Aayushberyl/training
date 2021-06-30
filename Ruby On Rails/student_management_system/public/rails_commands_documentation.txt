@@ -1,0 +1,128 @@
+
+
+1) gem install rails to install rails
+
+2) creating a new project in rails => rails new "project name" -d "database name"
+
+3) make changes in database.yml file such as adding port number , host , username , password.
+
+4) run rake db:create command to create a database of same name as of project name.
+
+5) creating a new table => rails g model 'table_name'
+
+6) to generate model ----> rails generate model Product name:string description:text
+
+7) then updated no. of columns in corresponding rb file
+
+8) then db:migrate => to change the migration in db files
+
+9) to alter(add new column) the table use ---> rails generate migration add_email_to_students email:string
+
+	add_column (table_name , column_name , datatype)
+
+10) to alter(remove a column) the table use ---> rails generate migration remove_email_from_students email:string
+
+	or remove_column (table_name , column_name)
+
+11) can create table using this command ---> generate migration CreateProducts name:string part_number:string 
+
+12) change column datatype ----> change_column :tablename, :columnname, :datatype
+
+13) renaming column -----> rename_column :tablename , :columnname, :new_columnname
+
+14) drop table ------> drop_table(name)
+
+15) add index -------> add_index(table_name , column_name )
+
+16) remove index -----> remove_index(table_name , column_name )
+
+17) To add Foreign key use add_reference keyword like : add_reference :referencing_table , :referenced_table
+
+18) ASSOCIATIONS 
+
+to add associations one should know the relation between the tables they want to form
+
+like one course can have many students     		--------> has_many :students
+but many students can have only one course		--------> belongs_to :course
+
+
+
+various (6) types of Associations are : 
+
+a) belongs_to
+
+b) has_one 
+
+c) has_many
+
+d) has_many :through			-----------> (relationship using intermediate {join} table)
+
+e) has_one :through
+
+f) has and belongs to many		-----------> (direrct relationship)
+
+
+To make things easier, you can look at the types of Association this way:
+
+
+1) has_many + belongs_to = one-to-many relationship
+
+2) has_one + belongs_to = one-to-one relationship
+
+3) has_many :through + belongs_to = many-to-many relationship  
+
+4) has_one :through + belongs_to = one-to-one relationship
+
+5) has_and_belongs_to_many = many-to-many relationship  
+
+
+
+			POLYMORPHIC ASSOCIATIONS
+
+
+1) With polymorphic associations, a model can belong to more than one other model, on a single association.
+
+
+
+2) Write This in Your Polymorphic Table  (Feedback)  --- >  t.references :comments, polymorphic: true
+
+3) Update This Both things in your Both Referenced Table (here Student and Faculty Tables)for Polymorphic --- > 
+
+has_many :feedbacks, as: :comments
+
+
+4) Insert Data in Polymorphic Table (Feedback) --- > Feedback.create(content:'Good College' , comments: Student.find(1))
+
+	Syntax : Polymorphic_table_name.create(content_column_name:'anything' , comments:Referenced_Table.find(1))
+	here comments represents alias of Student and Faculty for Feedback model.
+
+
+
+			ACTIVE RECORD :VALIDATIONS
+
+1) Insert this command in model where you want to add validsations --- > validates :name, presence: true
+
+irb> Person.create(name: "John Doe").valid?
+=> true
+
+irb> Person.create(name: nil).valid?
+=> false
+
+METHODS TO CHECK VALIDATIONS
+
+update!
+
+create!
+
+save!
+
+
+
+2) To Validate Email --- > validates :email , presence: true , format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+
+3) To Validate faculty_name and add custom message --- >     validates! :faculty_name, presence: {message: "must be given"}
+
+4) To Validate a particular range --- > validates :certification_id , numericality: {less_than:7}
+
+5) 
+
