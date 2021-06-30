@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_112527) do
+ActiveRecord::Schema.define(version: 2021_06_30_060001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2021_06_29_112527) do
     t.integer "faculty_salary"
     t.bigint "course_id"
     t.index ["course_id"], name: "index_faculties_on_course_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "content"
+    t.string "comments_type"
+    t.bigint "comments_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comments_type", "comments_id"], name: "index_feedbacks_on_comments"
   end
 
   create_table "students", force: :cascade do |t|
