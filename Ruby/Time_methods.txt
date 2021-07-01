@@ -1,0 +1,205 @@
+
+				 TIME METHODS IN RUBY
+
+The Time class represents dates and times in Ruby.
+
+3.0.1 :055 > Time.new
+ => 2021-06-21 16:48:32.41075433 +0530 
+3.0.1 :056 > Time.new.class
+ => Time 
+
+3.0.1 :059 > t.wday
+ => 1 
+3.0.1 :060 > t.yday
+ => 172 
+3.0.1 :061 > t.mday
+ => 21 
+3.0.1 :062 > t.zone
+ => "IST" 
+3.0.1 :063 > t.day
+ => 21 
+3.0.1 :064 > t.month
+ => 6 
+3.0.1 :065 > t.year
+ => 2021 
+3.0.1 :068 > t.hour
+ => 16 
+3.0.1 :069 > t.min
+ => 50 
+3.0.1 :070 > t.sec
+ => 15 
+3.0.1 :071 > t.usec
+ => 680328 
+3.0.1 :076 > t.to_a
+ => [15, 50, 16, 21, 6, 2021, 1, 172, false, "IST"] 
+3.0.1 :110 > Time.now.to_i 
+ => 1624275325 
+3.0.1 :111 > Time.now.to_f 
+ => 1624275341.5925376 
+3.0.1 :119 > time.to_s
+ => "2021-06-21 17:06:53 +0530" 
+3.0.1 :120 > time.ctime
+ => "Mon Jun 21 17:06:53 2021" 
+3.0.1 :132 > time.strftime("%Y/%m/%d %H:%M:%S")
+ => "2021/06/21 17:06:53" 
+3.0.1 :150 > time.strftime("%I:%M:%S %P")
+ => "05:06:53 pm" 
+3.0.1 :151 > time.strftime("%x")            -----> in month/date/year format
+ => "06/21/21" 
+3.0.1 :154 > Time.new.strftime("%X")        -----> in hour/min/sec format
+ => "17:18:32"
+
+	require 'time'		    -----> This must be included in order to use time methods				
+
+
+3.0.1 :021 > Time.httpdate("Thu, 14 Oct 2021 11:30:12 GMT")
+ => 2021-10-14 11:30:12 UTC 
+
+3.0.1 :027 > Time.new.iso8601()
+ => "2021-06-22T11:40:59+05:30" 
+
+3.0.1 :029 > Time.parse("2020-07-24 12:00")
+ => 2020-07-24 12:00:00 +0530 
+
+3.0.1 :030 > Time.parse("2020-07-24 17:00")
+ => 2020-07-24 17:00:00 +0530 
+
+3.0.1 :002 > Time.parse("Aug 2000") 
+ => 2000-08-01 00:00:00 +0530
+
+3.0.1 :003 > Time.rfc2822('2021-june-12') rescue Time.parse('2021-june-12')
+ => 2021-06-12 00:00:00 +0530 
+
+3.0.1 :004 > Time.rfc2822('2021-06-12') rescue Time.parse('2021-06-12')
+ => 2021-06-12 00:00:00 +0530
+
+3.0.1 :011 > Time.now.rfc2822()
+ => "Tue, 22 Jun 2021 14:53:33 +0530" 
+
+3.0.1 :012 > Time.now
+ => 2021-06-22 14:53:40.095250454 +0530 
+
+3.0.1 :031 > Time.rfc822("Thu, 14 Oct 2021 11:30:12 GMT")
+ => 2021-10-14 11:30:12 +0000 
+
+3.0.1 :032 > Time.rfc2822("Thu, 14 Oct 2021 11:30:12 GMT")
+ => 2021-10-14 11:30:12 +0000 
+
+3.0.1 :065 > Time.at(169944449)
+ => 1975-05-22 04:17:29 +0530 
+
+3.0.1 :066 > Time.at(1699444449)
+ => 2023-11-08 17:24:09 +0530 
+
+3.0.1 :067 > Time.at(1622444449)
+ => 2021-05-31 12:30:49 +0530 
+
+3.0.1 :068 > Time.new.monday?
+ => false 
+
+3.0.1 :069 > Time.new.tuesday?
+ => true 
+
+3.0.1 :071 > Time.now.zone
+ => "IST" 
+
+3.0.1 :072 > Time.now.utc_offset
+ => 19800 
+
+3.0.1 :073 > Time.now.utc_offset/3600
+ => 5 
+
+3.0.1 :074 > Time.now.utc
+ => 2021-06-22 09:39:27.935817968 UTC
+
+3.0.1 :080 > Time.now.strftime("%A %d/%m/%Y")
+ => "Tuesday 22/06/2021" 
+
+3.0.1 :081 > Time.now.strftime("%A %d/%b/%Y")
+ => "Tuesday 22/Jun/2021" 
+
+3.0.1 :082 > Time.now.strftime("%A %d/%B/%Y")
+ => "Tuesday 22/June/2021" 
+
+3.0.1 :083 > Time.now.strftime("%A %d-%B-%Y")
+ => "Tuesday 22-June-2021" 
+
+3.0.1 :085 > Time.now.strftime("%-m")
+ => "6" 
+
+3.0.1 :091 > Time.now.strftime("%H")
+ => "15" 
+
+3.0.1 :092 > Time.now.strftime("%I")
+ => "03" 
+
+3.0.1 :093 > Time.now.strftime("%I:%M:%S %p")
+ => "03:14:27 PM" 
+
+3.0.1 :094 > Time.now.strftime("%I:%M:%S %P")
+ => "03:14:42 pm" 
+
+3.0.1 :095 > Time.now.to_s
+ => "2021-06-22 15:15:23 +0530"
+
+3.0.1 :097 > Time.now.inspect
+ => "2021-06-22 15:15:46.912492252 +0530" 
+
+3.0.1 :096 > Time.now.to_i
+ => 1624355127 
+
+3.0.1 :100 > Time.now - 86400
+ => 2021-06-21 15:17:09.622069975 +0530 
+
+3.0.1 :105 > Time.strptime("2021-10-31", "%Y-%m-%d") 
+ => 2021-10-31 00:00:00 +0530 
+
+3.0.1 :115 > Time.now.strftime("%I:%M:%S %g")
+ => "03:30:04 21" 
+
+3.0.1 :116 > Time.now.strftime("%I:%M:%S %G")
+ => "03:30:16 2021" 
+
+3.0.1 :117 > Time.now.strftime("%I:%M:%S %D")
+ => "03:30:31 06/22/21" 
+
+3.0.1 :120 > Time.now.strftime("%I:%M:%S %v")
+ => "03:31:51 22-JUN-2021" 
+
+3.0.1 :121 > Time.now.strftime("%I:%M:%S %z")
+ => "03:32:40 +0530" 
+
+3.0.1 :122 > Time.now.strftime("%I:%M:%S %Z")
+ => "03:32:43 IST" 
+
+3.0.1 :123 > Time.xmlschema("2011-10-05T22:26:12-04:00")
+ => 2011-10-05 22:26:12 -0400 
+
+3.0.1 :124 > Time.zone_offset("EST") 
+ => -18000 
+
+3.0.1 :125 > Time.zone_offset("IST") 
+ => 19800 
+
+3.0.1 :126 > Time.zone_offset("UTC") 
+ => 0 
+
+3.0.1 :129 > Time.now.httpdate
+ => "Tue, 22 Jun 2021 10:07:30 GMT" 
+3.0.1 :130 > Time.now
+
+ => 2021-06-22 15:37:49.243252941 +0530 
+
+3.0.1 :136 > Time.now - 0600
+ => 2021-06-22 15:32:49.914917739 +0530 
+
+3.0.1 :137 > Time.now - 0540
+ => 2021-06-22 15:33:34.511552515 +0530 
+
+** EXTRACTING AGE FROM GIVEN DATE IN RAILS
+
+3.0.1 :022 > da=Student.select(:enrolled_date).find(2)
+
+3.0.1 :030 > total_years= ((Time.now - da.enrolled_date.to_time)/1.year.seconds)
+ => 2.865127693186019 
+
