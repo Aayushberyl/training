@@ -1679,4 +1679,22 @@ se('2021/03/12') , course_id:3).valid?
 
 
 
+3.0.1 :001 > Student.create(student_name:'Vicky' , age:23 , contact_no:9776655223)
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activemodel-6.1.4/lib/active_model/errors.rb:410:in `add': Email can't be blank (ActiveModel::StrictValidationFailed)
+
+** To By-Pass Validation at your side 
+
+** use save(validate:false) with new method.
+
+3.0.1 :002 > Student.new(student_name:'Vicky' , age:23 , contact_no:9776655223).save(validate:false)
+  TRANSACTION (0.6ms)  BEGIN
+  Student Create (151.0ms)  INSERT INTO "students" ("student_name", "age", "contact_no") VALUES ($1, $2, $3) RETURNING "id"  [["student_name", "Vicky"], ["age", 23], ["contact_no", 9776655223]]
+  TRANSACTION (89.8ms)  COMMIT
+ => true 
+
+
+3.0.1 :003 > Student.delete(15)
+  Student Destroy (33.6ms)  DELETE FROM "students" WHERE "students"."id" = $1  [["id", 15]]
+ => 1 
+
 
