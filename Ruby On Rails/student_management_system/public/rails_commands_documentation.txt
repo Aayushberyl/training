@@ -10,7 +10,7 @@
 
 5) creating a new table => rails g model 'table_name'
 
-6) to generate model ----> rails generate model Product name:string description:text
+6) to generate model/table ----> rails generate model Product name:string description:text
 
 7) then updated no. of columns in corresponding rb file
 
@@ -38,7 +38,9 @@
 
 17) To add Foreign key use add_reference keyword like : add_reference :referencing_table , :referenced_table
 
-18) ASSOCIATIONS 
+					
+	
+				18) ASSOCIATIONS 
 
 to add associations one should know the relation between the tables they want to form
 
@@ -69,20 +71,18 @@ To make things easier, you can look at the types of Association this way:
 
 2) has_one + belongs_to = one-to-one relationship
 
-3) has_many :through + belongs_to = many-to-many relationship  
+3) has_many :through + belongs_to = many-to-many relationship using intermediate table
 
-4) has_one :through + belongs_to = one-to-one relationship
+4) has_one :through + belongs_to = one-to-one relationship using intermediate table
 
 5) has_and_belongs_to_many = many-to-many relationship  
 
 
 
-			POLYMORPHIC ASSOCIATIONS
+				19)POLYMORPHIC ASSOCIATIONS
 
 
 1) With polymorphic associations, a model can belong to more than one other model, on a single association.
-
-
 
 2) Write This in Your Polymorphic Table  (Feedback)  --- >  t.references :comments, polymorphic: true
 
@@ -98,7 +98,7 @@ has_many :feedbacks, as: :comments
 
 
 
-			ACTIVE RECORD :VALIDATIONS
+				20)ACTIVE RECORD :VALIDATIONS
 
 1) Insert this command in model where you want to add validsations --- > validates :name, presence: true
 
@@ -108,7 +108,7 @@ irb> Person.create(name: "John Doe").valid?
 irb> Person.create(name: nil).valid?
 => false
 
-METHODS TO CHECK VALIDATIONS
+METHODS TO CHECK VALIDATIONS (! -- > Bang Version is used for strict validations)
 
 update!
 
@@ -124,5 +124,12 @@ save!
 
 4) To Validate a particular range --- > validates :certification_id , numericality: {less_than:7}
 
-5) 
+
+
+
+				21)ACTIVE RECORD :CALLBACKS
+
+
+In Rails, callbacks are hooks provided by Active Record that allow methods to run before or after a create, update, or destroy action occurs to an object.
+
 

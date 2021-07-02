@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_065402) do
+ActiveRecord::Schema.define(version: 2021_07_02_065922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "certifications", force: :cascade do |t|
-    t.string "cert_name"
-    t.integer "cert_fees"
-    t.integer "cert_duration"
+    t.string "name"
+    t.integer "fees"
+    t.integer "duration"
   end
 
   create_table "certifieds", force: :cascade do |t|
@@ -31,14 +31,14 @@ ActiveRecord::Schema.define(version: 2021_07_01_065402) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "course_name"
-    t.integer "course_fee"
-    t.integer "course_duration"
+    t.string "name"
+    t.integer "fees"
+    t.integer "duration"
   end
 
   create_table "faculties", force: :cascade do |t|
-    t.string "faculty_name"
-    t.integer "faculty_salary"
+    t.string "name"
+    t.integer "salary"
     t.bigint "course_id"
     t.index ["course_id"], name: "index_faculties_on_course_id"
   end
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 2021_07_01_065402) do
   end
 
   create_table "guardians", force: :cascade do |t|
-    t.string "guardian_name"
-    t.bigint "guardian_contact"
+    t.string "name"
+    t.bigint "contact"
     t.bigint "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_065402) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "student_name"
+    t.string "name"
     t.integer "age"
     t.string "email"
     t.bigint "contact_no"
