@@ -133,3 +133,31 @@ save!
 In Rails, callbacks are hooks provided by Active Record that allow methods to run before or after a create, update, or destroy action occurs to an object.
 
 
+
+
+
+				22) CONTROLLERS IN RAILS
+
+* The Rails controller is the logical center of your application. It coordinates the interaction between the user, the views, and the model. The controller is also a home to a number of important ancillary services.
+
+
+
+* It is responsible for routing external requests to internal actions. It handles people-friendly URLs extremely well.
+
+* It manages caching, which can give applications orders-of-magnitude performance boosts.
+
+* It manages helper modules, which extend the capabilities of the view templates without bulking up their code.
+
+* It manages sessions, giving users the impression of an ongoing interaction with our applications.
+
+** CONTROLLER CREATION SYNTAX : rails generate controller Book
+
+
+* Controller classes inherit from ApplicationController, which is the other file in the controllers folder: application.rb
+
+
+* The params object is a container that enables you to pass values between method calls.
+
+
+
+

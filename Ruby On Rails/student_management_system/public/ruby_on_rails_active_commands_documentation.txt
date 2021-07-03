@@ -1698,3 +1698,7 @@ se('2021/03/12') , course_id:3).valid?
  => 1 
 
 
+
+				CONTROLLER CREATION
+
+

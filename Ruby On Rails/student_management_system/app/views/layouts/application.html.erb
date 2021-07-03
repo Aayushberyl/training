@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <div class='navbar' style= 'width:100% ; border:2px solid black;'>
+      <a href="/home" style='padding:50px ; text-decoration:none ; font-size:20px;'>Home</a>
+      <a href="/student" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@student%></a>
+      <a href="/faculty" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@faculty%></a>
+      <a href="/guardian" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@guardian%></a>
+      <a href="/course" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@course%></a>
+      <a href="/feedback" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@feedback%></a>
+      <a href="/certification" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@certification%></a>
+    </div>
     <%= yield %>
   </body>
 </html>

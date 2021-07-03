@@ -1,0 +1,2 @@
+module GuardianHelper
+end
