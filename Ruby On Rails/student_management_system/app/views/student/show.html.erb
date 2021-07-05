@@ -1,0 +1,20 @@
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Email</th>
+    <th>Contact No.</th>
+    <th>Enrolled Date </th>
+    <th>Course Id </th>
+  </tr>
+  <tr>
+  <% for i in 0...@student.length %>
+    <td><%= @student[i].name %></td>
+    <td><%= @student[i].age %></td>
+    <td><%= @student[i].email %></td>
+    <td><%= @student[i].contact_no %></td>
+    <td><%= @student[i].enrolled_date %></td>
+    <td><%= @student[i].course_id %></td>
+  </tr>
+  <%end%>
+</table>

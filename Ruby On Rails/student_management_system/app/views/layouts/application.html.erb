@@ -9,16 +9,34 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <style>
+  body{background:#edddb2}
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 15px;
+      }
+      th {
+        text-align: center;
+      }
+      td {
+        text-align: center;
+      }
+      table{
+        margin-top: 50px;
+      }
+    </style>
   <body>
-    <div class='navbar' style= 'width:100% ; border:2px solid black;'>
+    <div id='navbar' style= 'width:100% ; border:2px solid black; background:yellow'>
       <a href="/home" style='padding:50px ; text-decoration:none ; font-size:20px;'>Home</a>
-      <a href="/student" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@student%></a>
-      <a href="/faculty" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@faculty%></a>
-      <a href="/guardian" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@guardian%></a>
-      <a href="/course" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@course%></a>
-      <a href="/feedback" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@feedback%></a>
-      <a href="/certification" style='padding:50px ; text-decoration:none ; font-size:20px'><%=@certification%></a>
+      <a href="/student" style='padding:50px ; text-decoration:none ; font-size:20px'>Student</a>
+      <a href="/faculty" style='padding:50px ; text-decoration:none ; font-size:20px'>Faculty</a>
+      <a href="/guardian" style='padding:50px ; text-decoration:none ; font-size:20px'>Guardian</a>
+      <a href="/course" style='padding:50px ; text-decoration:none ; font-size:20px'>Course</a>
+      <a href="/feedback" style='padding:50px ; text-decoration:none ; font-size:20px'>Feedback</a>
+      <a href="/certification" style='padding:50px ; text-decoration:none ; font-size:20px'>Certification</a>
     </div>
     <%= yield %>
   </body>

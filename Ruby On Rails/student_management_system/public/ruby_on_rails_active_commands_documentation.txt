@@ -1701,4 +1701,9 @@ se('2021/03/12') , course_id:3).valid?
 
 				CONTROLLER CREATION
 
+Controller are the middleman used to control your request and respond handling.
+
+* In controller(routes.rb) you write get '/name', to: '#controller_name#method_name'
+----> This will work in such a way that first it will call controller and then its corresponding method and its corresponding view file if present.
+
 
