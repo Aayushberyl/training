@@ -1,0 +1,154 @@
+
+					IMPORTANT DIFFERENCES
+
+** 1) Difference between cookies and session?
+
+* Cookies and Sessions are used to store information. Cookies are only stored on the client-side machine, while sessions get stored on the client as well as a server.
+
+					*SESSIONS
+
+* A session creates a file in a temporary directory on the server where registered session variables and their values are stored. This data will be available to all pages on the site during that visit.
+
+* A session ends when the user closes the browser or after leaving the site, the server will terminate the session after a predetermined period of time, commonly 30 minutes duration.
+
+* Sessions are basically used in banking websites to ensure security.
+
+					*COOKIES
+
+Cookies are text files stored on the client computer and they are kept of use tracking purpose. Server script sends a set of cookies to the browser. For example name, age, or identification number etc. The browser stores this information on a local machine for future use.
+
+When next time browser sends any request to web server then it sends those cookies information to the server and server uses that information to identify the user.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+** 2) What is HTTP request. How it is different from HTTPS? 
+
+(HTTP - HYPERTEXT TRANSFER PROTOCOL) && (HTTPS - HYPERTEXT TRANSFER PROTOCOL SECURE)
+
+* In HTTP, URL begins with “http://” whereas URL starts with “https://”
+
+* HTTP uses port number 80 for communication and HTTPS uses 443
+
+* HTTP is considered to be unsecure and HTTPS is secure
+
+* HTTP Works at Application Layer and HTTPS works at Transport Layer
+
+* In HTTP, Encryption is absent and Encryption is present in HTTPS
+
+* HTTP does not require any certificates and HTTPS needs SSL Certificates
+
+-------------------------------------------------------------------------------------------------------------------------
+
+** 3) Difference between client side and server side programming?
+
+			*CLIENT SIDE PROGRAMMING/*FRONT-END PROGRAMMING
+
+* In web development, 'client side' refers to everything in a web application that is displayed or takes place on the client (end user device). This includes what the user sees, such as text, images, and the rest of the UI, along with any actions that an application performs within the user's browser.
+
+* Client-side processes are almost always written in JavaScript.
+
+
+			*SERVER SIDE PROGRAMMING/*BACK-END PROGRAMMING
+
+* Much like with client side, 'server side' means everything that happens on the server, instead of on the client.
+
+* The problem with hosting all of these processes on the server side is that each request involving one of them has to travel all the way from the client to the server, every time. This introduces a great deal of latency (Latency is the time that passes between a user action and the resulting response).
+
+
+
+**  backend only refers to the types of processes and server-side refers to the location where processes run.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+** 4) What is REST architecture?
+
+
+* REST stands for REpresentational State Transfer and API stands for Application Program Interface. REST is a software architectural style that defines the set of rules to be used for creating web services. Web services which follow the REST architectural style are known as RESTful web services. It allows requesting systems to access and manipulate web resources by using a uniform and predefined set of rules. Interaction in REST based systems happen through Internet’s Hypertext Transfer Protocol (HTTP).
+
+
+A Restful system consists of a:
+
+A) client who requests for the resources.
+B) server who has the resources.
+
+* Architectural Constraints of RESTful API: There are six architectural constraints which makes any web service are listed below:
+
+1) Uniform Interface
+2) Stateless
+3) Cacheable
+4) Client-Server
+5) Layered System
+6) Code on Demand 		----- > Optional Constraint
+
+
+1) Uniform Interface: It is a key constraint that differentiate between a REST API and Non-REST API. It suggests that there should be an uniform way of interacting with a given server irrespective of device or type of application (website, mobile app).
+
+* Resource-Based: Individual resources are identified in requests. For example: API/users.
+
+* Manipulation of Resources Through Representations: Client has representation of resource and it contains enough information to modify or delete the resource on the server, provided it has permission to do so. Example: Usually user get a user id when user request for a list of users and then use that id to delete or modify that particular user.
+
+* Self-descriptive Messages: Each message includes enough information to describe how to process the message so that server can easily analyses the request.
+
+* Hypermedia as the Engine of Application State (HATEOAS): It need to include links for each response so that client can discover other resources easily.
+
+
+2) Stateless: It means that the necessary state to handle the request is contained within the request itself and server would not store anything related to the session. In REST, the client must include all information for the server to fulfill the request whether as a part of query params, headers or URI(Uniform Resource Indentifiers). Statelessness enables greater availability since the server does not have to maintain, update or communicate that session state. There is a drawback when the client need to send too much data to the server so it reduces the scope of network optimization and requires more bandwidth.
+
+
+3) Cacheable: Every response should include whether the response is cacheable or not and for how much duration responses can be cached at the client side. Client will return the data from its cache for any subsequent request and there would be no need to send the request again to the server. A well-managed caching partially or completely eliminates some client–server interactions, further improving availability and performance. But sometime there are chances that user may receive stale(Stale state is information in an object that does not reflect reality.) data. 
+
+
+4) Client-Server: REST application should have a client-server architecture. A Client is someone who is requesting resources and are not concerned with data storage, which remains internal to each server, and server is someone who holds the resources and are not concerned with the user interface or user state. They can evolve independently. Client doesn’t need to know anything about business logic and server doesn’t need to know anything about frontend UI.
+
+
+5) Layered system: An application architecture needs to be composed of multiple layers. Each layer doesn’t know any thing about any layer other than that of immediate layer and there can be lot of intermediate servers between client and the end server. Intermediary servers may improve system availability by enabling load-balancing and by providing shared caches.
+
+
+6) Code on demand: It is an optional feature. According to this, servers can also provide executable code to the client. The examples of code on demand may include the compiled components such as Java applets and client-side scripts such as JavaScript.
+
+
+** A web application should be organized into resources like users and then uses HTTP verbs like – GET, PUT, POST, DELETE to modify those resources. And as a developer it should be clear that what needs to be done just by looking at the endpoint and HTTP method used.
+
+URI	       				HTTP verb			 	Description
+api/users					GET	       	        Get all users
+api/users/new				GET	        Show form for adding new user
+api/users					POST	             Add a user
+api/users/1					PUT	             Update a user with id = 1
+api/users/1/edit			GET	        Show edit form for user with id = 1
+api/users/1					DELETE	        Delete a user with id = 1
+api/users/1					GET	             Get a user with id = 1
+
+
+
+** HTTP verbs: Some of the common HTTP methods/verbs are described below:
+
+* GET: Retrieves one or more resources identified by the request URI and it can cache the information receive.
+
+* POST: Create a resource from the submission of a request and response is not cacheable in this case. This method is unsafe if no security is applied to the endpoint as it would allow anyone to create a random resource by submission.
+
+* PUT: Update an existing resource on the server specified by the request URI.
+
+* DELETE: Delete an existing resource on the server specified by the request URI. It always return an appropriate HTTP status for every request.
+
+* GET, PUT, DELETE methods are also known as Idempotent methods. Applying an operation once or applying it multiple times has the same effect. Example: Delete any resource from the server and it succeeds with 200 OK and then try again to delete that resource than it will display an error message 410 GONE.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+** 5) What is gems in rails?
+
+* A gem is the equivalent to a plugin or an extension for the programming language ruby.
+
+* A gem usually has a Rakefile, which the rake program uses to automate tests, generate code, and perform other tasks.
+
+* This gem also includes an executable file in the bin directory, which will be loaded into the user’s PATH when the gem is installed.
+
+* RubyGems is a Ruby programming language package manager that provides a standard format for distributing Ruby programs and libraries (in a self-contained format called a "gem"), a tool designed to easily manage the setup of gems, and a server to distribute them.
+
+* Inside gems are the following components:
+
+A) Code (including tests and supporting utilities)
+B) Documentation
+C) gemspec the information about a gem such as its name, version, description, authors, and homepage.
+
+
+-------------------------------------------------------------------------------------------------------------------------
