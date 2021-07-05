@@ -1,0 +1,16 @@
+<a href='course'><=Back</a>
+<h2 style="text-align:center">Course Details</h2>
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Fees</th>
+    <th>Duration</th>
+  </tr>
+  <tr>
+  <% for i in @course.ids%>
+    <td><%=@course.find(i).name%></td>
+    <td><%=@course.find(i).fees%></td>
+    <td><%=@course.find(i).duration%></td>
+  </tr>
+    <%end%>
+</table>

@@ -1,0 +1,16 @@
+<a href='feedback'><=Back</a>
+<h2 style="text-align:center">Feedback Details</h2>
+<table style="width:100%">
+  <tr>
+    <th>Comment Id</th>
+    <th>Comment By</th>
+    <th>Content</th>
+  </tr>
+  <tr>
+  <% for i in @feedback.ids%>
+    <td><%=@feedback.find(i).comments_id%></td>
+    <td><%=@feedback.find(i).comments_type%></td>
+    <td><%=@feedback.find(i).content%></td>
+  </tr>
+    <%end%>
+</table>

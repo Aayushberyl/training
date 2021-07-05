@@ -1,3 +1,5 @@
+<a href='/student'><=Back</a>
+<h2 style="text-align:center">Student Details</h2>
 <table style="width:100%">
   <tr>
     <th>Name</th>
@@ -5,16 +7,16 @@
     <th>Email</th>
     <th>Contact No.</th>
     <th>Enrolled Date </th>
-    <th>Course Id </th>
+    <th>Course Name </th>
   </tr>
   <tr>
-  <% for i in 0...@student.length %>
-    <td><%= @student[i].name %></td>
-    <td><%= @student[i].age %></td>
-    <td><%= @student[i].email %></td>
-    <td><%= @student[i].contact_no %></td>
-    <td><%= @student[i].enrolled_date %></td>
-    <td><%= @student[i].course_id %></td>
+  <% for i in @student.ids %>
+    <td><%= @student.find(i).name %></td>
+    <td><%= @student.find(i).age %></td>
+    <td><%= @student.find(i).email %></td>
+    <td><%= @student.find(i).contact_no %></td>
+    <td><%= @student.find(i).enrolled_date %></td>
+    <td><%= @student.find(i).course.name %></td>
   </tr>
   <%end%>
 </table>

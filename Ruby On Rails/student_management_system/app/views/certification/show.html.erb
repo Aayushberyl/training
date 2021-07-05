@@ -1,0 +1,16 @@
+<a href='certification'><=Back</a>
+<h2 style="text-align:center">Certification Details</h2>
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Fees</th>
+    <th>Duration</th>
+  </tr>
+  <tr>
+  <% for i in @certification.ids%>
+    <td><%=@certification.find(i).name%></td>
+    <td><%=@certification.find(i).fees%></td>
+    <td><%=@certification.find(i).duration%></td>
+  </tr>
+    <%end%>
+</table>

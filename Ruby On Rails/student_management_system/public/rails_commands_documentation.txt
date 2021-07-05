@@ -160,4 +160,41 @@ In Rails, callbacks are hooks provided by Active Record that allow methods to ru
 
 
 
+				23) SCAFFOLDING IN RAILS
 
+* Scaffolding is a quick way to produce some major pieces of an application. For auto generating a set of models, views and controllers for a new resource in a single operation, scaffolding is used.
+
+* Scaffolding is a technique supported by MVC frameworks in which programmers can specify how application database may be used. The framework or compiler uses it together with pre-defined code templates to generate the final code that the application can use to perform CRUD in database entries, effectively treating the templates as a "scaffold" on which to build a more powerful application.
+
+* Scaffolding occurs at two different phases of the program lifecycle, design time and run time. 
+1) Design time scaffolding produces files of code that can later be modified by the programmer.
+2) Run time scaffolding produces code on the fly. It allows changes to the design of the templates to be immediately reflected throughout the application.
+
+* Syntax to generate scaffold in rails --- > rails generate scaffold model_name
+
+* Example : rails generate scaffold Post name:string title:string content:text 
+
+* Scaffold Creation Example
+
+1) Create an Application 
+    rails new example  
+
+2) create MVC components using Scaffold
+
+    cd example  
+    rails generate scaffold post title:string body:text  
+    rails generate scaffold comment post_id:integer body:text  
+
+3) first move to the application directory and then create database tables comments and post_id
+
+    rake db:migrate  
+
+4) Run Migrations
+
+    rake routes  
+
+5) Start web server
+
+    rails server
+
+6) Run http://localhost:3000/posts in your browser 

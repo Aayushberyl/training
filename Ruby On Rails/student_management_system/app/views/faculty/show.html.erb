@@ -1,0 +1,16 @@
+<a href='faculty'><=Back</a>
+<h2 style="text-align:center">Faculty Details</h2>
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Salary</th>
+    <th>Course Id </th>
+  </tr>
+  <tr>
+  <% for i in @faculties.ids %>
+    <td><%= @faculties.find(i).name %></td>
+    <td><%= @faculties.find(i).salary %></td>
+    <td><%= @faculties.find(i).id %></td>
+  </tr>
+  <%end%>
+</table>
