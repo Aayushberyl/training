@@ -14,20 +14,49 @@
  *= require_self
  */
  body{
-    background:#edddb2;
+    background:#ededee;
     font-style: oblique;
   }
 
   #navbar{
     margin-top: -8px;
-    width:100% ; border:2px solid black; background:yellow;
+    height:35px;
+    width:100% ;
+    background-color: rgb(88, 79, 136);
     border-radius: 6px;
   }
+  
+  #navbar a{
+    
+    color: white;
+    margin:42px ; 
+    text-decoration:none ; 
+    font-size:26px;
+  }
+
+  #navbar a:hover
+  {
+    color:rgb(213, 213, 228);
+  }
+
   a
   {
     text-decoration: none;
     color: black;
   }
+
+  a:hover
+  {
+    color:white;
+  }
+  button:hover
+  {
+    
+    background:rgb(88, 79, 136);
+    border-radius: 10px;
+    color: white;
+  }
+
  table, th, td {
    border: 1px solid black;
    border-collapse: collapse;
@@ -35,28 +64,68 @@
 
  th, td {
    padding: 15px;
- }
-
- th {
-   text-align: center;
- }
-
- td {
    text-align: center;
  }
 
  table{
    margin-top: 50px;
    width:100%;
+   box-shadow: 5px 5px rgb(88, 79, 136);
+   
  }
 
  form
 {
   width: 175px; 
   margin: 0 auto;
+  /* size:20px; */
 }
 
 h2
 {
-  text-align:center
+  text-align:center;
+  font-size: 40px;
+}
+
+table tr:nth-child(even)
+{
+  background-color: #c1c1e6;
+}
+
+table tr:first-child
+{
+  background-color: rgb(88, 79, 136);
+  color: rgb(242, 247, 251);
+}
+input[type="submit"]:hover
+{
+  background-color: rgb(88, 79, 136);
+  color: white;
+  border-radius: 10px;
+}
+input[type="reset"]:hover
+{
+  background-color: rgb(88, 79, 136);
+  color: white;
+  border-radius: 10px;
+}
+
+input[type="submit"]{
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+input[type="reset"]{
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+label{
+  font-size: 20px;
+}
+
+button
+{
+  font-size: 15px;
+  border-radius: 10px;
 }
