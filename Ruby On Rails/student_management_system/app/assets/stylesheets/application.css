@@ -13,3 +13,50 @@
  *= require_tree .
  *= require_self
  */
+ body{
+    background:#edddb2;
+    font-style: oblique;
+  }
+
+  #navbar{
+    margin-top: -8px;
+    width:100% ; border:2px solid black; background:yellow;
+    border-radius: 6px;
+  }
+  a
+  {
+    text-decoration: none;
+    color: black;
+  }
+ table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+ }
+
+ th, td {
+   padding: 15px;
+ }
+
+ th {
+   text-align: center;
+ }
+
+ td {
+   text-align: center;
+ }
+
+ table{
+   margin-top: 50px;
+   width:100%;
+ }
+
+ form
+{
+  width: 175px; 
+  margin: 0 auto;
+}
+
+h2
+{
+  text-align:center
+}
