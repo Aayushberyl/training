@@ -1,0 +1,405 @@
+
+
+1) gem install rails to install rails
+
+2) creating a new project in rails => rails new "project name" -d "database name"
+
+3) make changes in database.yml file such as adding port number , host , username , password.
+
+4) run rake db:create command to create a database of same name as of project name.
+
+5) creating a new table => rails g model 'table_name'
+
+6) to generate model/table ----> rails generate model Product name:string description:text
+
+7) then updated no. of columns in corresponding rb file
+
+8) then db:migrate => to change the migration in db files
+
+9) to alter(add new column) the table use ---> rails generate migration add_email_to_students email:string
+
+	add_column (table_name , column_name , datatype)
+
+10) to alter(remove a column) the table use ---> rails generate migration remove_email_from_students email:string
+
+	or remove_column (table_name , column_name)
+
+11) can create table using this command ---> generate migration CreateProducts name:string part_number:string 
+
+12) change column datatype ----> change_column :tablename, :columnname, :datatype
+
+13) renaming column -----> rename_column :tablename , :columnname, :new_columnname
+
+14) drop table ------> drop_table(name)
+
+15) add index -------> add_index(table_name , column_name )
+
+16) remove index -----> remove_index(table_name , column_name )
+
+17) To add Foreign key use add_reference keyword like : add_reference :referencing_table , :referenced_table
+
+					
+	
+				18) ASSOCIATIONS 
+
+to add associations one should know the relation between the tables they want to form
+
+like one course can have many students     		--------> has_many :students
+but many students can have only one course		--------> belongs_to :course
+
+
+
+various (6) types of Associations are : 
+
+a) belongs_to
+
+b) has_one 
+
+c) has_many
+
+d) has_many :through			-----------> (relationship using intermediate {join} table)
+
+e) has_one :through
+
+f) has and belongs to many		-----------> (direrct relationship)
+
+
+To make things easier, you can look at the types of Association this way:
+
+
+1) has_many + belongs_to = one-to-many relationship
+
+2) has_one + belongs_to = one-to-one relationship
+
+3) has_many :through + belongs_to = many-to-many relationship using intermediate table
+
+4) has_one :through + belongs_to = one-to-one relationship using intermediate table
+
+5) has_and_belongs_to_many = many-to-many relationship  
+
+
+
+				19)POLYMORPHIC ASSOCIATIONS
+
+
+1) With polymorphic associations, a model can belong to more than one other model, on a single association.
+
+2) Write This in Your Polymorphic Table  (Feedback)  --- >  t.references :comments, polymorphic: true
+
+3) Update This Both things in your Both Referenced Table (here Student and Faculty Tables)for Polymorphic --- > 
+
+has_many :feedbacks, as: :comments
+
+
+4) Insert Data in Polymorphic Table (Feedback) --- > Feedback.create(content:'Good College' , comments: Student.find(1))
+
+	Syntax : Polymorphic_table_name.create(content_column_name:'anything' , comments:Referenced_Table.find(1))
+	here comments represents alias of Student and Faculty for Feedback model.
+
+
+
+				20)ACTIVE RECORD :VALIDATIONS
+
+1) Insert this command in model where you want to add validsations --- > validates :name, presence: true
+
+irb> Person.create(name: "John Doe").valid?
+=> true
+
+irb> Person.create(name: nil).valid?
+=> false
+
+METHODS TO CHECK VALIDATIONS (! -- > Bang Version is used for strict validations)
+
+update!
+
+create!
+
+save!
+
+
+
+2) To Validate Email --- > validates :email , presence: true , format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+
+3) To Validate faculty_name and add custom message --- >     validates! :faculty_name, presence: {message: "must be given"}
+
+4) To Validate a particular range --- > validates :certification_id , numericality: {less_than:7}
+
+
+
+
+				21)ACTIVE RECORD :CALLBACKS
+
+
+In Rails, callbacks are hooks provided by Active Record that allow methods to run before or after a create, update, or destroy action occurs to an object.
+
+
+
+
+
+				22) CONTROLLERS IN RAILS
+
+* The Rails controller is the logical center of your application. It coordinates the interaction between the user, the views, and the model. The controller is also a home to a number of important ancillary services.
+
+
+
+* It is responsible for routing external requests to internal actions. It handles people-friendly URLs extremely well.
+
+* It manages caching, which can give applications orders-of-magnitude performance boosts.
+
+* It manages helper modules, which extend the capabilities of the view templates without bulking up their code.
+
+* It manages sessions, giving users the impression of an ongoing interaction with our applications.
+
+** CONTROLLER CREATION SYNTAX : rails generate controller Book
+
+
+* Controller classes inherit from ApplicationController, which is the other file in the controllers folder: application.rb
+
+
+* The params object is a container that enables you to pass values between method calls.
+
+
+
+				23) SCAFFOLDING IN RAILS
+
+* Scaffolding is a quick way to produce some major pieces of an application. For auto generating a set of models, views and controllers for a new resource in a single operation, scaffolding is used.
+
+* Scaffolding is a technique supported by MVC frameworks in which programmers can specify how application database may be used. The framework or compiler uses it together with pre-defined code templates to generate the final code that the application can use to perform CRUD in database entries, effectively treating the templates as a "scaffold" on which to build a more powerful application.
+
+* Scaffolding occurs at two different phases of the program lifecycle, design time and run time. 
+1) Design time scaffolding produces files of code that can later be modified by the programmer.
+2) Run time scaffolding produces code on the fly. It allows changes to the design of the templates to be immediately reflected throughout the application.
+
+* Syntax to generate scaffold in rails --- > rails generate scaffold model_name
+
+* Example : rails generate scaffold Post name:string title:string content:text 
+
+* Scaffold Creation Example
+
+1) Create an Application 
+    rails new example  
+
+2) create MVC components using Scaffold
+
+    cd example  
+    rails generate scaffold post title:string body:text  
+    rails generate scaffold comment post_id:integer body:text  
+
+3) first move to the application directory and then create database tables comments and post_id
+
+    rake db:migrate  
+
+4) Run Migrations
+
+    rake routes  
+
+5) Start web server
+
+    rails server
+
+6) Run http://localhost:3000/posts in your browser 
+
+
+
+																						**JAVASCRIPT 
+
+
+* JavaScript is a scripting or programming language that allows you to implement complex features on web pages.
+
+* The Document method getElementById() returns an Element object representing the element whose id property matches the specified string.
+
+
+* Scripts can be placed in the <body>, or in the <head> section of an HTML page, or in both.
+
+* Placing scripts at the bottom of the <body> element improves the display speed, because script interpretation slows down the display.
+
+* JavaScript can "display" data in different ways:
+
+1) Writing into an HTML element, using innerHTML.
+   document.getElementById("demo").innerHTML = 5 + 6;
+2) Writing into the HTML output using document.write().  
+   Using document.write() after an HTML document is loaded, will delete all existing HTML.
+   The document.write() method should only be used for testing.
+3) Writing into an alert box, using window.alert().
+   You can skip the window keyword.
+   In JavaScript, the window object is the global scope object.
+4) Writing into the browser console, using console.log().
+   For debugging purposes. It will display all outputs in debugging mode(f12) then console window.
+* To Print Page --> <button onclick="window.print()">Print this page</button>
+ex=>  
+<script>
+document.getElementById("demo").innerHTML = "My First JavaScript";
+</script>
+
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Paragraph changed.";
+}
+
+
+* VARIABLES IN JAVASCRIPT ---> var and let are both used for variable declaration in javascript but the difference between them is that var is function scoped and let is block scoped. It can be said that a variable declared with var is defined throughout the program as compared to let.Variables defined with let cannot be Redeclared.
+
+* CONSTANTS ---> constants are written using const PI = 3.14; They Cannot be modified once they are declared.
+
+* Hyphens are not allowed in JavaScript. They are reserved for subtractions.
+
+* JavaScript uses the Unicode character set. Unicode covers (almost) all the characters, punctuations, and symbols in the world.
+
+* JavaScript identifiers (names) must begin with:
+
+1) A letter (A-Z or a-z)
+2) A dollar sign ($)
+3) An underscore (_)
+
+																	*HTML DOM (Document Object Model)
+
+* When a web page is loaded, the browser creates a Document Object Model of the page.
+
+* The DOM is a W3C (World Wide Web Consortium) standard.
+  (A consortium is a group made up of two or more individuals, companies, or governments that work together to achieving  a common objective)
+
+* "The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document."
+
+* The HTML DOM is a standard for how to get, change, add, or delete HTML elements.
+
+* A property is a value that you can get or set AND A method is an action you can do.
+
+* getElementById is a method, while innerHTML is a property.
+
+* FINDING HTML ELEMENTS
+
+document.getElementById(id)							----->							Find an element by element id
+document.getElementsByTagName(name)			----->							Find elements by tag name
+document.getElementsByClassName(name)		----->							Find elements by class name
+
+* CHANGING HTML ELEMENTS
+
+element.innerHTML   					----->								new html content	Change the inner HTML of an element
+element.attribute  						----->								new value	Change the attribute value of an HTML element
+element.style.property  			----->								new style	Change the style of an HTML element
+
+Method	Description
+element.setAttribute(attribute, value)	------>			Change the attribute value of an HTML element
+
+
+* EVENT HANDLERS
+
+document.getElementById(id).onclick = function(){code}	----->  Adding event handler code to an onclick event
+
+* isNaN() function is used to check whether a given value is an illegal number or not.
+
+* JAVASCRIPT FORMS 
+
+function validateForm() {
+  let x = document.forms["myForm"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
+
+* In the corresponding HTML file , <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+
+* Change HTML STYLE using JAVASCRIPT
+
+document.getElementById(id).style.property = new style
+ex= document.getElementById("id").style.color = "red";
+
+* On Events JAVASCRIPT    ----->   <h1 onclick="this.innerHTML = 'Ooops!'">Click on this text!</h1>
+
+* <h2 onclick="changeText(this)">Click on this text!</h2>
+
+<script>
+function changeText(id) {
+  id.innerHTML = "Ooops!";
+}
+</script>
+
+* The addEventListener() method attaches an event handler to the specified element.
+
+* The addEventListener() method attaches an event handler to an element without overwriting existing event handlers.
+
+* element.addEventListener(event, function, useCapture);
+  Note that you don't use the "on" prefix for the event; use "click" instead of "onclick".
+
+* document.getElementById("myBtn").addEventListener("click", function() {
+  alert("Hello World!");
+}); 
+
+x.addEventListener("mouseover", myFunction);
+
+* You can easily remove an event listener by using the removeEventListener() method.
+
+* Passing Parameters ---->  element.addEventListener("click", function(){ myFunction(p1, p2); });
+
+* DOM NAVIGATION
+
+1)<html> is the root node
+2)<html> has no parents
+3)<html> is the parent of <head> and <body>
+4)<head> is the first child of <html>
+5)<body> is the last child of <html>
+
+and:
+
+6)<head> has one child: <title>
+7)<title> has one child (a text node): "DOM Tutorial"
+8)<body> has two children: <h1> and <p>
+9)<h1> has one child: "DOM Lesson one"
+10)<p> has one child: "Hello world!"
+11)<h1> and <p> are siblings
+
+* This code creates a new <p> element:
+
+const para = document.createElement("p");
+To add text to the <p> element, you must create a text node first. This code creates a text node:
+
+const node = document.createTextNode("This is a new paragraph.");
+Then you must append the text node to the <p> element:
+
+para.appendChild(node);
+Finally you must append the new element to an existing element.
+
+This code finds an existing element:
+
+const element = document.getElementById("div1");
+This code appends the new element to the existing element:
+
+element.appendChild(para);
+
+
+<div id="div1">
+  <p id="p1">This is a paragraph.</p>
+  <p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+const para = document.createElement("p");
+const node = document.createTextNode("This is new.");
+para.appendChild(node);
+
+const element = document.getElementById("div1");
+const child = document.getElementById("p1");
+element.insertBefore(para, child);
+</script>
+
+
+* let oldChild = parentNode.replaceChild(newChild, oldChild);
+
+* const myCollection = document.getElementsByTagName("p");
+
+* myCollection[1] --> Accessing Collection Object
+
+* myCollection.length ---> Defines no. of objects.
+
+* const myNodeList = document.querySelectorAll("p"); ---> Select All <p> tags
+
+* An HTMLCollection is a collection of HTML elements.
+
+* A NodeList is a collection of document nodes.
+
+* A NodeList and an HTML collection is very much the same thing.
+
+* Both an HTMLCollection object and a NodeList object is an array-like list (collection) of objects.
+
+
