@@ -1,11 +1,28 @@
 <h2>Certification Form</h2>
 
-<form>
-    <label for="name">Certification Id:</label><br>
-  <input type="text" id="name" name="name"><br>
-    <label for="salary">Student Id:</label><br>
-    <input type="number" id="salary" name="salary"><br><br>
+<form name="certification_form" onsubmit="return validateForm()" method="post">
+    <label for="cid">Certification Id:</label><br>
+  <input type="text" id="cid" name="cid"><br>
+    <label for="sid">Student Id:</label><br>
+    <input type="number" id="sid" name="sid"><br><br>
       <input type="submit" value="Submit">
       <input type="reset" value="Reset"><br><br>
       <button><a href="show_certification">Show Details</a></button>
 </form>
+
+<script>
+
+function validateForm() {
+  let a = document.forms["certification_form"]["cid"].value;
+  let b = document.forms["certification_form"]["sid"].value;
+  if (a == "") {
+    alert("Certification ID must be filled out");
+    return false;
+  }
+  else if (b==""){
+    alert ("Student ID must be filled out");
+    return false;
+  }
+}
+
+</script>

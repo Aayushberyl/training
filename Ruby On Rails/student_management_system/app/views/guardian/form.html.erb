@@ -1,6 +1,6 @@
 <h2>Guardian Form</h2>
 
-<form>
+<form name="guardian_form" onsubmit="return validateForm()" method="post">
     <label for="name">Name:</label><br>
   <input type="text" id="name" name="name"><br>
     <label for="contact">Contact No.</label><br>
@@ -21,3 +21,25 @@
       <input type="submit" value="Submit">
       <input type="reset" value="Reset">
 </form>
+
+<script>
+
+function validateForm() {
+  let a = document.forms["guardian_form"]["name"].value;
+  let d = document.forms["guardian_form"]["contact"].value;
+  let c = document.forms["guardian_form"]["sid"].value;
+  if (a == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  else if (b==""){
+    alert ("Contact must be filled out");
+    return false;
+  }
+  else if (c==""){
+    alert ("Student ID must be filled out");
+    return false;
+  }
+}
+
+</script>

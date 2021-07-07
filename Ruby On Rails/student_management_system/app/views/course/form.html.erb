@@ -1,6 +1,6 @@
 <h2>Course Form</h2>
 
-<form>
+<form name="course_form" onsubmit="return validateForm()" method="post">
     <label for="name">Name:</label><br>
   <input type="text" id="name" name="name"><br>
     <label for="fees">Fees:</label><br>
@@ -11,3 +11,25 @@
       <input type="reset" value="Reset"><br><br>
       <button><a href="show_course">Show Details</a></button>
 </form>
+
+<script>
+
+function validateForm() {
+  let a = document.forms["course_form"]["name"].value;
+  let b = document.forms["course_form"]["fees"].value;
+  let c = document.forms["course_form"]["duration"].value;
+  if (a == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  else if (b==""){
+    alert ("Fees must be filled out");
+    return false;
+  }
+  else if (c==""){
+    alert ("Duration must be filled out");
+    return false;
+  }
+}
+
+</script>
