@@ -1,5 +1,7 @@
 
 
+																			RAILS DOCUMENTATION
+
 1) gem install rails to install rails
 
 2) creating a new project in rails => rails new "project name" -d "database name"
@@ -401,5 +403,6 @@ element.insertBefore(para, child);
 * A NodeList and an HTML collection is very much the same thing.
 
 * Both an HTMLCollection object and a NodeList object is an array-like list (collection) of objects.
+
 
 
