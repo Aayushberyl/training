@@ -1,7 +1,52 @@
-
 <h2>Student Form</h2>
+  <%# <% if @student.errors.any?
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> 
+      <%# prohibited this department from being saved:</h2> %>
 
-<form name="student_form" onsubmit="return validateForm()" method="post">
+      <%# <ul>
+        <% @student.errors.each do |error| %>
+          <%# <li><%= error.full_message %></li>
+        <%# <% end %>
+      <%# </ul>
+    </div>
+  <% end  %>
+<%= @student.errors.messages%>
+
+<%= form_for @student do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+
+
+  <%= f.label :age , "Age" %>
+  <%= f.number_field :age , in: 0..100 %><br><br>
+
+  
+  <%= f.label :email , "Email" %>
+  <%= f.email_field :email %><br><br>
+
+  
+  <%= f.label :contact , "Contact No." %>
+  <%= f.number_field :contact_no , is: 10 %><br><br>
+
+  <%= f.label :enrolled_date, "Enrolled Date:" %> <br><br>
+  <%= f.date_field :enrolled_date %><br><br><br>
+
+
+  <%= f.label :course_id, "Course ID" %>
+  <%= f.select :course_id, [['1',1],['2',2],['3',3],['4',4],['5',5],['6',6]] %><br><br>
+  <br>
+
+    <%= f.submit "Submit"%>
+
+<% end %>
+
+
+
+
+<%# <form name="student_form" onsubmit="return validateForm()" method="post">
     <label for="name">Name:</label><br>
   <input type="text" id="name" name="name"><br>
     <label for="age">Age</label><br>
@@ -26,7 +71,7 @@
 
 <%= javascript_pack_tag 'student'%>
 
-<script>
+<%# <script>
 
 function validateForm() {
   let a = document.forms["student_form"]["name"].value;
@@ -55,4 +100,4 @@ function validateForm() {
     return false;
   }
 }
-</script>
+</script> %>
