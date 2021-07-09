@@ -1,5 +1,29 @@
 <h2>Certification Form</h2>
 
+ <%= @certification.errors.messages %>
+
+<%= form_for @certification , url:certification_path do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+  
+  <%= f.label :fees , "Fees: " %>
+  <%= f.number_field :fees %><br>
+
+
+  <%= f.label :duration, "Duration:" %>
+  <%= f.number_field :duration %><br><br>
+
+    <%= f.submit "Submit"%>
+
+<% end %>
+
+
+<!--
+
+<h2>Certification Form</h2>
+
 <form name="certification_form" onsubmit="return validateForm()" method="post">
     <label for="cid">Certification Id:</label><br>
   <input type="text" id="cid" name="cid"><br>
@@ -26,3 +50,5 @@ function validateForm() {
 }
 
 </script>
+
+-->

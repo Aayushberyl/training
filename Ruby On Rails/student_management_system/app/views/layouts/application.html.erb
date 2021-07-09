@@ -8,16 +8,62 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
   <body>
+
     <div id='navbar'>
+
       <a href="/home">Home</a>
-      <a href="/student/new">Student</a>
-      <a href="/faculty">Faculty</a>
-      <a href="/guardian">Guardian</a>
-      <a href="/course">Course</a>
-      <a href="/feedback">Feedback</a>
-      <a href="/certification">Certification</a>
+      
+      <div class="dropdown">
+        <a href="#"class="dropbtn">Student</a>
+          <div class="dropdown-content">
+            <a href="/student/show">View</a>
+            <a href="/student">Create</a>
+          </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#"class="dropbtn">Faculty</a>
+          <div class="dropdown-content">
+            <a href="/faculty/show">View</a>
+            <a href="/faculty">Create</a>
+          </div>
+      </div>
+      
+      <div class="dropdown">
+        <a href="#"class="dropbtn">Guardian</a>
+          <div class="dropdown-content">
+            <a href="/guardian/show">View</a>
+            <a href="/guardian">Create</a>
+          </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#"class="dropbtn">Course</a>
+          <div class="dropdown-content">
+            <a href="/course/show">View</a>
+            <a href="/course">Create</a>
+          </div>
+      </div>
+      
+      <div class="dropdown">
+        <a href="#"class="dropbtn">Feedback</a>
+          <div class="dropdown-content">
+            <a href="/feedback/show">View</a>
+            <a href="/feedback">Create</a>
+          </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#"class="dropbtn">Certification</a>
+          <div class="dropdown-content">
+            <a href="/certification/show">View</a>
+            <a href="/certification">Create</a>
+          </div>
+      </div>
+      
     </div>
     <%= yield %>
   </body>

@@ -1,0 +1,21 @@
+<h2>Faculty Form</h2>
+
+ <%= @faculty.errors.messages %>
+
+<%= form_for @faculty do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+
+
+  <%= f.label :salary , "Salary" %>
+  <%= f.number_field :salary  %><br>
+
+  <%= f.label :course_id, "Course ID" %>
+  <%= f.select :course_id, Course.ids.map{|i| [i,i]} %><br>
+  <br>
+
+  <%= f.submit "Update"%>
+
+<% end %>

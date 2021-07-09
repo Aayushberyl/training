@@ -1,0 +1,20 @@
+<h2>Guardian Form</h2>
+
+ <%= @guardian.errors.messages %>
+
+<%= form_for @guardian  do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+  
+  <%= f.label :contact , "Contact No." %>
+  <%= f.number_field :contact , is: 10 %><br>
+
+
+  <%= f.label :student_id, "Student ID" %>
+  <%= f.select :student_id, Student.order(:id).ids.map{|i| [i,i]} %><br><br>
+
+    <%= f.submit "Update"%>
+
+<% end %>

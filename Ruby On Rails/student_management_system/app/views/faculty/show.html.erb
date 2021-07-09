@@ -1,17 +1,25 @@
-<button><a href='faculty'><=Back</a></button>
+<button><a href='/home'><=Back</a></button>
 <h2>Faculty Details</h2>
 <button onclick="print()">Print This Page</button>
 <table>
+
   <tr>
     <th>Name</th>
     <th>Salary</th>
     <th>Course Id </th>
+    <th>Modify</th>
+    <th>Delete</th>
   </tr>
+  
   <tr>
-  <% for i in @faculties.ids %>
+  <%@faculties.ids.each do |i| %>
     <td><%= @faculties.find(i).name %></td>
     <td><%= @faculties.find(i).salary %></td>
-    <td><%= @faculties.find(i).id %></td>
+    <td><%= @faculties.find(i).course_id %></td>
+     <td><a href="/faculty/<%= i %>/edit">Edit</a></td>
+    <td><a data-confirm="Sure to delete data of <%= @faculties.find(i).name %>?" data-method="delete" href="/faculty/<%= i%>">Delete</a></td>
   </tr>
+  
   <%end%>
+  
 </table>

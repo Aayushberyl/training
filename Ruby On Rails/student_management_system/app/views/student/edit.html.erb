@@ -1,0 +1,33 @@
+<h2>Student Edit </h2>
+
+  <%= @student.errors.messages %>
+
+<%= form_for @student  do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+
+
+  <%= f.label :age , "Age" %>
+  <%= f.number_field :age , in: 0..100 %><br>
+
+  
+  <%= f.label :email , "Email" %>
+  <%= f.email_field :email %><br>
+
+  
+  <%= f.label :contact , "Contact No." %>
+  <%= f.number_field :contact_no , is: 10 %><br>
+
+  <%= f.label :enrolled_date, "Enrolled Date:" %> <br>
+  <%= f.date_field :enrolled_date %><br><br>
+
+
+  <%= f.label :course_id, "Course ID" %>
+  <%= f.select :course_id, Course.order(:id).ids.map{|i| [i,i]} %><br>
+  <br>
+
+    <%= f.submit "Update"%>
+
+<% end %>

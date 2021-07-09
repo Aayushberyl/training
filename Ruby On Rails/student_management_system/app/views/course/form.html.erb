@@ -1,3 +1,27 @@
+
+<h2>Course Form</h2>
+
+ <%= @course.errors.messages %>
+
+<%= form_for @course , url:course_path do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+  
+  <%= f.label :fees , "Fees: " %>
+  <%= f.number_field :fees %><br>
+
+
+  <%= f.label :duration, "Duration:" %>
+  <%= f.number_field :duration %><br><br>
+
+    <%= f.submit "Submit"%>
+
+<% end %>
+
+<!-- 
+
 <h2>Course Form</h2>
 
 <form name="course_form" onsubmit="return validateForm()" method="post">
@@ -33,3 +57,6 @@ function validateForm() {
 }
 
 </script>
+
+
+-->

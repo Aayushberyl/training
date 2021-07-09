@@ -1,17 +1,25 @@
-<button><a href='certification'><=Back</a></button>
+<button><a href='/home'><=Back</a></button>
 <h2>Certification Details</h2>
 <button onclick="print()">Print This Page</button>
 <table>
+
   <tr>
     <th>Name</th>
     <th>Fees</th>
     <th>Duration</th>
+    <th>Modify</th>
+    <th>Delete</th>
   </tr>
+
   <tr>
-  <% for i in @certification.ids%>
-    <td><%=@certification.find(i).name%></td>
-    <td><%=@certification.find(i).fees%></td>
-    <td><%=@certification.find(i).duration%></td>
+  <% @certifications.ids.each do |i|%>
+    <td><%=@certifications.find(i).name%></td>
+    <td><%=@certifications.find(i).fees%></td>
+    <td><%=@certifications.find(i).duration%></td>
+    <td><a href="/certification/<%= i %>/edit">Edit</a></td>
+    <td><a data-confirm="Sure to delete data of <%= @certifications.find(i).name %>?" data-method="delete" href="/certification/<%= i%>">Delete</a></td>
   </tr>
-    <%end%>
+
+  <%end%>
+
 </table>

@@ -1,0 +1,25 @@
+<button><a href='/home'><=Back</a></button>
+<h2>Guardian Details</h2>
+<button onclick="print()">Print This Page</button>
+<table>
+
+  <tr>
+    <th>Name</th>
+    <th>Contact No.</th>
+    <th>Student ID </th>
+    <th>Modify</th>
+    <th>Delete</th>
+  </tr>
+  
+  <tr>
+  <% @guardians.ids.each do |i| %>
+    <td><%= @guardians.find(i).name %></td>
+    <td><%= @guardians.find(i).contact %></td>
+    <td><%= @guardians.find(i).student_id %></td>
+    <td><a href="/guardian/<%= i %>/edit">Edit</a></td>
+    <td><a data-confirm="Sure to delete data of <%= @guardians.find(i).name %>?" data-method="delete" href="/guardian/<%= i%>">Delete</a></td>
+  </tr>
+  
+  <%end%>
+  
+</table>

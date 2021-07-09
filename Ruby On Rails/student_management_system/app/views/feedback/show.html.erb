@@ -1,17 +1,23 @@
-<button><a href='feedback'><=Back</a></button>
+<button><a href='/home'><=Back</a></button>
 <h2>Feedback Details</h2>
 <button onclick="print()">Print This Page</button>
 <table>
+
   <tr>
     <th>Comment Id</th>
     <th>Comment By</th>
     <th>Content</th>
+    <th>Modify</th>
   </tr>
+  
   <tr>
-  <% for i in @feedback.ids%>
-    <td><%=@feedback.find(i).comments_id%></td>
-    <td><%=@feedback.find(i).comments_type%></td>
-    <td><%=@feedback.find(i).content%></td>
+  <% @feedbacks.ids.each do |i| %>
+    <td><%=@feedbacks.find(i).comments_id%></td>
+    <td><%=@feedbacks.find(i).comments_type%></td>
+    <td><%=@feedbacks.find(i).content%></td>
+    <td><a href="#">Edit</a> <a href="#">Delete</a></td>
   </tr>
+  
     <%end%>
+    
 </table>

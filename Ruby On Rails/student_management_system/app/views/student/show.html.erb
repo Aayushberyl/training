@@ -1,7 +1,8 @@
-<button><a href='/student/new'><=Back</a></button>
+<button><a href='/home'><=Back</a></button>
 <h2>Student Details</h2>
 <button onclick="print()">Print This Page</button>
 <table>
+
   <tr>
     <th>Name</th>
     <th>Age</th>
@@ -9,15 +10,22 @@
     <th>Contact No.</th>
     <th>Enrolled Date </th>
     <th>Course Name </th>
+    <th>Modify</th>
+    <th>Delete</th>
   </tr>
+  
   <tr>
-  <% for i in @students.ids %>
+  <% @students.order(:id).ids.each do |i| %>
     <td><%= @students.find(i).name %></td>
     <td><%= @students.find(i).age %></td>
     <td><%= @students.find(i).email %></td>
     <td><%= @students.find(i).contact_no %></td>
     <td><%= @students.find(i).enrolled_date %></td>
     <td><%= @students.find(i).course.name %></td>
+    <td><a href="/student/<%= i %>/edit">Edit</a></td>
+    <td><a data-confirm="Sure to delete data of <%= @students.find(i).name %>?" data-method="delete" href="/student/<%= i%>">Delete</a></td>
   </tr>
+  
   <%end%>
+  
 </table>

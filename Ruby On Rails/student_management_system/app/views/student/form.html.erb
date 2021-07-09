@@ -1,19 +1,8 @@
 <h2>Student Form</h2>
-  <%# <% if @student.errors.any?
-    <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> 
-      <%# prohibited this department from being saved:</h2> %>
 
-      <%# <ul>
-        <% @student.errors.each do |error| %>
-          <%# <li><%= error.full_message %></li>
-        <%# <% end %>
-      <%# </ul>
-    </div>
-  <% end  %>
-<%= @student.errors.messages%>
-
-<%= form_for @student do |f| %>
+<!--  <%= @student.errors.messages %>
+-->
+<%= form_for @student , html: { name: 'form', onclick: 'return validateForm();'} , url:student_path do |f| %>
 
   
   <%= f.label :name , "Name:" %>
@@ -21,22 +10,22 @@
 
 
   <%= f.label :age , "Age" %>
-  <%= f.number_field :age , in: 0..100 %><br><br>
+  <%= f.number_field :age , in: 0..100 %><br>
 
   
   <%= f.label :email , "Email" %>
-  <%= f.email_field :email %><br><br>
+  <%= f.email_field :email %><br>
 
   
   <%= f.label :contact , "Contact No." %>
-  <%= f.number_field :contact_no , is: 10 %><br><br>
+  <%= f.number_field :contact_no , is: 10 %><br>
 
-  <%= f.label :enrolled_date, "Enrolled Date:" %> <br><br>
-  <%= f.date_field :enrolled_date %><br><br><br>
+  <%= f.label :enrolled_date, "Enrolled Date:" %> <br>
+  <%= f.date_field :enrolled_date %><br><br>
 
 
   <%= f.label :course_id, "Course ID" %>
-  <%= f.select :course_id, [['1',1],['2',2],['3',3],['4',4],['5',5],['6',6]] %><br><br>
+  <%= f.select :course_id, Course.order(:id).ids.map{|i| [i,i]} %><br>
   <br>
 
     <%= f.submit "Submit"%>
@@ -44,9 +33,9 @@
 <% end %>
 
 
+<!--
 
-
-<%# <form name="student_form" onsubmit="return validateForm()" method="post">
+<form name="student_form" onsubmit="return validateForm()" method="post">
     <label for="name">Name:</label><br>
   <input type="text" id="name" name="name"><br>
     <label for="age">Age</label><br>
@@ -69,16 +58,19 @@
       <button><a href='/show_student'>Show Details</a></button>
 </form>
 
+
 <%= javascript_pack_tag 'student'%>
 
-<%# <script>
+-->
+
+<script>
 
 function validateForm() {
-  let a = document.forms["student_form"]["name"].value;
-  let b = document.forms["student_form"]["age"].value;
-  let c = document.forms["student_form"]["email"].value;
-  let d = document.forms["student_form"]["contact"].value;
-  let e = document.forms["student_form"]["course"].value;
+  let a = document.forms["form"]["student[name]"].value;
+  let b = document.forms["form"]["student[age]"].value;
+  let c = document.forms["form"]["student[email]"].value;
+  let d = document.forms["form"]["student[contact]"].value;
+  let e = document.forms["form"]["student[course]"].value;
   if (a == "") {
     alert("Name must be filled out");
     return false;
@@ -100,4 +92,4 @@ function validateForm() {
     return false;
   }
 }
-</script> %>
+</script>
