@@ -24,8 +24,8 @@
   <%= f.date_field :enrolled_date %><br><br>
 
 
-  <%= f.label :course_id, "Course ID" %>
-  <%= f.select :course_id, Course.order(:id).ids.map{|i| [i,i]} %><br>
+  <%= f.label :course_id, "Course Name" %>
+  <%= f.select :course_id, Course.order(:id).ids.map{|i| [Course.find(i).name,i]} %><br>
   <br>
 
     <%= f.submit "Update"%>

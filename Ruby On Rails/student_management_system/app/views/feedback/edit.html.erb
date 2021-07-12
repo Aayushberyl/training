@@ -1,0 +1,19 @@
+<h2>Feedback Form</h2>
+
+ <%= @feedback.errors.messages %>
+
+<%= form_for @feedback  do |f| %>
+
+  
+  <%= f.label :comments_id , "Comment ID:" %>
+  <%= f.number_field :comments_id %><br><br>
+  
+  <%= f.label :comments_type , "Comment By:" %>
+  <%= f.text_field :comments_type , is: 10 %><br><br>
+
+  <%= f.label :content, "Content" %>
+  <%= f.text_field :content %><br><br>
+
+    <%= f.submit "Update"%>
+
+<% end %>

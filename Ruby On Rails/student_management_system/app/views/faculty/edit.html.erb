@@ -12,8 +12,8 @@
   <%= f.label :salary , "Salary" %>
   <%= f.number_field :salary  %><br>
 
-  <%= f.label :course_id, "Course ID" %>
-  <%= f.select :course_id, Course.ids.map{|i| [i,i]} %><br>
+  <%= f.label :course_id, "Course Name" %>
+  <%= f.select :course_id, Course.ids.map{|i| [Course.find(i).name,i]} %><br>
   <br>
 
   <%= f.submit "Update"%>

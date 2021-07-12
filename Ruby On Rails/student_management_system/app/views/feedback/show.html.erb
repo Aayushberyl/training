@@ -8,6 +8,7 @@
     <th>Comment By</th>
     <th>Content</th>
     <th>Modify</th>
+    <th>Delete</th>
   </tr>
   
   <tr>
@@ -15,7 +16,8 @@
     <td><%=@feedbacks.find(i).comments_id%></td>
     <td><%=@feedbacks.find(i).comments_type%></td>
     <td><%=@feedbacks.find(i).content%></td>
-    <td><a href="#">Edit</a> <a href="#">Delete</a></td>
+    <td><a href="/feedback/<%= i%>/edit">Edit</a></td>
+    <td><a data-confirm="Sure to delete data of <%= @feedbacks.find(i).comments_type%> ?" data-method="delete" href="/feedback/<%= i%>">Delete</a></td>
   </tr>
   
     <%end%>

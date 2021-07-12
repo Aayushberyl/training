@@ -15,6 +15,9 @@
   <%= f.label :student_id, "Student ID" %>
   <%= f.select :student_id, Student.order(:id).ids.map{|i| [i,i]} %><br><br>
 
+  <%= f.label :student_id, "Student Name" %>
+  <%= f.select :student_id, Student.order(:id).ids.map{|i| [Student.find(i).name,i]} %><br><br>
+
     <%= f.submit "Submit"%>
 
 <% end %>

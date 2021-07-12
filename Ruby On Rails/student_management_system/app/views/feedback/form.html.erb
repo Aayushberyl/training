@@ -1,6 +1,28 @@
-<h2>This is feedback form
+<%# <h2>This is feedback form
 <br>
 We will use this later..
 </h2>
 
 <button style="margin-left:45%"><a href="/feedback/show">Show Details<a></button>
+ %>
+
+
+<h2>Feedback Form</h2>
+
+ <%= @feedback.errors.messages %>
+
+<%= form_for @feedback , url:feedback_path  do |f| %>
+
+  
+  <%= f.label :comments_type , "Comment Type:" %>
+  <%= f.select :comments_type , [Student.name, Faculty.name]%><br><br>
+  <%= f.label :comments_id , "Comment Id:" %>
+  <%= f.select :comments_id , Student.order(:id).ids.map{|i| [Student.find(i).id , i]}%><br><br>
+  <%= f.label :comments_id , "Comment Id:" %>
+  <%= f.select :comments_id , Faculty.order(:id).ids.map{|i| [Faculty.find(i).id , i]}%><br><br>
+  <%= f.label :content, "Content" %>
+  <%= f.text_field :content %><br><br>
+
+    <%= f.submit %>
+
+<% end %>
