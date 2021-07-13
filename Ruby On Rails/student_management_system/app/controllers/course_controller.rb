@@ -13,7 +13,7 @@ class CourseController < ApplicationController
     if @course.save
       redirect_to '/course/show'
     else
-      render form
+      render :form
     end
   end
 

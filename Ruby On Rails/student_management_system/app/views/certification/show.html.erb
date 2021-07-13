@@ -1,4 +1,5 @@
-<button><a href='/home'><=Back</a></button>
+<%# <button><a href='/home'><=Back</a></button> %>
+<%= link_to "Back", home_path %>
 <h2>Certification Details</h2>
 <button onclick="print()">Print This Page</button>
 <table>
@@ -12,12 +13,14 @@
   </tr>
 
   <tr>
-  <% @certifications.ids.each do |i|%>
-    <td><%=@certifications.find(i).name%></td>
-    <td><%=@certifications.find(i).fees%></td>
-    <td><%=@certifications.find(i).duration%></td>
-    <td><a href="/certification/<%= i %>/edit">Edit</a></td>
-    <td><a data-confirm="Sure to delete data of <%= @certifications.find(i).name %>?" data-method="delete" href="/certification/<%= i%>">Delete</a></td>
+  <% @certifications.each do |certification|%>
+  <tr>
+    <td><%=certification.name%></td>
+    <td><%=certification.fees%></td>
+    <td><%=certification.duration%></td>
+    <td><%= link_to "Edit", certification_path(certification), method: :get %></td>
+    <td><%= link_to "Delete", certification_path(certification), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+  </tr>
   </tr>
 
   <%end%>

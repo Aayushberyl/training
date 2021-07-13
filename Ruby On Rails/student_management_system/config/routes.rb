@@ -36,8 +36,8 @@ Rails.application.routes.draw do
   get '/certification', to: 'certification#form'
   post '/certification', to: 'certification#create'
   get '/certification/show', to:'certification#show'
-  get '/certification/:id/edit' , to: 'certification#edit'
+  get '/certification.:id' , to: 'certification#edit'
   patch 'certification.:id', to: 'certification#update'
-  delete 'certification/:id', to: 'certification#destroy'
+  delete 'certification.:id', to: 'certification#destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

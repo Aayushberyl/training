@@ -2,7 +2,7 @@
 
   <%= @student.errors.messages %>
 
-<%= form_for @student , validate: true , html: { name: 'form', onclick: 'return validateForm();'} , url:student_path do |f| %>
+<%= form_for @student , url:student_path do |f| %>
 
   
   <%= f.label :name , "Name:" %>
@@ -18,17 +18,17 @@
 
   
   <%= f.label :contact_no , "Contact No." %>
-  <%= f.number_field :contact_no , length: 10 %><br>
+  <%= f.number_field :contact_no %><br>
 
   <%= f.label :enrolled_date, "Enrolled Date:" %> <br>
   <%= f.date_field :enrolled_date %><br><br>
 
 
   <%= f.label :course_id, "Course Name" %>
-  <%= f.select :course_id, Course.order(:id).ids.map{|i| [Course.find(i).name , i]}%><br>
+  <%= f.select :course_id, [["select"] , Course.order(:id).ids.map{|i| [Course.find(i).name , i]}].flatten(1) %><br>
   <br>
 
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit" , id:'btn1' %>
 
 <% end %>
 
@@ -66,12 +66,18 @@
 
 <script>
 
-function validateForm() {
-  let a = document.forms["form"]["student[name]"].value;
-  let b = document.forms["form"]["student[age]"].value;
-  let c = document.forms["form"]["student[email]"].value;
-  let d = document.forms["form"]["student[contact_no]"].value;
-  let e = document.forms["form"]["student[course_id]"].value;
+document.getElementById("btn1").addEventListener("click", function() {
+
+  let a = document.getElementById("student_name").value;
+  let b = document.getElementById("student_age").value;
+  let c = document.getElementById("student_email").value;
+  let d = document.getElementById("student_contact_no").value;
+  let e = document.getElementById("student_course_id").value;
+  // let a = document.forms["form"]["student[name]"].value;
+  // let b = document.forms["form"]["student[age]"].value;
+  // let c = document.forms["form"]["student[email]"].value;
+  // let d = document.forms["form"]["student[contact_no]"].value;
+  // let e = document.forms["form"]["student[course_id]"].value;
   if (a == "") {
     alert("Name must be filled out");
     return false;
@@ -88,13 +94,14 @@ function validateForm() {
     alert ("Contact must be filled out");
     return false;
   }
-  else if (e=="")
-  {
-    alert ("Enrolled Date Can't be empty")
-  }
-  else if (f==""){
+  else if ((e=="") || (e=="select")){
     alert ("Course must be Selected");
     return false;
   }
-}
+  else{
+    alert ("Data Inserted Successfully");
+  }
+});
+
+
 </script>

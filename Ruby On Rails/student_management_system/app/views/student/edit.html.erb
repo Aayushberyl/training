@@ -18,14 +18,14 @@
 
   
   <%= f.label :contact , "Contact No." %>
-  <%= f.number_field :contact_no , is: 10 %><br>
+  <%= f.number_field :contact_no %><br>
 
   <%= f.label :enrolled_date, "Enrolled Date:" %> <br>
   <%= f.date_field :enrolled_date %><br><br>
 
 
   <%= f.label :course_id, "Course Name" %>
-  <%= f.select :course_id, Course.order(:id).ids.map{|i| [Course.find(i).name,i]} %><br>
+  <%= f.select :course_id, [["select"] , Course.order(:id).ids.map{|i| [Course.find(i).name , i]}].flatten(1) %><br>
   <br>
 
     <%= f.submit "Update"%>

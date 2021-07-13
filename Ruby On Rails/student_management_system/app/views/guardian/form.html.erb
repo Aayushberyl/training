@@ -9,16 +9,13 @@
   <%= f.text_field :name %><br><br>
   
   <%= f.label :contact , "Contact No." %>
-  <%= f.number_field :contact , is: 10 %><br>
+  <%= f.number_field :contact %><br>
 
-
-  <%= f.label :student_id, "Student ID" %>
-  <%= f.select :student_id, Student.order(:id).ids.map{|i| [i,i]} %><br><br>
 
   <%= f.label :student_id, "Student Name" %>
-  <%= f.select :student_id, Student.order(:id).ids.map{|i| [Student.find(i).name,i]} %><br><br>
+  <%= f.select :student_id, [["select"] , Student.order(:id).ids.map{|i| [Student.find(i).name,i]}].flatten(1) %><br><br>
 
-    <%= f.submit "Submit"%>
+    <%= f.submit "Submit" , id: "btn2"%>
 
 <% end %>
 
@@ -69,3 +66,29 @@ function validateForm() {
 </script>
 
 -->
+
+
+<script>
+
+document.getElementById("btn2").addEventListener("click", function() {
+
+  let a = document.getElementById("guardian_name").value;
+  let b = document.getElementById("guardian_contact").value;
+  let c = document.getElementById("guardian_student_id").value;
+
+  if (a == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  else if (b==""){
+    alert ("Contact must be filled out");
+    return false;
+  }
+  else if ((c=="") || (c=="select")){
+    alert ("Student ID must be filled out");
+    return false;
+  }
+});
+
+
+</script>

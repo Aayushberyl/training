@@ -13,7 +13,7 @@
 
 
   <%= f.label :student_id, "Student ID" %>
-  <%= f.select :student_id, Student.order(:id).ids.map{|i| [i,i]} %><br><br>
+  <%= f.select :student_id, [["select"] , Student.order(:id).ids.map{|i| [i,i]}].flatten(1) %><br><br>
 
     <%= f.submit "Update"%>
 

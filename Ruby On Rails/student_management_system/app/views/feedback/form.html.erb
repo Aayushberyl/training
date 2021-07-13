@@ -17,12 +17,37 @@ We will use this later..
   <%= f.label :comments_type , "Comment Type:" %>
   <%= f.select :comments_type , [Student.name, Faculty.name]%><br><br>
   <%= f.label :comments_id , "Comment Id:" %>
-  <%= f.select :comments_id , Student.order(:id).ids.map{|i| [Student.find(i).id , i]}%><br><br>
+  <%= f.select :comments_id , [["select"] , Student.order(:id).ids.map{|i| [Student.find(i).id , i]}].flatten(1)%><br><br>
   <%= f.label :comments_id , "Comment Id:" %>
-  <%= f.select :comments_id , Faculty.order(:id).ids.map{|i| [Faculty.find(i).id , i]}%><br><br>
+  <%= f.select :comments_id , [["select"] , Faculty.order(:id).ids.map{|i| [Faculty.find(i).id , i]}].flatten(1)%><br><br>
   <%= f.label :content, "Content" %>
   <%= f.text_field :content %><br><br>
 
-    <%= f.submit %>
+    <%= f.submit "Submit" , id: "btn3" %>
 
 <% end %>
+
+<script>
+
+document.getElementById("btn3").addEventListener("click", function() {
+
+  let a = document.getElementById("feedback_comment_type").value;
+  let b = document.getElementById("feedback_comments_id").value;
+  let c = document.getElementById("feedback_content").value;
+
+  if (a == "") {
+    alert("Type must be filled out");
+    return false;
+  }
+  else if (b==""){
+    alert ("ID must be filled out");
+    return false;
+  }
+  else if ((c=="") || (c=="select")){
+    alert ("Content must be filled out");
+    return false;
+  }
+});
+
+
+</script>
