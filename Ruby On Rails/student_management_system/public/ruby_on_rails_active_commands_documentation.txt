@@ -1,0 +1,1722 @@
+
+					RUBY ON RAILS
+
+
+
+
+1) Open rails console ---> rails console
+
+
+2) then insert data into table using object of class
+
+created object ----> 3.0.1 :001 > students = Student.new(name:"Rohit" , age:19)
+ => #<Student:0x000055f7fd0267a0 id: nil, name: "Rohit", age: 19, created_at: nil, updated_at: nil> 
+
+
+3) then run students.save to save the changes in your database.
+
+
+4) updated a particular column using object
+
+3.0.1 :015 > students=Student.find_by(id: 1).update(:email => "rohitsingh12@gmail.com")
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  TRANSACTION (0.5ms)  BEGIN
+  Student Update (1.3ms)  UPDATE "students" SET "updated_at" = $1, "email" = $2 WHERE "students"."id" = $3  [["updated_at", "2021-06-24 12:01:47.075137"], ["email", "rohitsingh12@gmail.com"], ["id", 1]]
+  TRANSACTION (27.8ms)  COMMIT
+ => true 
+3.0.1 :016 > students=Student.find_by(id: 1).update(:course => "B.Tech")
+  Student Load (1.0ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Student Update (1.5ms)  UPDATE "students" SET "updated_at" = $1, "course" = $2 WHERE "students"."id" = $3  [["updated_at", "2021-06-24 12:03:12.101095"], ["course", "B.Tech"], ["id", 1]]
+  TRANSACTION (24.2ms)  COMMIT
+ => true 
+
+
+5) create command takes an array of hashes (attributes:values) and allows us to insert multiple values at a time.
+
+3.0.1 :034 >Student.create([{name:"Robin" , age:22 , email:"robinthakur12@gmail.com" , course:"B.Tech"} , {name:"Rashi" , age:23 , email:"ras
+hijindal12@gmail.com" , course:"MBA"}, {name:"Anurag" , age:22 , email:"anuragtiwari12@gmail.com" , course:"BBA"} , {name:"Vikas" , age:21 , e
+mail:"vikasjoshi12@gmail.com" , course:"BCA"} , {name:"Asmit" , age:25 , email:"asmitjoshi12@gmail.com" , course:"BTC"} , {name:"Sagar" , age:
+22 , email:"sagartewatia12@gmail.com" , course:"B.Com"} , {name:"Namit" , age:22 , email:"namitnalwa12@gmail.com" , course:"B.Pharmacy"}])
+
+--------> After create command you don't need to explicitly run obj.save command , it automatically saves in database.
+
+6) CREATED TABLE USING RAILS
+
+
+ student_management_system_development=# select * from students;
+
+
+ id |  name   | age |         created_at         |         updated_at         |           email           |   course   
+----+---------+-----+----------------------------+----------------------------+---------------------------+------------
+  1 | Rohit   |  19 | 2021-06-25 06:06:56.826298 | 2021-06-25 06:15:07.378432 | rohitsingh12@gmail.com    | B.Tech
+  2 | Robin   |  22 | 2021-06-25 06:17:14.624186 | 2021-06-25 06:17:14.624186 | robinthakur12@gmail.com   | B.Tech
+  3 | Rashi   |  23 | 2021-06-25 06:17:14.648882 | 2021-06-25 06:17:14.648882 | rashijindal12@gmail.com   | MBA
+  4 | Anurag  |  22 | 2021-06-25 06:17:14.659993 | 2021-06-25 06:17:14.659993 | anuragtiwari12@gmail.com  | BBA
+  5 | Vikas   |  21 | 2021-06-25 06:17:14.671069 | 2021-06-25 06:17:14.671069 | vikasjoshi12@gmail.com    | BCA
+  6 | Asmit   |  25 | 2021-06-25 06:17:14.681881 | 2021-06-25 06:17:14.681881 | asmitjoshi12@gmail.com    | BTC
+  7 | Sagar   |  22 | 2021-06-25 06:17:14.692957 | 2021-06-25 06:17:14.692957 | sagartewatia12@gmail.com  | B.Com
+  8 | Namit   |  22 | 2021-06-25 06:17:14.704184 | 2021-06-25 06:17:14.704184 | namitnalwa12@gmail.com    | B.Pharmacy
+  9 | Karan   |  20 | 2021-06-25 06:19:28.364164 | 2021-06-25 06:19:28.364164 | karansethi12@gmail.com    | BBA
+ 10 | Darvesh |  22 | 2021-06-25 06:19:28.389168 | 2021-06-25 06:19:28.389168 | darveshsharma12@gmail.com | B.Arch
+(10 rows)
+
+
+
+7) Deleting a particular record based on id's
+
+
+ id |  name   | age |         created_at         |         updated_at         |           email           |   course   
+----+---------+-----+----------------------------+----------------------------+---------------------------+------------
+  1 | Rohit   |  19 | 2021-06-25 06:06:56.826298 | 2021-06-25 06:15:07.378432 | rohitsingh12@gmail.com    | B.Tech
+  2 | Robin   |  22 | 2021-06-25 06:17:14.624186 | 2021-06-25 06:17:14.624186 | robinthakur12@gmail.com   | B.Tech
+  3 | Rashi   |  23 | 2021-06-25 06:17:14.648882 | 2021-06-25 06:17:14.648882 | rashijindal12@gmail.com   | MBA
+  4 | Anurag  |  22 | 2021-06-25 06:17:14.659993 | 2021-06-25 06:17:14.659993 | anuragtiwari12@gmail.com  | BBA
+  5 | Vikas   |  21 | 2021-06-25 06:17:14.671069 | 2021-06-25 06:17:14.671069 | vikasjoshi12@gmail.com    | BCA
+  6 | Asmit   |  25 | 2021-06-25 06:17:14.681881 | 2021-06-25 06:17:14.681881 | asmitjoshi12@gmail.com    | BTC
+  7 | Sagar   |  22 | 2021-06-25 06:17:14.692957 | 2021-06-25 06:17:14.692957 | sagartewatia12@gmail.com  | B.Com
+  8 | Namit   |  22 | 2021-06-25 06:17:14.704184 | 2021-06-25 06:17:14.704184 | namitnalwa12@gmail.com    | B.Pharmacy
+  9 | Karan   |  20 | 2021-06-25 06:19:28.364164 | 2021-06-25 06:19:28.364164 | karansethi12@gmail.com    | BBA
+ 10 | Darvesh |  22 | 2021-06-25 06:19:28.389168 | 2021-06-25 06:19:28.389168 | darveshsharma12@gmail.com | B.Arch
+ 11 | zga     |  11 | 2021-06-25 06:20:41.459787 | 2021-06-25 06:20:41.459787 | qwerty@gmail.com          | MMA
+(11 rows)
+
+
+
+3.0.1 :043 > Student.delete(11)
+  Student Destroy (22.9ms)  DELETE FROM "students" WHERE "students"."id" = $1  [["id", 11]]
+ => 1 
+
+
+student_management_system_development=# select * from students;
+
+
+ id |  name   | age |         created_at         |         updated_at         |           email           |   course   
+----+---------+-----+----------------------------+----------------------------+---------------------------+------------
+  1 | Rohit   |  19 | 2021-06-25 06:06:56.826298 | 2021-06-25 06:15:07.378432 | rohitsingh12@gmail.com    | B.Tech
+  2 | Robin   |  22 | 2021-06-25 06:17:14.624186 | 2021-06-25 06:17:14.624186 | robinthakur12@gmail.com   | B.Tech
+  3 | Rashi   |  23 | 2021-06-25 06:17:14.648882 | 2021-06-25 06:17:14.648882 | rashijindal12@gmail.com   | MBA
+  4 | Anurag  |  22 | 2021-06-25 06:17:14.659993 | 2021-06-25 06:17:14.659993 | anuragtiwari12@gmail.com  | BBA
+  5 | Vikas   |  21 | 2021-06-25 06:17:14.671069 | 2021-06-25 06:17:14.671069 | vikasjoshi12@gmail.com    | BCA
+  6 | Asmit   |  25 | 2021-06-25 06:17:14.681881 | 2021-06-25 06:17:14.681881 | asmitjoshi12@gmail.com    | BTC
+  7 | Sagar   |  22 | 2021-06-25 06:17:14.692957 | 2021-06-25 06:17:14.692957 | sagartewatia12@gmail.com  | B.Com
+  8 | Namit   |  22 | 2021-06-25 06:17:14.704184 | 2021-06-25 06:17:14.704184 | namitnalwa12@gmail.com    | B.Pharmacy
+  9 | Karan   |  20 | 2021-06-25 06:19:28.364164 | 2021-06-25 06:19:28.364164 | karansethi12@gmail.com    | BBA
+ 10 | Darvesh |  22 | 2021-06-25 06:19:28.389168 | 2021-06-25 06:19:28.389168 | darveshsharma12@gmail.com | B.Arch
+(10 rows)
+
+
+
+			Retrieving Objects from the Database
+
+
+8) Retriving All data using all command in rails
+
+3.0.1 :011 > Student.all
+  Student Load (1.4ms)  SELECT "students".* FROM "students"
+ => 
+[#<Student:0x00005642414c4af8
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x00005642414c4a30
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x00005642414c4968
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA">,
+ #<Student:0x00005642414c48a0
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA">,
+ #<Student:0x00005642414c47d8
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA">,
+ #<Student:0x00005642414c4710
+  id: 6,
+  name: "Asmit",
+  age: 25,
+  created_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  email: "asmitjoshi12@gmail.com",
+  course: "BTC">,
+ #<Student:0x00005642414c4648
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com">,
+ #<Student:0x00005642414c4580
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy">,
+ #<Student:0x00005642414c44b8
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA">,
+ #<Student:0x00005642414c43f0
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">] 
+
+
+
+9) Retrieving using First Command
+
+3.0.1 :012 > Student.first
+  Student Load (0.7ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => 
+#<Student:0x000056423f154af0
+ id: 1,
+ name: "Rohit",
+ age: 19,
+ created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+ updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+ email: "rohitsingh12@gmail.com",
+ course: "B.Tech"> 
+
+3.0.1 :007 > Student.first(3)
+  Student Load (0.6ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT $1  [["LIMIT", 3]]
+ => 
+[#<Student:0x00005642413f7fd0
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x00005642413f7f08
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x00005642413f7e40
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA">] 
+
+
+10) Retrieving using Last Command
+
+3.0.1 :013 > Student.last
+  Student Load (0.7ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" DESC LIMIT $1  [["LIMIT", 1]]
+ => 
+#<Student:0x000056424045c9b8
+ id: 10,
+ name: "Darvesh",
+ age: 22,
+ created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+ updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+ email: "darveshsharma12@gmail.com",
+ course: "B.Arch"> 
+
+3.0.1 :008 > Student.last(3)
+  Student Load (1.0ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" DESC LIMIT $1  [["LIMIT", 3]]
+ => 
+[#<Student:0x0000564241574390
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy">,
+ #<Student:0x0000564241574458
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,ook.where("title = ?", params[:title])
+  updated_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA">,
+ #<Student:0x0000564241574520
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">] 
+
+
+11) Retrieving using find Command
+
+3.0.1 :001 > Student.find(1)
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => 
+#<Student:0x000056424082a748
+ id: 1,
+ name: "Rohit",
+ age: 19,
+ created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+ updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+ email: "rohitsingh12@gmail.com",
+ course: "B.Tech"> 
+
+3.0.1 :002 > Student.find(1,5)
+  Student Load (2.5ms)  SELECT "students".* FROM "students" WHERE "students"."id" IN ($1, $2)  [["id", 1], ["id", 5]]
+ => 
+[#<Student:0x000056423f94c230
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x000056423f94c078
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA">] 
+
+
+12) Retrieving using take Command
+
+3.0.1 :004 > Student.take
+  Student Load (1.0ms)  SELECT "students".* FROM "students" LIMIT $1  [["LIMIT", 1]]
+ => 
+#<Student:0x000https://guides.rubyonrails.org/active_record_querying.html#:~:text=2-,Retrieving%20Objects%20from%20the%20Database,-To%20retrieve%20objects056424096e5c8
+ id: 1,
+ name: "Rohit",
+ age: 19,
+ created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+ updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+ email: "rohitsingh12@gmail.com",
+ course: "B.Tech"> 
+3.0.1 :005 > Student.take(2)
+  Student Load (0.6ms)  SELECT "students".* FROM "students" LIMIT $1  [["LIMIT", 2]]
+ => 
+[#<Student:0x00005642411d6300
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x00005642411d6238
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech">] 
+3.0.1 :006 > Student.take(2,3)
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activerecord-6.1.4/lib/active_record/relation/finder_methods.rb:97:in `take': wrong number of arguments (given 2, expected 0..1) (ArgumentError)
+
+
+13) Retrieving using order Command
+
+3.0.1 :010 > Student.order(:name)
+  Student Load (2.8ms)  SELECT "students".* FROM "students" ORDER BY "students"."name" ASC
+ => 
+[#<Student:0x00005642404f0190
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA">,
+ #<Student:0x00005642404dff48
+  id: 6,
+  name: "Asmit",
+  age: 25,
+  created_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  email: "asmitjoshi12@gmail.com",
+  course: "BTC">,
+ #<Student:0x00005642404dfb88
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">,
+ #<Student:0x00005642404df958
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA">,
+ #<Student:0x00005642404df700
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy">,
+ #<Student:0x00005642404df610
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA">,
+ #<Student:0x00005642404df430
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x00005642404df2c8
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x00005642404de990
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com">,
+ #<Student:0x00005642404de788
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA">] 
+
+
+
+3.0.1 :012 > Student.order(:name).last(2)
+  Student Load (1.0ms)  SELECT "students".* FROM "students" ORDER BY "students"."name" DESC LIMIT $1  [["LIMIT", 2]]
+ => 
+[#<Student:0x00005642414c6ab0
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com">,
+ #<Student:0x00005642414c6b78
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA">] 
+
+
+14) Retrieving using find_by Command
+
+3.0.1 :015 > Student.find_by name: 'Anurag'
+  Student Load (1.3ms)  SELECT "students".* FROM "students" WHERE "students"."name" = $1 LIMIT $2  [["name", "Anurag"], ["LIMIT", 1]]
+ => 
+#<Student:0x000056423e68ce38
+ id: 4,
+ name: "Anurag",
+ age: 22,
+ created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+ updated_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+ email: "anuragtiwari12@gmail.com",
+ course: "BBA"> 
+
+3.0.1 :017 > Student.find_by! name: 'annu'
+  Student Load (1.2ms)  SELECT "students".* FROM "students" WHERE "students"."name" = $1 LIMIT $2  [["name", "annu"], ["LIMIT", 1]]
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activerecord-6.1.4/lib/active_record/core.rb:384:in `find_by!': Couldn't find Student (ActiveRecord::RecordNotFound)
+
+3.0.1 :013 > Student.where(name: 'Anurag')
+  Student Load (0.5ms)  SELECT "students".* FROM "students" WHERE "students"."name" = $1  [["name", "Anurag"]]
+ => 
+[#<Student:0x000056423ec79bc0
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA">] 
+
+
+15) Use of Not in Class
+
+3.0.1 :035 > Student.where.not(id:[1,2,3,4,5,6,7])
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" NOT IN ($1, $2, $3, $4, $5, $6, $7)  [["id", 1], ["id", 2], ["id", 3], ["id", 4], ["id", 5], ["id", 6], ["id", 7]]
+ => 
+[#<Student:0x00005642406d4ee8
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy">,
+ #<Student:0x00005642406d4df8
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA">,
+ #<Student:0x00005642406d4d30
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">] 
+
+
+16) order by descending order
+
+3.0.1 :042 > Student.order(id: :desc)
+  Student Load (1.0ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" DESC
+ => 
+[#<Student:0x000056424129d428
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">,
+ #<Student:0x000056424129d360
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA">,
+ #<Student:0x000056424129d298
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy">,
+ #<Student:0x000056424129d1d0
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com">,
+ #<Student:0x000056424129d108
+  id: 6,
+  name: "Asmit",
+  age: 25,
+  created_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  email: "asmitjoshi12@gmail.com",
+  course: "BTC">,
+ #<Student:0x000056424129d040
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA">,
+ #<Student:0x000056424129cf78
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA">,
+ #<Student:0x000056424129ceb0
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA">,
+ #<Student:0x000056424129cde8
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x000056424129cd20
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech">] 
+
+
+17) USE OF OR AND AND IN RAILS
+
+3.0.1 :052 > Student.where(age:22).or(Student.where(course:'B.Tech'))
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE ("students"."age" = $1 OR "students"."course" = $2)  [["age", 22], ["course", "B.Tech"]]
+ => 
+[#<Student:0x0000564241505dc8
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:15:07.378432000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x0000564241505d00
+  id: 2,
+  name: "Robin",
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech">,
+ #<Student:0x0000564241505c38
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA">,
+ #<Student:0x0000564241505b70
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com">,
+ #<Student:0x0000564241505aa8
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy">,
+ #<Student:0x00005642415059e0
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">] 
+
+
+
+3.0.1 :053 > Student.where(age:22).and(Student.where(course:'B.Tech'))
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE "students"."age" = $1 AND "students"."course" = $2  [["age", 22], ["course", "B.Tech"]]
+ => 
+[#<Student:0x000056423ffdb8f8
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech">] 
+3.0.1 :054 > 
+
+
+
+18) USE OF SELECT IN RAILS
+
+3.0.1 :055 > Student.select(:name,:id).where(age:22)
+  Student Load (1.0ms)  SELECT "students"."name", "students"."id" FROM "students" WHERE "students"."age" = $1  [["age", 22]]
+ => 
+[#<Student:0x000056424144f028 id: 2, name: "Robin">,
+ #<Student:0x000056424144ef60 id: 4, name: "Anurag">,
+ #<Student:0x000056424144ee98 id: 7, name: "Sagar">,
+ #<Student:0x000056424144edd0 id: 8, name: "Namit">,
+ #<Student:0x000056424144ed08 id: 10, name: "Darvesh">] 
+
+
+19) CLASS OF RECORDS
+
+3.0.1 :056 > Student.select(:name,:id).where(age:22).class
+ => Student::ActiveRecord_Relation 
+
+3.0.1 :057 > Student.where(id:1).class
+ => Student::ActiveRecord_Relation 
+
+3.0.1 :058 > Student.first.class
+  Student Load (0.8ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => Student(id: integer, name: string, age: integer, created_at: datetime, updated_at: datetime, email: string, course: string) 
+
+3.0.1 :059 > Student.class
+ => Class 
+
+
+
+20) USE OF DISTINCT IN RAILS
+
+3.0.1 :061 > Student.select(:name).distinct
+  Student Load (1.4ms)  SELECT DISTINCT "students"."name" FROM "students"
+ => 
+[#<Student:0x0000564241678818 id: nil, name: "Namit">,
+ #<Student:0x0000564241678750 id: nil, name: "Darvesh">,
+ #<Student:0x0000564241678688 id: nil, name: "Asmit">,
+ #<Student:0x00005642416785c0 id: nil, name: "Anurag">,
+ #<Student:0x00005642416784f8 id: nil, name: "Vikas">,
+ #<Student:0x0000564241678430 id: nil, name: "Rohit">,
+ #<Student:0x0000564241678368 id: nil, name: "Robin">,
+ #<Student:0x00005642416782a0 id: nil, name: "Karan">,
+ #<Student:0x00005642416781d8 id: nil, name: "Sagar">,
+ #<Student:0x0000564241678110 id: nil, name: "Rashi">] 
+
+3.0.1 :062 > Student.select(:age).distinct.order(:age)
+  Student Load (1.4ms)  SELECT DISTINCT "students"."age" FROM "students" ORDER BY "students"."age" ASC
+ => 
+[#<Student:0x0000564240540528 id: nil, age: 19>,
+ #<Student:0x0000564240540438 id: nil, age: 20>,
+ #<Student:0x0000564240540320 id: nil, age: 21>,
+ #<Student:0x0000564240540190 id: nil, age: 22>,
+ #<Student:0x000056424052f868 id: nil, age: 23>,
+ #<Student:0x000056424052f700 id: nil, age: 25>] 
+
+
+21) USE OF LIMIT AND OFFSET
+
+3.0.1 :066 > Student.limit(1).offset(2)
+  Student Load (0.4ms)  SELECT "students".* FROM "students" LIMIT $1 OFFSET $2  [["LIMIT", 1], ["OFFSET", 2]]
+ => 
+[#<Student:0x00005642417baa00
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA">] 
+
+
+22) USE OF COUNT IN RAILS
+
+3.0.1 :067 > Student.all.count
+   (0.9ms)  SELECT COUNT(*) FROM "students"
+ => 11 
+
+
+23) 3.0.1 :101 > Student.select(:name,:id,:age).where("age > ? " , 20)
+  Student Load (1.4ms)  SELECT "students"."name", "students"."id", "students"."age" FROM "students" WHERE (age > 20 )
+ => 
+[#<Student:0x00005642413ec090 id: 2, name: "Robin", age: 22>,
+ #<Student:0x00005642413e7f90 id: 3, name: "Rashi", age: 23>,
+ #<Student:0x00005642413e7e78 id: 4, name: "Anurag", age: 22>,
+ #<Student:0x00005642413e7d38 id: 5, name: "Vikas", age: 21>,
+ #<Student:0x00005642413e7c48 id: 6, name: "Asmit", age: 25>,
+ #<Student:0x00005642413e7b08 id: 7, name: "Sagar", age: 22>,
+ #<Student:0x00005642413e7a18 id: 8, name: "Namit", age: 22>,
+ #<Student:0x00005642413e78d8 id: 10, name: "Darvesh", age: 22>,
+ #<Student:0x00005642413e7770 id: 11, name: "Anurag", age: 22>] 
+3.0.1 :102 > 
+
+
+24) USE OF UNSCOPE
+
+3.0.1 :123 > Student.where(id:10,name:'Darvesh').unscope(where: :name)
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1  [["id", 10]]
+ => 
+[#<Student:0x000056423fdc7f58
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">] 
+
+
+3.0.1 :124 > Student.where(id:10,name:'Darvesh')
+  Student Load (0.6ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 AND "students"."name" = $2  [["id", 10], ["name", "Darvesh"]]
+ => 
+[#<Student:0x000056423e68dd10
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch">] 
+
+
+25) created Another Table.
+
+
+student_management_system_development=# select * from student_college_details;
+
+
+ id | univroll |  name   |  fees  |    colname     |         created_at         |         updated_at         
+----+----------+---------+--------+----------------+----------------------------+----------------------------
+  1 |     1001 | Rohit   |  80000 | Satyug Darshan | 2021-06-25 11:49:11.751243 | 2021-06-25 11:49:11.751243
+  2 |     1002 | Robin   |  80000 | Echelon        | 2021-06-25 11:49:11.794954 | 2021-06-25 11:49:11.794954
+  3 |     1003 | Rashi   |  90000 | ARSD           | 2021-06-25 11:49:11.805189 | 2021-06-25 11:49:11.805189
+  4 |     1004 | Anurag  |  70000 | Manav Rachna   | 2021-06-25 11:49:11.81673  | 2021-06-25 11:49:11.81673
+  5 |     1005 | Vikas   |  70000 | MIT            | 2021-06-25 11:49:11.82725  | 2021-06-25 11:49:11.82725
+  6 |     1006 | Asmit   |  50000 | AGMT           | 2021-06-25 11:49:11.838295 | 2021-06-25 11:49:11.838295
+  7 |     1007 | Sagar   |  70000 | Satyug Darshan | 2021-06-25 11:49:11.850321 | 2021-06-25 11:49:11.850321
+  8 |     1008 | Namit   |  50000 | Nehru College  | 2021-06-25 11:49:11.860604 | 2021-06-25 11:49:11.860604
+  9 |     1009 | Karan   | 120000 | UMASS          | 2021-06-25 11:49:11.871404 | 2021-06-25 11:49:11.871404
+ 10 |     1010 | Darvesh |  90000 | B.S Anangpuria | 2021-06-25 11:49:11.88281  | 2021-06-25 11:49:11.88281
+(10 rows)
+
+
+26) Performed Inner Join On 2 Tables
+
+
+3.0.1 :005 > StudentCollegeDetail.joins("INNER JOIN students ON students.id = student_college_details.id")
+  StudentCollegeDetail Load (3.0ms)  SELECT "student_college_details".* FROM "student_college_details" INNER JOIN students ON students.id = student_college_details.id
+ => 
+[#<StudentCollegeDetail:0x000056423fd7f668
+  id: 1,
+  univroll: 1001,
+  name: "Rohit",
+  fees: 80000,
+  colname: "Satyug Darshan",
+  created_at: Fri, 25 Jun 2021 11:49:11.751243000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.751243000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7f230
+  id: 2,
+  univroll: 1002,
+  name: "Robin",
+  fees: 80000,
+  colname: "Echelon",
+  created_at: Fri, 25 Jun 2021 11:49:11.794954000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.794954000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7ef38
+  id: 3,
+  univroll: 1003,
+  name: "Rashi",
+  fees: 90000,
+  colname: "ARSD",
+  created_at: Fri, 25 Jun 2021 11:49:11.805189000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.805189000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7ece0
+  id: 4,
+  univroll: 1004,
+  name: "Anurag",
+  fees: 70000,
+  colname: "Manav Rachna",
+  created_at: Fri, 25 Jun 2021 11:49:11.816730000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.816730000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7ead8
+  id: 5,
+  univroll: 1005,
+  name: "Vikas",
+  fees: 70000,
+  colname: "MIT",
+  created_at: Fri, 25 Jun 2021 11:49:11.827250000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.827250000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7e7e0
+  id: 6,
+  univroll: 1006,
+  name: "Asmit",
+  fees: 50000,
+  colname: "AGMT",
+  created_at: Fri, 25 Jun 2021 11:49:11.838295000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.838295000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7e3d0
+  id: 7,
+  univroll: 1007,
+  name: "Sagar",
+  fees: 70000,
+  colname: "Satyug Darshan",
+  created_at: Fri, 25 Jun 2021 11:49:11.850321000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.850321000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7e150
+  id: 8,
+  univroll: 1008,
+  name: "Namit",
+  fees: 50000,
+  colname: "Nehru College",
+  created_at: Fri, 25 Jun 2021 11:49:11.860604000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.860604000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7de30
+  id: 9,
+  univroll: 1009,
+  name: "Karan",
+  fees: 120000,
+  colname: "UMASS",
+  created_at: Fri, 25 Jun 2021 11:49:11.871404000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.871404000 UTC +00:00>,
+ #<StudentCollegeDetail:0x000056423fd7da98
+  id: 10,
+  univroll: 1010,
+  name: "Darvesh",
+  fees: 90000,
+  colname: "B.S Anangpuria",
+  created_at: Fri, 25 Jun 2021 11:49:11.882810000 UTC +00:00,
+  updated_at: Fri, 25 Jun 2021 11:49:11.882810000 UTC +00:00>] 
+
+
+27) RANGE IN RAILS
+
+3.0.1 :017 > StudentCollegeDetail.select(:name,:id,:fees).where(fees: 50000..80000)
+  StudentCollegeDetail Load (0.9ms)  SELECT "student_college_details"."name", "student_college_details"."id", "student_college_details"."fees" FROM "student_college_details" WHERE "student_college_details"."fees" BETWEEN $1 AND $2  [["fees", 50000], ["fees", 80000]]
+ => 
+[#<StudentCollegeDetail:0x000056423fb5a6f8 id: 1, name: "Rohit", fees: 80000>,
+ #<StudentCollegeDetail:0x000056423fb5a108 id: 2, name: "Robin", fees: 80000>,
+ #<StudentCollegeDetail:0x000056423fb59c30 id: 4, name: "Anurag", fees: 70000>,
+ #<StudentCollegeDetail:0x000056423fb59a50 id: 5, name: "Vikas", fees: 70000>,
+ #<StudentCollegeDetail:0x000056423fb59910 id: 6, name: "Asmit", fees: 50000>,
+ #<StudentCollegeDetail:0x000056423fb59730 id: 7, name: "Sagar", fees: 70000>,
+ #<StudentCollegeDetail:0x000056423fb595c8 id: 8, name: "Namit", fees: 50000>] 
+
+
+28) ADDING INDEX TO TABLE COLUMN
+
+beryl@beryl-Latitude-E6520:~/Desktop/git/Ruby On Rails/student_management_system$ rails generate migration AddColumnModifiersToStudentCollegeDetails univroll:index
+Running via Spring preloader in process 6116
+      invoke  active_record
+      create    db/migrate/20210628045558_add_column_modifiers_to_student_college_details.rb
+
+
+beryl@beryl-Latitude-E6520:~/Desktop/git/Ruby On Rails/student_management_system$ rails db:migrate
+== 20210628045558 AddColumnModifiersToStudentCollegeDetails: migrating ========
+-- add_index(:student_college_details, :univroll)
+   -> 0.2932s
+== 20210628045558 AddColumnModifiersToStudentCollegeDetails: migrated (0.2934s) 
+
+
+29) USE OF ANNOTATE IN RAILS
+
+3.0.1 :015 > Student.annotate("Selecting user names").select(:name).where(name: 'Karan')
+  Student Load (31.9ms)  SELECT "students"."name" FROM "students" WHERE "students"."name" = $1 /* Selecting user names */  [["name", "Karan"]]
+ => [#<Student:0x000055a4bca415d0 id: nil, name: "Karan">]
+
+
+3.0.1 :022 > Student.annotate("Selecting user names").select(:name).where('age > ?', 20)
+  Student Load (1.5ms)  SELECT "students"."name" FROM "students" WHERE (age > 20) /* Selecting user names */
+ => 
+[#<Student:0x000055a4bd6ce1b8 id: nil, name: "Robin">,
+ #<Student:0x000055a4bd6ce0f0 id: nil, name: "Rashi">,
+ #<Student:0x000055a4bd6ce028 id: nil, name: "Anurag">,
+ #<Student:0x000055a4bd6cdf60 id: nil, name: "Vikas">,
+ #<Student:0x000055a4bd6cde98 id: nil, name: "Asmit">,
+ #<Student:0x000055a4bd6cddd0 id: nil, name: "Sagar">,
+ #<Student:0x000055a4bd6cdd08 id: nil, name: "Namit">,
+ #<Student:0x000055a4bd6cdc40 id: nil, name: "Darvesh">] 
+
+
+30) UPDATED CONTACT NUMBER
+
+3.0.1 :010 > for i in 1..10
+3.0.1 :011 >   Student.find_by(id: i).update(contact: 9891207939 + i)
+3.0.1 :012 > end
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Student Load (0.7ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Student Load (0.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Student Load (0.6ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  Student Load (0.5ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  Student Load (0.5ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 9], ["LIMIT", 1]]
+  Student Load (0.7ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 10], ["LIMIT", 1]]
+ => 1..10 
+
+
+
+31) USE OF WHERE CLAUSE
+
+3.0.1 :001 > Student.where(id:2)
+  Student Load (1.1ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1  [["id", 2]]
+ => 
+[#<Student:0x000055a4bc99f0c8
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.498875000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech",
+  contact: 9891207941>] 
+
+32) REVERSE ORDER METHOD IN RAILS
+
+
+
+3.0.1 :002 > Student.order('name ASC').reverse_order
+  Student Load (1.9ms)  SELECT "students".* FROM "students" ORDER BY name DESC
+ => 
+[#<Student:0x000055a4bdb77f48
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.541323000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA",
+  contact_no.: 9891207944>,
+ #<Student:0x000055a4bdb77e80
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.586786000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com",
+  contact_no.: 9891207946>,
+ #<Student:0x000055a4bdb77db8
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.472996000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207940>,
+ #<Student:0x000055a4bdb77cf0
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.498875000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207941>,
+ #<Student:0x000055a4bdb77c28
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.519615000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA",
+  contact_no.: 9891207942>,
+ #<Student:0x000055a4bdb77b60
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.607281000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy",
+ #<Student:0x000055a4bdb77a98
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.629199000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207948>,
+ #<Student:0x000055a4bdb779d0
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:12:12.316800000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch",
+  contact_no.: 9891207949>,
+ #<Student:0x000055a4bdb77908
+  id: 6,
+  name: "Asmit",
+  age: 25,
+  created_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.564035000 UTC +00:00,
+  email: "asmitjoshi12@gmail.com",
+  course: "BTC",
+  contact_no.: 9891207945>,
+ #<Student:0x000055a4bdb77840
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.529939000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207943>] 
+
+
+
+3.0.1 :003 > Student.order('id ASC').reverse_order
+  Student Load (1.0ms)  SELECT "students".* FROM "students" ORDER BY id DESC
+ => 
+[#<Student:0x000055a4bcd1a090
+  id: 10,
+  name: "Darvesh",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:19:28.389168000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:12:12.316800000 UTC +00:00,
+  email: "darveshsharma12@gmail.com",
+  course: "B.Arch",
+  contact_no.: 9891207949>,
+ #<Student:0x000055a4bcd19fc8
+  id: 9,
+  name: "Karan",
+  age: 20,
+  created_at: Fri, 25 Jun 2021 06:19:28.364164000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.629199000 UTC +00:00,
+  email: "karansethi12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207948>,
+ #<Student:0x000055a4bcd19f00
+  id: 8,
+  name: "Namit",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.704184000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.607281000 UTC +00:00,
+  email: "namitnalwa12@gmail.com",
+  course: "B.Pharmacy",
+  contact_no.: 9891207947>,
+ #<Student:0x000055a4bcd19dc0
+  id: 7,
+  name: "Sagar",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.692957000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.586786000 UTC +00:00,
+  email: "sagartewatia12@gmail.com",
+  course: "B.Com",
+  contact_no.: 9891207946>,
+ #<Student:0x000055a4bcd19cf8
+  id: 6,
+  name: "Asmit",
+  age: 25,
+  created_at: Fri, 25 Jun 2021 06:17:14.681881000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.564035000 UTC +00:00,
+  email: "asmitjoshi12@gmail.com",
+  course: "BTC",
+  contact_no.: 9891207945>,
+ #<Student:0x000055a4bcd19c30
+  id: 5,
+  name: "Vikas",
+  age: 21,
+  created_at: Fri, 25 Jun 2021 06:17:14.671069000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.541323000 UTC +00:00,
+  email: "vikasjoshi12@gmail.com",
+  course: "BCA",
+  contact_no.: 9891207944>,
+ #<Student:0x000055a4bcd19988
+  id: 4,
+  name: "Anurag",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.659993000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.529939000 UTC +00:00,
+  email: "anuragtiwari12@gmail.com",
+  course: "BBA",
+  contact_no.: 9891207943>,
+ #<Student:0x000055a4bcd198c0
+  id: 3,
+  name: "Rashi",
+  age: 23,
+  created_at: Fri, 25 Jun 2021 06:17:14.648882000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.519615000 UTC +00:00,
+  email: "rashijindal12@gmail.com",
+  course: "MBA",
+  contact_no.: 9891207942>,
+ #<Student:0x000055a4bcd197f8
+  id: 2,
+  name: "Robin",
+  age: 22,
+  created_at: Fri, 25 Jun 2021 06:17:14.624186000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.498875000 UTC +00:00,
+  email: "robinthakur12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207941>,
+ #<Student:0x000055a4bcd19730
+  id: 1,
+  name: "Rohit",
+  age: 19,
+  created_at: Fri, 25 Jun 2021 06:06:56.826298000 UTC +00:00,
+  updated_at: Mon, 28 Jun 2021 07:11:17.472996000 UTC +00:00,
+  email: "rohitsingh12@gmail.com",
+  course: "B.Tech",
+  contact_no.: 9891207940>] 
+
+
+
+				RAILS MIGRATIONS
+
+ONE TO MANY RELATIONSHIP
+
+
+class Student < ApplicationRecord
+    belongs_to :course
+end
+
+
+class Course < ApplicationRecord
+    has_many :students
+end
+
+
+ADDING FOREIGN KEY
+
+class AddForeignKeyToStudents < ActiveRecord::Migration[6.1]
+  def change
+    add_reference :students , :course
+    remove_column :faculties , :faculty_id
+    remove_column :courses , :course_id
+    add_reference :faculties , :course
+  end
+end
+
+
+
+1) Updation Using Instance Variable
+
+
+3.0.1 :006 > Student.find(1).update(course_id: @co_id.id)
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  TRANSACTION (0.5ms)  BEGIN
+  Course Load (0.9ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  TRANSACTION (30.7ms)  COMMIT
+ => true 
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Course Load (0.7ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  Student Update (0.8ms)  UPDATE "students" SET "course_id" = $1 WHERE "students"."id" = $2  [["course_id", 6], ["id", 7]]
+  TRANSACTION (17.6ms)  COMMIT
+ => true 
+  Course Load (0.5ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+ => #<Course:0x000055fbad0f71a8 id: 4, course_name: "B.Sc(CS)", course_fee: 85000, course_duration: 3> 
+3.0.1 :009 > Student.find(2).update(course_id: @co_id.id)
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Course Load (0.6ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  TRANSACTION (23.5ms)  COMMIT
+ => true 
+  Course Load (1.2ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+ => #<Course:0x000055fbac18cc40 id: 3, course_name: "BBA(general)", course_fee: 60000, course_duration: 3> 
+3.0.1 :011 > Student.find(3).update(course_id: @co_id.id)
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Course Load (1.7ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  TRANSACTION (22.6ms)  COMMIT
+ => true 
+3.0.1 :012 > Student.find(8).update(course_id: @co_id.id)
+  Student Load (1.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  TRANSACTION (0.7ms)  BEGIN
+  Course Load (0.8ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  TRANSACTION (17.5ms)  COMMIT
+ => true 
+  Course Load (0.7ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => #<Course:0x000055fbaced08c0 id: 1, course_name: "B.Tech (CS)", course_fee: 90000, course_duration: 4> 
+3.0.1 :014 > Student.find(4).update(course_id: @co_id.id)
+  Student Load (1.0ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 4], ["LIMIT", 1]]
+  TRANSACTION (0.8ms)  BEGIN
+  Course Load (0.7ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+3.0.1 :015 > Student.find(10).update(course_id: @co_id.id)
+  Student Load (1.0ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 10], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+ => true 
+3.0.1 :016 > @co_id = Course.find(5)
+  Course Load (0.8ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+ => #<Course:0x000055fbac745678 id: 5, course_name: "BCA", course_fee: 80000, course_duration: 3> 
+3.0.1 :017 > Student.find(5).update(course_id: @co_id.id)
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  TRANSACTION (0.5ms)  BEGIN
+  Course Load (0.7ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Student Update (1.3ms)  UPDATE "students" SET "course_id" = $1 WHERE "students"."id" = $2  [["course_id", 5], ["id", 5]]
+  TRANSACTION (29.2ms)  COMMIT
+ => true 
+3.0.1 :018 > Student.find(6).update(course_id: @co_id.id)
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Course Load (0.5ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  Student Update (1.0ms)  UPDATE "students" SET "course_id" = $1 WHERE "students"."id" = $2  [["course_id", 5], ["id", 6]]
+  TRANSACTION (9.2ms)  COMMIT
+ => true 
+3.0.1 :019 > @co_id = Course.find(2)
+  Course Load (0.6ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+ => #<Course:0x000055fbace39628 id: 2, course_name: "B.Tech (Mechanical)", course_fee: 70000, course_duration: 4> 
+3.0.1 :020 > Student.find(9).update(course_id: @co_id.id)
+  Student Load (0.8ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 9], ["LIMIT", 1]]
+  TRANSACTION (0.6ms)  BEGIN
+  Course Load (0.6ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Student Update (0.6ms)  UPDATE "students" SET "course_id" = $1 WHERE "students"."id" = $2  [["course_id", 2], ["id", 9]]
+  TRANSACTION (45.4ms)  COMMIT
+ => true 
+
+** HAS ONE ASSOCIATIONS -------------> ONE TO ONE ASSOCIATION
+
+
+3.0.1 :009 > @stud = Student.find(1)
+  Student Load (1.2ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => 
+#<Student:0x000055bd08fd06b8
+... 
+
+
+
+3.0.1 :011 > @stud.course
+  Course Load (0.6ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+ => #<Course:0x000055bd0ac344a8 id: 6, course_name: "B.Com", course_fee: 70000, course_duration: 3> 
+3.0.1 :012 > @stud
+ => 
+#<Student:0x000055bd08fd06b8
+ id: 1,
+ student_name: "Rohit",
+ age: 19,
+ email: "rohitsingh12@gmail.com",
+ contact_no: 9891207940,
+ enrolled_date: Sun, 20 Jun 2021,
+ course_id: 6> 
+3.0.1 :013 > @stud.id
+ => 1 
+3.0.1 :014 > @stud.student_name
+ => "Rohit" 
+3.0.1 :015 > @stud.age
+ => 19 
+3.0.1 :016 > @stud.course
+ => #<Course:0x000055bd0ac344a8 id: 6, course_name: "B.Com", course_fee: 70000, course_duration: 3> 
+3.0.1 :017 > @stud.course.course_name
+ => "B.Com" 
+3.0.1 :018 > @stud.course.course_name
+
+
+** HAS_ONE and BELONGS_TO -----> ONE TO ONE RELATIONSHIP
+
+rails g model guardian guardian_name:string guardian_contact:bigint
+
+then make changes to guardian migration file 
+
+t.belongs_to :student
+ 
+And
+in students model
+
+has_one :guardian
+
+
+
+** HAS MANY THROUGH ASSOCIATIONS		------> MANY TO MANY RELATIONS
+
+3.0.1 :058 > @stud = Student.find(2)
+  Student Load (1.3ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+ => 
+#<Student:0x0000562233f6d168
+... 
+3.0.1 :059 > @stud.certifieds
+  Certified Load (1.4ms)  SELECT "certifieds".* FROM "certifieds" WHERE "certifieds"."student_id" = $1  [["student_id", 2]]
+ => 
+[#<Certified:0x0000562233e9d3c8
+  id: 1,
+  certification_id: 4,
+  student_id: 2,
+  created_at: Tue, 29 Jun 2021 11:02:05.501522000 UTC +00:00,
+  updated_at: Tue, 29 Jun 2021 11:02:05.501522000 UTC +00:00>,
+ #<Certified:0x0000562233e9d210
+  id: 2,
+  certification_id: 6,
+  student_id: 2,
+  created_at: Tue, 29 Jun 2021 11:02:05.555488000 UTC +00:00,
+  updated_at: Tue, 29 Jun 2021 11:02:05.555488000 UTC +00:00>] 
+
+
+
+3.0.1 :062 > @stud.certifications.select(:cert_name)
+  Certification Load (1.6ms)  SELECT "certifications"."cert_name" FROM "certifications" INNER JOIN "certifieds" ON "certifications"."id" = "certifieds"."certification_id" WHERE "certifieds"."student_id" = $1  [["student_id", 2]]
+ => 
+[#<Certification:0x000056223296a578 id: nil, cert_name: "Ruby">,
+ #<Certification:0x000056223296a0c8 id: nil, cert_name: "Data Science">] 
+
+
+
+
+	POLYMORPHIC ASSOCIATIONS IN RAILS
+
+
+ **Inserting Data In Polymorphic Table
+
+	Syntax : Polymorphic_table_name.create(content_column_name:'anything' , comments:Referenced_Table.find(1))
+	here comments represents alias of Student and Faculty for Feedback model.
+
+
+3.0.1 :001 > Feedback.create(content:'Good College' , comments: Student.find(1))
+  Student Load (1.0ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Feedback Create (2.3ms)  INSERT INTO "feedbacks" ("content", "comments_type", "comments_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Good College"], ["comments_type", "Student"], ["comments_id", 1], ["created_at", "2021-06-30 06:48:47.501740"], ["updated_at", "2021-06-30 06:48:47.501740"]]
+  TRANSACTION (31.8ms)  COMMIT
+ => 
+#<Feedback:0x000055f069e9ee68
+ id: 1,
+ comments_type: "Student",
+ comments_id: 1,
+ created_at: Wed, 30 Jun 2021 06:48:47.501740000 UTC +00:00,
+ updated_at: Wed, 30 Jun 2021 06:48:47.501740000 UTC +00:00> 
+
+
+3.0.1 :002 > Feedback.create(content:'Intelligent Students' , comments: Faculty.find(1))
+  Faculty Load (0.7ms)  SELECT "faculties".* FROM "faculties" WHERE "faculties"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Feedback Create (1.3ms)  INSERT INTO "feedbacks" ("content", "comments_type", "comments_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Intelligent Students"], ["comments_type", "Faculty"], ["comments_id", 1], ["created_at", "2021-06-30 07:10:35.285237"], ["updated_at", "2021-06-30 07:10:35.285237"]]
+  TRANSACTION (77.0ms)  COMMIT
+ => 
+#<Feedback:0x000055f0694c5c70
+ id: 2,
+ content: "Intelligent Students",
+ comments_type: "Faculty",
+ comments_id: 1,
+ created_at: Wed, 30 Jun 2021 07:10:35.285237000 UTC +00:00,
+ updated_at: Wed, 30 Jun 2021 07:10:35.285237000 UTC +00:00> 
+
+
+3.0.1 :003 > Feedback.create(content:'Labs are Good' , comments: Student.find(2))
+  Student Load (1.3ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Feedback Create (1.3ms)  INSERT INTO "feedbacks" ("content", "comments_type", "comments_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Labs are Good"], ["comments_type", "Student"], ["comments_id", 2], ["created_at", "2021-06-30 07:11:02.345182"], ["updated_at", "2021-06-30 07:11:02.345182"]]
+  TRANSACTION (26.7ms)  COMMIT
+ => 
+#<Feedback:0x000055f06a2c21e8
+ id: 3,
+ content: "Labs are Good",
+ comments_type: "Student",
+ comments_id: 2,
+ created_at: Wed, 30 Jun 2021 07:11:02.345182000 UTC +00:00,
+ updated_at: Wed, 30 Jun 2021 07:11:02.345182000 UTC +00:00> 
+
+
+3.0.1 :004 > Feedback.create(content:'Nice Infrasturcture' , comments: Faculty.find(2))
+  Faculty Load (1.4ms)  SELECT "faculties".* FROM "faculties" WHERE "faculties"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  TRANSACTION (0.7ms)  BEGIN
+  Feedback Create (0.6ms)  INSERT INTO "feedbacks" ("content", "comments_type", "comments_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Nice Infrasturcture"], ["comments_type", "Faculty"], ["comments_id", 2], ["created_at", "2021-06-30 07:11:55.403115"], ["updated_at", "2021-06-30 07:11:55.403115"]]
+  TRANSACTION (19.1ms)  COMMIT
+ => 
+#<Feedback:0x000055f06a139b50
+ id: 4,
+ content: "Nice Infrasturcture",
+ comments_type: "Faculty",
+ comments_id: 2,
+ created_at: Wed, 30 Jun 2021 07:11:55.403115000 UTC +00:00,
+ updated_at: Wed, 30 Jun 2021 07:11:55.403115000 UTC +00:00> 
+
+
+
+FEEDBACK SCHEMA WILL LOOK LIKE THIS 
+
+student_management_system_development=# select * from feedbacks;
+ id |       content        | comments_type | comments_id |         created_at         |         updated_at         
+----+----------------------+---------------+-------------+----------------------------+----------------------------
+  1 | Good College         | Student       |           1 | 2021-06-30 06:48:47.50174  | 2021-06-30 06:48:47.50174
+  2 | Intelligent Students | Faculty       |           1 | 2021-06-30 07:10:35.285237 | 2021-06-30 07:10:35.285237
+  3 | Labs are Good        | Student       |           2 | 2021-06-30 07:11:02.345182 | 2021-06-30 07:11:02.345182
+  4 | Nice Infrasturcture  | Faculty       |           2 | 2021-06-30 07:11:55.403115 | 2021-06-30 07:11:55.403115
+
+
+
+
+3.0.1 :013 > Student.find(1).feedbacks
+  Feedback Load (1.0ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."comments_id" = $1 AND "feedbacks"."comments_type" = $2  [["comments_id", 1], ["comments_type", "Student"]]
+ => 
+[#<Feedback:0x000055f069de34b0
+  id: 1,
+  content: "Good College",
+  comments_type: "Student",
+  comments_id: 1,
+  created_at: Wed, 30 Jun 2021 06:48:47.501740000 UTC +00:00,
+  updated_at: Wed, 30 Jun 2021 06:48:47.501740000 UTC +00:00>] 
+
+
+3.0.1 :014 > Student.find(2).feedbacks
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Feedback Load (1.0ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."comments_id" = $1 AND "feedbacks"."comments_type" = $2  [["comments_id", 2], ["comments_type", "Student"]]
+ => 
+[#<Feedback:0x00007f07c4006360
+  id: 3,
+  content: "Labs are Good",
+  comments_type: "Student",
+  comments_id: 2,
+  created_at: Wed, 30 Jun 2021 07:11:02.345182000 UTC +00:00,
+  updated_at: Wed, 30 Jun 2021 07:11:02.345182000 UTC +00:00>] 
+
+
+3.0.1 :015 > Faculty.find(1).feedbacks
+  Faculty Load (1.1ms)  SELECT "faculties".* FROM "faculties" WHERE "faculties"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+  Feedback Load (1.3ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."comments_id" = $1 AND "feedbacks"."comments_type" = $2  [["comments_id", 1], ["comments_type", "Faculty"]]
+ => 
+[#<Feedback:0x000055f06a1e92a8
+  id: 2,
+  content: "Intelligent Students",
+  comments_type: "Faculty",
+  comments_id: 1,
+  created_at: Wed, 30 Jun 2021 07:10:35.285237000 UTC +00:00,
+  updated_at: Wed, 30 Jun 2021 07:10:35.285237000 UTC +00:00>] 
+
+
+3.0.1 :016 > Faculty.find(2).feedbacks
+  Faculty Load (1.4ms)  SELECT "faculties".* FROM "faculties" WHERE "faculties"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+  Feedback Load (1.0ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."comments_id" = $1 AND "feedbacks"."comments_type" = $2  [["comments_id", 2], ["comments_type", "Faculty"]]
+ => 
+[#<Feedback:0x000055f06a31b9a0
+  id: 4,
+  content: "Nice Infrasturcture",
+  comments_type: "Faculty",
+  comments_id: 2,
+  created_at: Wed, 30 Jun 2021 07:11:55.403115000 UTC +00:00,
+  updated_at: Wed, 30 Jun 2021 07:11:55.403115000 UTC +00:00>] 
+
+
+
+	ACTIVE RECORD : VALIDATIONS IN RAILS
+
+
+
+Added Validation in Faculty Model --- > validates :faculty_name, presence: true
+As I have written presence: true in faculty model so it will not insert any value without faculty_name
+
+3.0.1 :001 > Faculty.new(faculty_name: "John Does").valid?
+ => true 
+3.0.1 :002 > Faculty.new(faculty_name: nil).valid?
+ => false 
+
+3.0.1 :004 > Faculty.create(faculty_salary:20000).valid?
+ => false 
+
+3.0.1 :006 > Faculty.create(faculty_name:'john' , faculty_salary:20000).valid?
+  TRANSACTION (0.5ms)  BEGIN
+  Faculty Create (0.8ms)  INSERT INTO "faculties" ("faculty_name", "faculty_salary") VALUES ($1, $2) RETURNING "id"  [["faculty_name", "john"], ["faculty_salary", 20000]]
+  TRANSACTION (16.6ms)  COMMIT
+ => true 
+
+
+3.0.1 :007 > Faculty.delete(9)
+  Faculty Destroy (55.2ms)  DELETE FROM "faculties" WHERE "faculties"."id" = $1  [["id", 9]]
+ => 1 
+
+
+3.0.1 :009 > Faculty.create!(faculty_salary:20000)
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activerecord-6.1.4/lib/active_record/validations.rb:80:in `raise_validation_error': Validation failed: Faculty name can't be blank (ActiveRecord::RecordInvalid)
+
+3.0.1 :010 > Faculty.create!(faculty_name:'ashish' , faculty_salary:20000)
+  TRANSACTION (0.4ms)  BEGIN
+  Faculty Create (0.9ms)  INSERT INTO "faculties" ("faculty_name", "faculty_salary") VALUES ($1, $2) RETURNING "id"  [["faculty_name", "ashish"], ["faculty_salary", 20000]]
+  TRANSACTION (24.0ms)  COMMIT
+ => #<Faculty:0x000055f06a279e20 id: 10, faculty_name: "ashish", faculty_salary: 20000, course_id: nil> 
+
+3.0.1 :011 > Faculty.delete(10)
+  Faculty Destroy (19.5ms)  DELETE FROM "faculties" WHERE "faculties"."id" = $1  [["id", 10]]
+ => 1 
+
+
+3.0.1 :015 > Faculty.new.errors[:faculty_name].any?
+ => false 
+
+3.0.1 :016 > Faculty.create.errors[:faculty_name].any?
+ => true 
+
+3.0.1 :092 > @stud = Student.new
+ => #<Student:0x00005568c47a3ed8 id: nil, name: nil, age: nil, email: nil, contact_no: nil, enrolled_date: nil, course_id: nil> 
+3.0.1 :093 > @stud.new_record?
+ => true 
+3.0.1 :094 > @stud.destroyed?
+ => false 
+3.0.1 :095 > @stud.destroy
+  TRANSACTION (0.4ms)  BEGIN
+  TRANSACTION (0.3ms)  COMMIT
+ => #<Student:0x00005568c47a3ed8 id: nil, name: nil, age: nil, email: nil, contact_no: nil, enrolled_date: nil, course_id: nil> 
+3.0.1 :096 > @stud.destroyed?
+ => true 
+
+
+EMAIL VALIDATION
+
+3.0.1 :018 > Student.new(student_name:'Aarti' , enrolled_date: Date.parse("2020/04/17"), email:'aa@gmail.com', course_id:3).valid?
+  Course Load (0.6ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+ => true 
+3.0.1 :019 > Student.new(student_name:'Aarti' , enrolled_date: Date.parse("2020/04/17"), email:'aagmail.com',course_id:3).valid?
+  Course Load (0.6ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activemodel-6.1.4/lib/active_model/errors.rb:410:in `add': Email is invalid (ActiveModel::StrictValidationFailed)
+
+
+		USE OF LENGTH IN RAILS VALIDATIONS
+
+USE OF LENGTH VALIDATION IN CONTENT COLUMN --- > validates :content , length: {minimum:2 , maximum:200}
+
+3.0.1 :001 > Feedback.create(content:'a' , comments: Student.find(1))
+  Student Load (0.9ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => #<Feedback:0x00005627e7386cc8 id: nil, content: "a", comments_type: "Student", comments_id: 1, created_at: nil, updated_at: nil> 
+
+3.0.1 :002 > Feedback.create(content:'ay' , comments: Student.find(1))
+  TRANSACTION (0.4ms)  BEGIN
+ $4, $5) RETURNING "id"  [["content", "ay"], ["comments_type", "Student"], ["comments_id", 1], ["created_at", "2021-06-30 12:43:55.136523"], ["updated_at", "2021-06-30 12:43:55.136523"]]
+  TRANSACTION (29.0ms)  COMMIT
+ => 
+#<Feedback:0x00005627e80b3978
+ id: 9,
+ content: "ay",
+ comments_type: "Student",
+ comments_id: 1,
+ updated_at: Wed, 30 Jun 2021 12:43:55.136523000 UTC +00:00> 
+
+3.0.1 :010 > for i in 5..9
+3.0.1 :011 >   Feedback.destroy(i)
+3.0.1 :012 > end
+  Feedback Load (0.7ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]
+  TRANSACTION (0.3ms)  BEGIN
+  Feedback Destroy (0.6ms)  DELETE FROM "feedbacks" WHERE "feedbacks"."id" = $1  [["id", 5]]
+  TRANSACTION (25.3ms)  COMMIT
+  Feedback Load (0.5ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."id" = $1 LIMIT $2  [["id", 6], ["LIMIT", 1]]
+  TRANSACTION (0.3ms)  BEGIN
+  Feedback Destroy (0.7ms)  DELETE FROM "feedbacks" WHERE "feedbacks"."id" = $1  [["id", 6]]
+  TRANSACTION (6.6ms)  COMMIT
+  Feedback Load (0.7ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."id" = $1 LIMIT $2  [["id", 7], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Feedback Destroy (0.7ms)  DELETE FROM "feedbacks" WHERE "feedbacks"."id" = $1  [["id", 7]]
+  TRANSACTION (6.1ms)  COMMIT
+  Feedback Load (1.8ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."id" = $1 LIMIT $2  [["id", 8], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN
+  Feedback Destroy (0.6ms)  DELETE FROM "feedbacks" WHERE "feedbacks"."id" = $1  [["id", 8]]
+  TRANSACTION (3.6ms)  COMMIT
+  Feedback Load (0.7ms)  SELECT "feedbacks".* FROM "feedbacks" WHERE "feedbacks"."id" = $1 LIMIT $2  [["id", 9], ["LIMIT", 1]]
+  TRANSACTION (0.3ms)  BEGIN
+  Feedback Destroy (0.6ms)  DELETE FROM "feedbacks" WHERE "feedbacks"."id" = $1  [["id", 9]]
+  TRANSACTION (6.7ms)  COMMIT
+ => 5..9 
+
+
+** UNIQUENESS VALIDATION 
+
+VALIDATION --- > validates! :email , presence: true , uniqueness: {message: 'already in use'} , format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+
+
+
+3.0.1 :003 > Student.create(student_name:'bhavya' , age:23 , email:'bhavyabatra12@gmail.com' , contact_no:9891292987 , enrolled_date: Date.par
+se('2021/03/12') , course_id:3).valid?
+  TRANSACTION (0.5ms)  BEGIN
+  Course Load (0.8ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Student Exists? (0.7ms)  SELECT 1 AS one FROM "students" WHERE "students"."email" = $1 LIMIT $2  [["email", "bhavyabatra12@gmail.com"], ["LIMIT", 1]]
+  Student Create (33.7ms)  INSERT INTO "students" ("student_name", "age", "email", "contact_no", "enrolled_date", "course_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["student_name", "bhavya"], ["age", 23], ["email", "bhavyabatra12@gmail.com"], ["contact_no", 9891292987], ["enrolled_date", "2021-03-12"], ["course_id", 3]]
+  TRANSACTION (17.9ms)  COMMIT
+  Student Exists? (1.4ms)  SELECT 1 AS one FROM "students" WHERE "students"."email" = $1 AND "students"."id" != $2 LIMIT $3  [["email", "bhavyabatra12@gmail.com"], ["id", 14], ["LIMIT", 1]]
+ => true 
+
+
+3.0.1 :004 > Student.new(student_name:'Heena' , enrolled_date: Date.parse("2020/04/17"), email:'bhavyabatra12@gmail.com',course_id:3).valid?
+  Course Load (0.8ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Student Exists? (0.8ms)  SELECT 1 AS one FROM "students" WHERE "students"."email" = $1 LIMIT $2  [["email", "bhavyabatra12@gmail.com"], ["LIMIT", 1]]
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activemodel-6.1.4/lib/active_model/errors.rb:410:in `add': Email already in use (ActiveModel::StrictValidationFailed)
+
+
+3.0.1 :005 > Student.new(student_name:'Heena' , enrolled_date: Date.parse("2020/04/17"), email:'bhavyabatra12gmail.com',course_id:3).valid?
+  Course Load (0.6ms)  SELECT "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  Student Exists? (1.2ms)  SELECT 1 AS one FROM "students" WHERE "students"."email" = $1 LIMIT $2  [["email", "bhavyabatra12gmail.com"], ["LIMIT", 1]]
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activemodel-6.1.4/lib/active_model/errors.rb:410:in `add': Email is invalid (ActiveModel::StrictValidationFailed)
+
+
+3.0.1 :007 > Student.delete(14)
+  Student Destroy (22.5ms)  DELETE FROM "students" WHERE "students"."id" = $1  [["id", 14]]
+ => 1 
+
+
+** EXTRACTING AGE FROM GIVEN DATE
+
+3.0.1 :022 > da=Student.select(:enrolled_date).find(2)
+
+3.0.1 :030 > total_years= ((Time.now - da.enrolled_date.to_time)/1.year.seconds)
+ => 2.865127693186019 
+
+** EXTRACTING DOB FROM GIVEN AGE
+
+3.0.1 :044 > da=Student.select(:age).find(3)
+  Student Load (1.2ms)  SELECT "students"."age" FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+ => #<Student:0x00005589748424b8 id: nil, age: 23> 
+
+3.0.1 :045 > dob = (Time.now.to_date - da.age.year)
+ => Wed, 01 Jul 1998 
+
+3.0.1 :046 > dob = (Time.now.to_date - da.age.year).year
+ => 1998 
+
+3.0.1 :049 > dob = (Time.now - da.age.year)
+ => 1998-07-01 11:32:20.609515028 +0530 
+
+3.0.1 :050 > dob = (Time.now - da.age.year).year
+ => 1998 
+
+
+
+3.0.1 :001 > Student.create(student_name:'Vicky' , age:23 , contact_no:9776655223)
+/home/beryl/.rvm/gems/ruby-3.0.1/gems/activemodel-6.1.4/lib/active_model/errors.rb:410:in `add': Email can't be blank (ActiveModel::StrictValidationFailed)
+
+** To By-Pass Validation at your side 
+
+** use save(validate:false) with new method.
+
+3.0.1 :002 > Student.new(student_name:'Vicky' , age:23 , contact_no:9776655223).save(validate:false)
+  TRANSACTION (0.6ms)  BEGIN
+  Student Create (151.0ms)  INSERT INTO "students" ("student_name", "age", "contact_no") VALUES ($1, $2, $3) RETURNING "id"  [["student_name", "Vicky"], ["age", 23], ["contact_no", 9776655223]]
+  TRANSACTION (89.8ms)  COMMIT
+ => true 
+
+
+3.0.1 :003 > Student.delete(15)
+  Student Destroy (33.6ms)  DELETE FROM "students" WHERE "students"."id" = $1  [["id", 15]]
+ => 1 
+
+
+
+				CONTROLLER CREATION
+
+Controller are the middleman used to control your request and respond handling.
+
+* In controller(routes.rb) you write get '/name', to: '#controller_name#method_name'
+----> This will work in such a way that first it will call controller and then its corresponding method and its corresponding view file if present.
+
+
