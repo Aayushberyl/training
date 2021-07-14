@@ -31,3 +31,9 @@
   <%end%>
   
 </table>
+
+<div>
+  <% for i in 1..@page_size%>
+  <%= link_to i, student_show_path(page: i-1) %>
+  <%end%>
+</div>

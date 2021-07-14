@@ -12,13 +12,13 @@
     <th>Delete</th>
   </tr>
   
+  <% @feedbacks.order(:id).each do |feedback| %>
   <tr>
-  <% @feedbacks.ids.each do |i| %>
-    <td><%=@feedbacks.find(i).comments_id%></td>
-    <td><%=@feedbacks.find(i).comments_type%></td>
-    <td><%=@feedbacks.find(i).content%></td>
-    <td><a href="/feedback/<%= i%>/edit">Edit</a></td>
-    <td><a data-confirm="Sure to delete data of <%= @feedbacks.find(i).comments_type%> ?" data-method="delete" href="/feedback/<%= i%>">Delete</a></td>
+    <td><%=feedback.comments_id%></td>
+    <td><%=feedback.comments_type%></td>
+    <td><%=feedback.content%></td>
+    <td><%= link_to "edit" , feedback_path(feedback.id) , method: :put %></td>
+    <td><%= link_to "delete" , feedback_path(feedback.id) , method: :delete , data: {confirm: 'Are You Sure?'}%></td>
   </tr>
   
     <%end%>

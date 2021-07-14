@@ -5,7 +5,11 @@ class StudentController < ApplicationController
 	end
 		
 	def show
-    @students = Student.all	
+    @students = Student.all
+		@page_size = @students.size/2
+		@page = params.fetch(:page, 0).to_i
+    @students = Student.offset(@page*2).limit(2)	
+		
   end
 
 	def create
