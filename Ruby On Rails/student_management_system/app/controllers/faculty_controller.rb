@@ -22,7 +22,7 @@ class FacultyController < ApplicationController
 
 	def update
 		@faculty = Faculty.find(params[:id])
-		@faculty.update(name: params[:faculty][:name], course_id: params[:faculty][:course_id])
+		@faculty.update(name: params[:faculty][:name], course_id: params[:faculty][:course_id], salary: params[:faculty][:salary])
 		redirect_to '/faculty/show'
 	end
 	

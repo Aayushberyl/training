@@ -1,7 +1,6 @@
 <%# <button><a href='/home'><=Back</a></button> %>
 <%= link_to "Back", home_path %>
 <h2>Guardian Details</h2>
-<button onclick="print()">Print This Page</button>
 <table>
 
   <tr>
@@ -12,13 +11,13 @@
     <th>Delete</th>
   </tr>
   
+  <% @guardians.order(:id).each do |guardian| %>
   <tr>
-  <% @guardians.ids.each do |i| %>
-    <td><%= @guardians.find(i).name %></td>
-    <td><%= @guardians.find(i).contact %></td>
-    <td><%= @guardians.find(i).student_id %></td>
-    <td><a href="/guardian/<%= i %>/edit">Edit</a></td>
-    <td><a data-confirm="Sure to delete data of <%= @guardians.find(i).name %>?" data-method="delete" href="/guardian/<%= i%>">Delete</a></td>
+    <td><%= guardian.name %></td>
+    <td><%= guardian.contact %></td>
+    <td><%= guardian.student_id %></td>
+    <td><%= link_to "Edit", guardian_path(guardian.id), method: :put %></td>
+    <td><%= link_to "Delete", guardian_path(guardian.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
   </tr>
   
   <%end%>
