@@ -5,8 +5,9 @@ class StudentController < ApplicationController
 	end
 		
 	def show
-    @students = Student.all
-		@page_size = @students.size/2
+		
+    @count = Student.count
+		@page_size = (@count.to_f/2).ceil
 		@page = params.fetch(:page, 0).to_i
     @students = Student.offset(@page*2).limit(2)	
 		

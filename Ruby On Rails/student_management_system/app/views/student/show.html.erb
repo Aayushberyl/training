@@ -33,7 +33,7 @@
 </table>
 
 <div>
-  <% for i in 1..@page_size%>
-  <%= link_to i, student_show_path(page: i-1) %>
+  <% (1..@page_size).each do |page_no| %>
+    <%= link_to page_no, student_show_path(page: page_no-1) %>
   <%end%>
 </div>
