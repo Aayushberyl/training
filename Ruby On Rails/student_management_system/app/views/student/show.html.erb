@@ -1,5 +1,5 @@
 <%# <button><a href='/home'><=Back</a></button> %>
-<%= link_to "Back", home_path %>
+<%= link_to "Back", home_path , :class => "button" %>
 <h2>Student Details</h2>
 <table>
 
@@ -25,15 +25,16 @@
     <td><%= student.course.name %></td>
     <td><%= link_to "Edit" , student_path(student.id) , method: :put %></td>
     <td><%= link_to "Delete" , student_path(student.id) , method: :delete , data: {confirm: 'Are You Sure?'} %></td>
-    <td><%= link_to "Send" %></td>
+    <td><%= link_to "Send" , student_show_path(mail: student) %></td>
   </tr>
   
   <%end%>
   
 </table>
 
-<div>
+<div class = "pages">
+  <%= "Page Numbers :" %>
   <% (1..@page_size).each do |page_no| %>
-    <%= link_to page_no, student_show_path(page: page_no-1) %>
+    <%= link_to page_no, student_show_path(page: page_no-1) , class: "pgnos"%>
   <%end%>
 </div>

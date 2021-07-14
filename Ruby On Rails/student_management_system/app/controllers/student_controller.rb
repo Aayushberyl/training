@@ -11,6 +11,16 @@ class StudentController < ApplicationController
 		@page = params.fetch(:page, 0).to_i
     @students = Student.offset(@page*2).limit(2)	
 		
+		id = params.fetch(:mail,0).to_i
+		if id > 0
+			@i = Student.find(id)
+			# begin
+				StudentMailer.with(stud: @i).welcome_email.deliver
+				redirect_to "/student/show"
+			# rescue StandardError => e 
+				# flash[:error] = 'Problems sending email'
+			# end
+		end
   end
 
 	def create
@@ -23,6 +33,12 @@ class StudentController < ApplicationController
 		end
 
 	end
+
+	# def run
+	# 	params.fetch(:stud)
+	# 		StudentMailer.with(stud: student).welcome_email.deliver_now
+	# 	end
+	# end
 
 	def edit
 		@student = Student.find(params[:id])
