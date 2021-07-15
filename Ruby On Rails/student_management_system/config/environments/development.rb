@@ -41,7 +41,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => "smtp.zoho.com",
-    :port                 => 465,
+    :port                 => 587,
     :user_name            => "aayush.joshi@berylsystems.com",
     :password             => "",
     :domain               => "@berylsystems.com",
