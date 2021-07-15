@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_124430) do
+ActiveRecord::Schema.define(version: 2021_07_15_105259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_07_08_124430) do
     t.bigint "contact_no"
     t.date "enrolled_date"
     t.bigint "course_id"
+    t.boolean "active"
     t.index ["course_id"], name: "index_students_on_course_id"
   end
 
