@@ -6,11 +6,14 @@ class StudentController < ApplicationController
 		
 	def show
 		
-    @count = Student.count
-		@page_size = (@count.to_f/2).ceil
-		@page = params.fetch(:page, 0).to_i
-    @students = Student.offset(@page*2).limit(2)	
-		# @students = Student.paginate(page: params[:page] , per_page: 2)
+    # @count = Student.count
+		# @page_size = (@count.to_f/2).ceil
+		# @page = params.fetch(:page, 0).to_i
+    # @students = Student.offset(@page*2).limit(2).order(:id)
+
+		@students = Student.paginate(page: params[:page] , per_page: 4).order(:id)
+
+		# @pagy = pagy(Student.all)
 
 		checkbox = params.fetch(:check ,0).to_i
     if checkbox > 0
@@ -68,12 +71,6 @@ class StudentController < ApplicationController
 
 	def student_params
 		params.require(:student).permit(:name, :age, :email, :contact_no,:enrolled_date, :course_id , :active)
-	end
-
-	def active_stud
-
-		params[:active]
-		redirect_to :same
 	end
 
 end
