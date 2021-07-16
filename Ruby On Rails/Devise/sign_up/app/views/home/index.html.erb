@@ -1,0 +1,19 @@
+<%= link_to "back" , :back %>
+<h2>Welcome To Sign Up System for Devise Gem</h2>
+
+<%#=link_to "sign out" , destroy_log_in_session_path , method: :delete %>
+
+<% if log_in_signed_in? %>
+
+  <%= "Welcome #{current_log_in.email}"%>
+  <%= link_to "Edit" , edit_log_in_registration_path %><br>
+  <%=link_to "sign out" , destroy_log_in_session_path , method: :delete %>
+
+<% else %>
+
+  <%= "If you are new to project then sign up first ==> "%>
+  <%=link_to "sign Up" , new_log_in_registration_path %><br><br>
+  <%= "Buddy You need to sign in first ==> "%>
+  <%=link_to "sign In" , new_log_in_session_path %>
+
+<% end %>

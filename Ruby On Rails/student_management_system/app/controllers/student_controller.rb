@@ -11,7 +11,7 @@ class StudentController < ApplicationController
 		# @page = params.fetch(:page, 0).to_i
     # @students = Student.offset(@page*2).limit(2).order(:id)
 
-		@students = Student.paginate(page: params[:page] , per_page: 4).order(:id)
+		@students = Student.paginate(page: params[:page] , per_page: 2).order(:id)
 
 		# @pagy = pagy(Student.all)
 
