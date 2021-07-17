@@ -448,5 +448,108 @@ element.insertBefore(para, child);
 
 
 
+					CREATING REST API's
+
+
+* Rails now has the option to create an API application which is a slimmed down version of a traditional Rails web app.
+
+* According to Rails 5 release notes, generating an API only application will:
+
+1) Make the ApplicationController inherit from ActionController::API instead of ActionController::Base.
+
+2) Skip generation of view files and slim-down the middleware.
+
+
+					STEPS TO CREATE A NEW API
+
+
+1) For Creating a new API ---> rails new rest-api-guide --api -d postgresql  or rails new rest-api-guide --api --database=postgresql
+
+
+2) We specify it is an API using --api and the database using --database=.
+
+3) Now Generating Models ---> rails generate model User username:string password:string
+
+rails generate model Fact user:references fact:string likes:integer
+
+* Note that user:references creates a relationship with the User model, telling us that we’ll need a foreign key called user_id. This is because we want our Fact to belong_to a User.
+
+* If we check our models, we should see the Fact model now has the association belongs_to :user set up already. We can now add a has_many :facts relationship to User and our models will be ready to migrate:
+
+
+4) IN POSTGRESQL ---> rails db:setup 	THEN rails db:migrate
+
+5) Now we can move on to our controllers, where we will make use of RESTful architecture.
+
+6) IN CONTROLLERS ---> We can set up our controllers much like we did with our models, except this time we are going to create them in a sub-folder ‘v1’. This is good practice for when creating future API’s where you may decide to work on an updated version (v2) whilst keeping v1 live and stable:
+
+rails g controller api/v1/Users
+rails g controller api/v1/Facts
+
+
+7) Once we have our controllers loaded, we’ll need to establish our routes, which can be found in config/routes.rb.
+
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    namespace :v1 do
+      resources :users do
+        resources :facts 
+      end
+    end
+  end
+end
+
+Once set, you can check your routes using $ rails routes.
+
+8) Change Controllers According to usage
+
+9) Then After starting server ---> rails s ---> http://localhost:3000/api/v1/users
+
+this will render an output like this ---> []
+
+10) Then using console or seeds add data into your database ---> 
+oliver = User.create( username: 'Oliver', password: 'password' )
+fact_one = Fact.create( fact: 'Wiley Hardeman Post was the first pilot to fly solo around the world.', likes: 1, user_id: 1 )
+fact_two = Fact.create( fact: 'The Symphony No1 in E flat major, K.16, was written by Wolfgang Amadeus Mozart at the age of 8.’ likes: 2, user_id: 1 )
+
+11) Now if we check our paths: http://localhost:3000/api/v1/users
+
+{"id":1,"username":"Oliver","password":"password","created_at":"2021-07-17T06:27:06.311Z","updated_at":"2021-07-17T06:27:06.311Z"}
+
+12) Now if we check our paths: http://localhost:3000/api/v1/users/1/facts
+
+[{"id":1,"user_id":1,"fact":"Wiley Hardeman Post was the first pilot to fly solo around the world.","likes":1,"created_at":"2021-07-17T06:27:34.960Z","updated_at":"2021-07-17T06:27:34.960Z"},{"id":2,"user_id":1,"fact":"The Symphony No1 in E flat major, K.16, was written by Wolfgang Amadeus Mozart at the age of 8.","likes":2,"created_at":"2021-07-17T06:31:32.527Z","updated_at":"2021-07-17T06:31:32.527Z"}]
+
+	
+
+				STEPS TO ADD SERIALIZERS A NEW API
+
+1) First of all we need to install ruby gem for serializers ---> gem 'active_model_serializers', '~> 0.10.0'
+
+2) Run bundle install
+
+3) Generating serializers for our models ---> rails g serializer user    and rails g serializer fact
+
+4) Then edit serializer file --->  attributes :user_id , :fact , :likes
+(used to pass only that attributes that we want to show to the users)
+
+5) We change our serializers accordingly 
+
+class UserSerializer < ActiveModel::Serializer
+  attributes :id, :username, :facts
+
+  def facts
+    object.facts.map do |fact|
+      {
+        fact: fact.fact,
+        likes: fact.likes
+      } 
+    end
+  end
+end
+
+6) Then run Now if we check our paths: http://localhost:3000/api/v1/users/1
 
 
