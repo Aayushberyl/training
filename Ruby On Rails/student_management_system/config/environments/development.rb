@@ -40,10 +40,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.zoho.com",
+    :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => "aayush.joshi@berylsystems.com",
-    :password             => "",
+    :user_name            => "aayushjoshi129@gmail.com",
+    :password             => "faridabad121",
     :domain               => "@berylsystems.com",
     :authentication       => "plain",
     :enable_starttls_auto => true

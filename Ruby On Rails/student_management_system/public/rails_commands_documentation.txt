@@ -553,3 +553,14 @@ end
 6) Then run Now if we check our paths: http://localhost:3000/api/v1/users/1
 
 
+* Then we will get all the data of user 1
+
+
+					SERVICE OBJECTS
+
+* Software as a service (or SaaS) is a way of delivering applications over the Internet—as a service. ... SaaS applications are sometimes called Web-based software, on-demand software, or hosted software.
+
+* Service objects are Plain Old Ruby Objects (PORO) that are designed to execute one single action in your domain logic and do it well. It follows the single responsibility principle strongly.
+
+* 
+
