@@ -58,7 +58,7 @@ class StudentController < ApplicationController
 
 	# end
 
-	student = CreateStudentService.new(student_params[:name], student_params[:age], student_params[:email] , student_params[:contact_no] , student_params[:enrolled_date] , student_params[:course_id]).call
+		student = CreateStudentService.new(student_params[:name], student_params[:age], student_params[:email] , student_params[:contact_no] , student_params[:enrolled_date] , student_params[:course_id]).call
     if student
       redirect_to '/student/show'
     else

@@ -15,5 +15,7 @@
   <%= @game.version %>
 </p>
 
+
+<%= link_to 'Launch', launch_game_path(@game) , method: :patch  %> |
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

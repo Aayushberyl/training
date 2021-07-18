@@ -526,6 +526,8 @@ fact_two = Fact.create( fact: 'The Symphony No1 in E flat major, K.16, was writt
 
 				STEPS TO ADD SERIALIZERS A NEW API
 
+* ActiveModel::Serializer provides a way of creating custom JSON by representing each resource as a class that inherits from ActiveModel::Serializer .
+
 1) First of all we need to install ruby gem for serializers ---> gem 'active_model_serializers', '~> 0.10.0'
 
 2) Run bundle install
@@ -562,5 +564,138 @@ end
 
 * Service objects are Plain Old Ruby Objects (PORO) that are designed to execute one single action in your domain logic and do it well. It follows the single responsibility principle strongly.
 
-* 
+* calling a service class ---> student = CreateStudentService.new(student_params[:name], student_params[:age], student_params[:email] , student_params[:contact_no] , student_params[:enrolled_date] , student_params[:course_id]).call
 
+* CREATED SERVICE CLASS
+
+class CreateStudentService
+  attr_reader :name, :age, :email, :contact_no,:enrolled_date, :course_id
+
+  def initialize(name, age, email, contact_no,enrolled_date, course_id )
+    @name = name
+    @age = age
+    @email = email
+    @contact_no = contact_no
+    @enrolled_date = enrolled_date
+    @course_id = course_id
+  end
+
+  def call
+    Student.create(name: @name , age: @age , email: @email , contact_no: @contact_no , enrolled_date: @enrolled_date , course_id: @course_id )
+  end
+
+end
+
+
+				BOOTSTRAPING IN RAILS
+
+* you can add bootstrap in your rails project in either way by installing ---> yarn add bootstrap jquery popper.js
+
+* or by adding it into your gem file ---> gem 'bootstrap', '~> 5.0.1'
+
+				
+
+			SASS(Syntactically Awesome Stylesheets) IN RAILS
+
+* Sass, (Syntactically Awesome Stylesheets) is a meta-language, which has redefined CSS for “programmers” around the world.
+
+* You can create an .scss file in your app/javascript/stylesheets/
+
+* you can nest same tags in order to achieve css.
+for example :
+#header
+{
+background-color:red;
+color:white;
+}
+
+#header h1
+{
+font-size:20px;
+}
+
+
+
+* You can nest this like this using scss
+
+#header
+{
+background-color:red;
+color:white;
+
+	h1
+	{
+	font-size:20px;
+	}
+}
+
+
+* similarly when you are referring a parent you have to use & siugn which represents a parent.
+
+
+a
+{
+background-color:red;
+color:white;
+}
+
+a:hover 
+{
+text-decoration:underline;
+}
+
+* you can write the same code like this in scss
+
+a
+{
+background-color:red;
+color:white;
+
+	&:hover
+		{
+			text-decoration:underline;
+		}
+}
+
+* In sass we can define our variables for colors;
+ex= $main-color: white;
+
+
+* you can add mixins in order to do a particular job in scss
+
+@mixin rounded-border{
+border-radius:10px;
+}
+
+* you can use mixins by just writing @include mixin-name
+
+* The asset pipeline enables you to store your assets in one central library.  Technically speaking, it links together your assets into one master file, reducing the number of requests made by the browser.  This can greatly speed up page  load time. (I will get back to this soon)
+
+It also allows you to write your assets in dynamic languages, such as SASS for CSS or Coffeescript for JavaScript. As a rails developer, you may feel more comfortable with Sass and CoffeeScript, but you can still use the “base” languages to create your assets.
+
+* You can also place your assets under
+
+lib/assets – assets for libraries, such as jQuery.
+vendor/assets – assets associated with third party apps and frameworks, such as plupload.
+
+
+
+					AJAX IN RAILS
+
+* Ajax stands for Asynchronous JavaScript and XML. Ajax is not a single technology; it is a suite of several technologies
+
+* Ajax enables you to retrieve data for a web page without having to refresh the contents of the entire page. In the basic web architecture, the user clicks a link or submits a form. The form is submitted to the server, which then sends back a response. The response is then displayed for the user on a new page.
+
+* When you interact with an Ajax-powered web page, it loads an Ajax engine in the background. The engine is written in JavaScript and its responsibility is to both communicate with the web server and display the results to the user. When you submit data using an Ajax-powered form, the server returns an HTML fragment that contains the server's response and displays only the data that is new or changed as opposed to refreshing the entire page.
+
+
+
+					NESTED FORMS IN RAILS
+
+* Rails provide a powerful mechanism for creating rich forms called ‘nested attributes’ easily. This enables more than one model to be combined in forms while maintaining the same basic code pattern with simple single model form. Nested attributes allow attributes to be saved through the parent on associated records. 
+
+* The updating of the nested attribute is turned off by default and can be enabled using the class method ‘accepts_nested_attributes_for’.
+
+* It creates a scope around a specific model object like ‘form_for’ , but doesn’t create the form tags themselves. This makes ‘fields_for’ suitable for specifying additional model objects in the same form. Although the usage and purpose of ‘field_for’ is similar to ‘form_for’, its method signature is slightly different. Like ‘form_for’ , it yields a FormBuilder object associated with a particular model object to a block, and within the block allows methods to be called on the builder to generate fields associated with the model object.
+
+* 

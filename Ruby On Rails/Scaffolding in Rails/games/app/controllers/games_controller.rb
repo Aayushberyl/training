@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[ show edit update destroy]
 
   # GET /games or /games.json
   def index
@@ -55,6 +55,8 @@ class GamesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
