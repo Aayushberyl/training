@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :departments
   root to: 'index#nav'
   #resources :students
+
+  # get '/student/run', to: 'student#run'
+
   get '/home', to: 'index#nav'
   get '/student' , to: 'student#form'
   post '/student', to: 'student#create'

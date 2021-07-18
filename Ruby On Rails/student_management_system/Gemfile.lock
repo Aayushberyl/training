@@ -82,6 +82,8 @@ GEM
     erubi (1.10.0)
     et-orbi (1.2.4)
       tzinfo
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.3)
     fugit (1.5.0)
       et-orbi (~> 1.1, >= 1.1.8)
@@ -218,6 +220,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  faker (~> 2.18)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mail (~> 2.6, >= 2.6.4)

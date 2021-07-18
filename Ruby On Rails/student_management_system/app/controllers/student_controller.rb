@@ -1,22 +1,24 @@
 class StudentController < ApplicationController
-    
+	
 	def form
 		@student = Student.new
 	end
-		
+	
 	def show
-		
+		# stud = Student.find(2).name
+		# StudentWorker.perform_async(stud)
     # @count = Student.count
 		# @page_size = (@count.to_f/2).ceil
 		# @page = params.fetch(:page, 0).to_i
     # @students = Student.offset(@page*2).limit(2).order(:id)
-		StudentWorker.perform_async()
-
-
+		
+		
+		# StudentWorker.perform_async("18-07-2021")
+		# render text: "Request Successfully Initiated for Sidekiq from Joshi"
 		@students = Student.paginate(page: params[:page] , per_page: 2).order(:id)
-
+		
 		# @pagy = pagy(Student.all)
-
+		
 		checkbox = params.fetch(:check ,0).to_i
     if checkbox > 0
       if Student.find(checkbox).active
@@ -30,22 +32,28 @@ class StudentController < ApplicationController
 		if id > 0
 			@i = Student.find(id)
 			# begin
-				# StudentMailer.with(stud: @i).welcome_email.deliver
-				stud = WelcomeEmailService.call(params[:name], params[:email])
-				redirect_to "/student/show"
+			# StudentMailer.with(stud: @i).welcome_email.deliver
+			stud = WelcomeEmailService.call(params[:name], params[:email])
+			redirect_to "/student/show"
 			# rescue StandardError => e 
-				# flash[:error] = 'Problems sending email'
+			# flash[:error] = 'Problems sending email'
 			# end
 		end
   end
 
-	def create
+	# def run
 
-	# 	@student = Student.new(student_params) 
-	# 	if @student.save
-	# 		redirect_to '/student/show'
-	# 	else
-  #     render :form
+	# 	render text: "Request Successfully Initiated for Sidekiq from Joshi"
+	
+	# end
+
+	def create
+		
+		# 	@student = Student.new(student_params) 
+		# 	if @student.save
+		# 		redirect_to '/student/show'
+		# 	else
+		#     render :form
 	# 	end
 
 	# end

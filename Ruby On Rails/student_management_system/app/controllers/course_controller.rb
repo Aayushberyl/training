@@ -10,7 +10,9 @@ class CourseController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    course = Course.new(course_params)
     if @course.save
+      CourseWorker.perform_async()
       redirect_to '/course/show'
     else
       render :form
