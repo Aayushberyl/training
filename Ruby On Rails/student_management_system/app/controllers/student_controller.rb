@@ -2,6 +2,7 @@ class StudentController < ApplicationController
 	
 	def form
 		@student = Student.new
+		@student.build_guardian
 	end
 	
 	def show
@@ -59,7 +60,7 @@ class StudentController < ApplicationController
 	# end
 
 		student = CreateStudentService.new(student_params[:name], student_params[:age], student_params[:email] , student_params[:contact_no] , student_params[:enrolled_date] , student_params[:course_id]).call
-    if student
+		if student
       redirect_to '/student/show'
     else
       render '/form'
@@ -89,7 +90,8 @@ class StudentController < ApplicationController
 	end
 
 	def student_params
-		params.require(:student).permit(:name, :age, :email, :contact_no,:enrolled_date, :course_id , :active)
+		params.require(:student).permit(:name, :age, :email, :contact_no,:enrolled_date, :course_id , guardian_attributes: [:name, :contact , :student_id])
 	end
+
 
 end

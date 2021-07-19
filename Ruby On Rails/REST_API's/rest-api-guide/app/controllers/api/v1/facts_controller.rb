@@ -1,7 +1,7 @@
 class Api::V1::FactsController < ApplicationController
   before_action :find_fact, only: %i[ show update destroy ]
 
-  # GET /games or /games.json
+  # GET /facts or /facts.json
   def index
     @facts = Fact.all
     render json: @facts

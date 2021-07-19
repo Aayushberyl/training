@@ -28,6 +28,12 @@
   <%= f.select :course_id, [["select"] , Course.order(:id).ids.map{|i| [Course.find(i).name , i]}].flatten(1) %><br>
   <br>
 
+  <%= f.fields_for :guardian do |form| %>
+    <%= form.label :name, "Guardian Name:" %>
+    <%= form.text_field :name %>
+    <%= form.label :contact, "Guardian Contact:" %>
+    <%= form.number_field :contact %>
+  <% end %>
     <%= f.submit "Submit" , id:'btn1' %>
 
 <% end %>

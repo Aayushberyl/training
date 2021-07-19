@@ -405,7 +405,7 @@ element.insertBefore(para, child);
 
 
 
-				JQUERY 
+					JQUERY 
 
 * jQuery is a lightweight, "write less, do more", JavaScript library.
 
@@ -488,6 +488,9 @@ rails g controller api/v1/Facts
 
 
 7) Once we have our controllers loaded, we’ll need to establish our routes, which can be found in config/routes.rb.
+
+* This is the simple option. When you use namespace , it will prefix the URL path for the specified resources, and try to locate the controller under a module named in the same manner as the namespace.
+
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
