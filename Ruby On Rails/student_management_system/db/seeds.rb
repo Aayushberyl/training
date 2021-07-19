@@ -18,4 +18,4 @@ course = [1, 2, 3, 4, 5, 31, 35]
 #     )
 # end
 
-stud = Student.create(name: 'Rakha' , age:23 , email:"rakha@gmail.com" , contact_no:9988554433 , enrolled_date: Date.parse("17/07/2021") , course_id:rand(1..10))
+stud = Student.create(name: 'Kirti' , age:23 , email:"kirti@gmail.com" , contact_no:9988554433 , enrolled_date: Date.parse("17/07/2021") , course_id:rand(1..10))
