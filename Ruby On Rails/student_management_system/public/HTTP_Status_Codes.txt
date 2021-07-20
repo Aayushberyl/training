@@ -1,0 +1,94 @@
+
+					HTTP STATUS REQUEST CODES
+
+
+* All HTTP response status codes are separated into five classes or categories. The first digit of the status code defines the class of response, while the last two digits do not have any classifying or categorization role. There are five classes defined by the standard:
+
+1) 1xx informational response – the request was received, continuing process.
+2) 2xx successful – the request was successfully received, understood, and accepted
+3) 3xx redirection – further action needs to be taken in order to complete the request
+4) 4xx client error – the request contains bad syntax or cannot be fulfilled
+5) 5xx server error – the server failed to fulfil an apparently valid request
+
+1) 1XXX Informational Response
+
+a) 100 Continue - It is used to show that the client should continue with its request. The interim response informs the client that the request?s initial part has been received.
+
+b) 101 Switching Protocols - It is used to switches the server.
+
+c) 102 Processing - This code is used to show that the server has received and is processing the request. It indicates that no response is available yet.
+
+d) 103 Early Hints - This code is used to return the headers of some responses before the final HTTP message.
+
+
+2) 2XXX Successful
+
+a) 200 OK - This code is used to show that the request is OK.
+
+b) 201 Created - This code shows that the request has been fulfilled, which results in the creation of a new resource.
+
+c) 202 Accepted	- This code shows that the request is accepted for processing, but not yet processed completely.
+
+d) 203 Non-authoritative Information - In the entity-header, the information is from a local third party copy. It is not from the original copy.
+
+e) 204 No Content - This code is used to show that the request is processed successfully by the server and not returning any content.
+
+f) 205 Reset Content - This code is used to tell the user agent to reset the document which sent this request.
+
+
+3) 3XXX Redirection
+
+a) 300 Multiple Choices	- This code is used to indicate that the multiple options for the resource from which the client may choose.
+
+b) 301 Moved Permanently - This code shows that the URL of the requested resource has been changed permanently. In response, the new URL gives.
+
+c) 302 Found - This code is used to show that the requested page has moved temporarily to a new URL.
+
+d) 303 See Other - This code is used to show that the requested page can be found under another URL using the GET method.
+
+e) 304 No Modified - This code is used for caching purposes. It shows the client that the response has not been modified, so the client can continue to use the same response?s cached version.
+
+f) 305 Use Proxy - This code is used to show that using the proxy; the requested URL must be accessed, which is mentioned in the Location header.
+
+g) 306 Unused - In the previous version, this code is used. This response code is no longer used, and it is just reserved.
+
+h) 307 Temporary Redirect - This code is used to show that the requested page has moved temporarily to a new URL.
+
+
+4) 4XXX Client Error
+
+a) 400 Bad Request - This code is used to indicate that the server did not understand the request due to invalid syntax.
+
+b) 401 Unauthorized - In this code, the requested page needs a username and password.
+
+c) 402 Payment Required	- This code reserved for future use.
+
+d) 403 Forbidden - This code is used to show that the access is forbidden to the requested page.
+
+e) 404 No Found	- This code is used to show that the server cannot find the requested page.
+
+f) 405 Method Not Allowed - It shows that the request method is not supported for the requested resource.
+
+g) 406 Not Acceptable - It is used to show that the server can only generate a resource that the client does not accept.
+
+h) 407 Proxy Authentication Required - It is used to show that the client must first authenticate itself with the proxy.
+
+i) 408 Request Timeout - This code is used to show that the request took longer than the server was prepared to wait.
+
+
+5) 5XXX Server Error
+
+a) 500 Internal Server Error - This code is used to show that the server has encountered a situation, and it does not know how to handle it.
+
+b) 501 Not Implemented - This code shows that the request was not completed, and the server did not support the functionally required.
+
+c) 502 Bad Gateway - This code shows that the request was not completed, and the server received an invalid response from the upstream server.
+
+d) 503 Service Unavailable - This code shows that the request was not completed, and the server is temporarily overloading or down.
+
+e) 504 Gateway Timeout - It shows that the gateway has timed out.
+
+f) 505 HTTP Version Not Supported - This code is used to show that the server does not support the "http protocol" version.
+
+
+
