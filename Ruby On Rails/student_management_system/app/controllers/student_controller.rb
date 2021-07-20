@@ -24,21 +24,23 @@ class StudentController < ApplicationController
     if checkbox > 0
       if Student.find(checkbox).active
         Student.find(checkbox).update(active: false)
+				redirect_to '/student/show'
       else
         Student.find(checkbox).update(active: true)
+				redirect_to '/student/show'
       end
 		end
 		
 		id = params.fetch(:mail,0).to_i
 		if id > 0
 			@i = Student.find(id)
-			# begin
-			# StudentMailer.with(stud: @i).welcome_email.deliver
-			stud = WelcomeEmailService.call(params[:name], params[:email])
-			redirect_to "/student/show"
-			# rescue StandardError => e 
-			# flash[:error] = 'Problems sending email'
-			# end
+			begin
+				StudentMailer.with(stud: @i).welcome_email.deliver
+				stud = WelcomeEmailService.call(params[:name], params[:email])
+				redirect_to "/student/show"
+			rescue StandardError => e 
+				flash[:error] = 'Problems sending email'
+				end
 		end
   end
 

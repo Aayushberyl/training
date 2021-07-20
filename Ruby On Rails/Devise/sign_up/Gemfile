@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'omniauth-facebook', '~> 8.0'
 gem 'omniauth-rails_csrf_protection'
 gem 'devise'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
