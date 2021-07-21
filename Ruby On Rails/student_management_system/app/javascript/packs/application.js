@@ -11,5 +11,7 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require('src/student_validation.js')
+
 
 

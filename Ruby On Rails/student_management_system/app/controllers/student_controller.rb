@@ -61,12 +61,13 @@ class StudentController < ApplicationController
 
 	# end
 
-		student = CreateStudentService.new(student_params[:name], student_params[:age], student_params[:email] , student_params[:contact_no] , student_params[:enrolled_date] , student_params[:course_id]).call
-		# @student =Student.new(student_params)
+		@student = CreateStudentService.new(student_params[:name], student_params[:age], student_params[:email] , student_params[:contact_no] , student_params[:enrolled_date] , student_params[:course_id] ).call
+		# @student = Student.new(student_params)
 		if @student.save
       redirect_to '/student/show'
     else
-      render '/form'
+      # redirect_to '/student'
+			render 'form'
     end
 	end
 
