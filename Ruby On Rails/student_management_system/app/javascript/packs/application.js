@@ -12,6 +12,8 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 require('src/student_validation.js')
-
-
-
+require('src/guardian_validation.js')
+require('src/faculty_validation.js')
+require('src/course_validation.js')
+require('src/certification_validation.js')
+require('src/feedback_validation.js')
