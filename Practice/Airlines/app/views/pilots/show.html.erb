@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pilot.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @pilot.body %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @pilot.email %>
+</p>
+
+<p>
+  <strong>Images:</strong><br>
+  <% @pilot.pics.each do |pic|%>
+    <%= link_to pic.filename , pic %><br>
+  <% end %>
+</p>
+<%= link_to 'Edit', edit_pilot_path(@pilot) %> |
+<%= link_to 'Back', pilots_path %>

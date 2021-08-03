@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @flight.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @flight.body %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @flight.image %>
+</p>
+
+<%= link_to 'Edit', edit_flight_path(@flight) %> |
+<%= link_to 'Back', flights_path %>

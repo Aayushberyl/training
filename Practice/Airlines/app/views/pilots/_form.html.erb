@@ -1,0 +1,65 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<%= form_with(model: pilot, local: true) do |form| %>
+  <% if pilot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pilot.errors.count, "error") %> prohibited this pilot from being saved:</h2>
+
+      <ul>
+        <% pilot.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_area :email %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label "Flights Images" %>
+    <%= form.file_field :pics , multiple: true, direct_upload: true , id: 'upload[]' , onchange: "getFiles()"%>
+    <%= form.hidden_field :retained_pics %>
+    <pre id='result'>
+      <h1>Result</h1>
+    </pre>
+  </div>
+<script>
+
+
+function getFiles() {
+    const fileField = document.getElementById('upload[]').files;
+    for (let i = 0; i < fileField.length; i++){
+      let s = i.toString();
+      console.log(s)
+    document.getElementById('result').innerHTML += "<a id='dell"+s+"' , class= 'anchor' onclick='del()'>" +JSON.stringify(fileField[i].name) + "</a>" + "<br>" ;
+      // console.log(i);
+    }
+}
+  function del() {
+  const fileField = document.getElementById('upload[]').files;
+    for (let i = 0; i < fileField.length; i++){
+    $(`#dell${i}`).remove();
+    // document.getElementById('dell"${i}"');
+}
+}
+</script>
+ 
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

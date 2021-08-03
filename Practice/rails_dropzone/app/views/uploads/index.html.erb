@@ -1,0 +1,12 @@
+<div id="content">
+	<%= form_for @upload , html: {multipart: true , class: "dropzone" , id: "my-dropzone"} do |f| %>
+		<div class="dz-message needsclick">
+			<h3>Drop Your File Here </h3>
+			<strong>Click</strong> to upload
+		</div>
+		<div class="fallback">
+			<%= f.file_field :image%>
+			<%= f.submit "upload the image"%>
+		</div>
+	<% end %>
+</div>

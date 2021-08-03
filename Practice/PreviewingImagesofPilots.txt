@@ -1,0 +1,30 @@
+  <div class="field">
+    <%= form.label "Flights Images" %>
+    <%= form.file_field :pics , multiple: true,  id: "file-input" %>
+  </div>
+  <div id="preview"></div>
+
+
+<script>
+
+function previewImages() {
+
+  var $preview = $('#preview').empty();
+  if (this.files) $.each(this.files, readAndPreview);
+
+  function readAndPreview(i, file) {
+    
+    
+    var reader = new FileReader();
+
+    $(reader).on("load", function() {
+      $preview.append($("<img/>", {src:this.result, height:100}));
+    });
+
+    reader.readAsDataURL(file);
+    
+  }
+
+}
+
+$('#file-input').on("change", previewImages);
