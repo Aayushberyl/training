@@ -4,10 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>You got a new email </p>
+    <p>You got a new email from <%= @user.name %> </p>
     <p>
     Email details<br>
     --------------------------
-    Sent an Email
+    Sent an Email <br>
+    you got it from Airlines Project using ActionMailer Class
+    <br>
+    <%= @user.body %>
   </body>
 </html>

@@ -6,8 +6,8 @@ require 'time'
 require 'active_support/all'
 
 def fetcher
-  # url = 'https://www.express.co.uk/news/royal/1458240/prince-harry-news-meghan-markle-duke-of-sussex-royal-family-latest-news'
-  url = "https://timesofindia.indiatimes.com/india/diljit-dosanjh-the-sardar-with-swag-who-has-won-indias-heart/articleshow/79588864.cms"
+  url = 'https://www.express.co.uk/news/royal/1458240/prince-harry-news-meghan-markle-duke-of-sussex-royal-family-latest-news'
+  # url = "https://timesofindia.indiatimes.com/india/diljit-dosanjh-the-sardar-with-swag-who-has-won-indias-heart/articleshow/79588864.cms"
   # unparsed_page = HTTParty.get(url)
   parsed_page = Nokogiri::HTML.parse(open(url))
   # joblistings = parsed_page.css('div.text-description') #count => 6
@@ -39,4 +39,3 @@ def fetcher
 end
 
 fetcher()
-
