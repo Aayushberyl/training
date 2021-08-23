@@ -18,6 +18,11 @@ require("channels")
 //=require.self
 
 // direct_uploads.js
+//= require jquery
+//= require jquery-ujs
+//= require dropzone.js
+//= require turbolinks
+//= require tree .
 
 addEventListener("direct-upload:initialize", event => {
   const { target, detail } = event

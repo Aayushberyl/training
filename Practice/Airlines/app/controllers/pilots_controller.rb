@@ -28,7 +28,7 @@ class PilotsController < ApplicationController
       if @pilot.save
         format.html { redirect_to @pilot, notice: "Pilot was successfully created." }
         format.json { render :show, status: :created, location: @pilot }
-        JoinedConfirmationMailer.with(user: @pilot.id).joined_confirmation_email.deliver_now
+        JoinedConfirmationMailer.with(user: @pilot.id).joined_confirmation_email.deliver_now!
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @pilot.errors, status: :unprocessable_entity }
@@ -39,9 +39,14 @@ class PilotsController < ApplicationController
   # PATCH/PUT /pilots/1 or /pilots/1.json
   def update
     respond_to do |format|
+      @pilot = Pilot.find(params[:id])
+      email = @pilot.email
       if @pilot.update(pilot_params)
         format.html { redirect_to @pilot, notice: "Pilot was successfully updated." }
         format.json { render :show, status: :ok, location: @pilot }
+        if @pilot.email != email
+          JoinedConfirmationMailer.with(user: @pilot.id).joined_confirmation_email.deliver_now!
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @pilot.errors, status: :unprocessable_entity }

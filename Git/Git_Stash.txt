@@ -1,0 +1,38 @@
+
+1) GIT STASH
+
+** Git stash saves the uncommitted changes locally, allowing you to make changes, switch branches, and perform other Git operations. You can then reapply the stashed changes when you need them. A stash is locally scoped and is not pushed to the remote by git push.
+
+** By default, git stash stores (or "stashes") the uncommitted changes (staged and unstaged files) and overlooks untracked and ignored files. Usually, you don't need to stash untracked and ignored files, but sometimes they might interfere with other things you want to do in your codebase.
+
+** How to use git stash
+Here's the sequence to follow when using git stash:
+
+Save changes to branch A.
+Run git stash.
+Check out branch B.
+Fix the bug in branch B.
+Commit and (optionally) push to remote.
+Check out branch A
+Run git stash pop to get your stashed changes back.
+
+
+beryl@beryl-Latitude-E6520:~/Desktop/Legitimate/Legit$ git stash
+Saved working directory and index state WIP on development: 15cc8aea Added ENV variable to error email
+
+
+beryl@beryl-Latitude-E6520:~/Desktop/Legitimate/Legit$ git branch
+  LG-349
+* development
+beryl@beryl-Latitude-E6520:~/Desktop/Legitimate/Legit$ git branch LG-382 development
+
+*** This will create a new branch LG-382 from development branch
+(Basically LG-382 is the sub-branch of development branch)
+
+beryl@beryl-Latitude-E6520:~/Desktop/Legitimate/Legit$ git branch
+  LG-349
+  LG-382
+* development
+
+
+

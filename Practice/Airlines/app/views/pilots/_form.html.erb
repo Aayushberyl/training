@@ -28,34 +28,20 @@
     <%= form.text_area :email %>
   </div>
 
-
-  <div class="field">
-    <%= form.label "Flights Images" %>
-    <%= form.file_field :pics , multiple: true, direct_upload: true , id: 'upload[]' , onchange: "getFiles()"%>
-    <%= form.hidden_field :retained_pics %>
-    <pre id='result'>
-      <h1>Result</h1>
-    </pre>
+<div id="my-dropzone" class="dropzone">
+  <div class="dz-message needsclick">
+    <h3>Drop Files Here</h3> <strong>Click To Upload</strong>
   </div>
+  <div class="fallback">
+    <%= form.file_field :pics %>
+    <%= form.submit "upload files"%>
+  </div>
+</div>
+
+
 <script>
 
 
-function getFiles() {
-    const fileField = document.getElementById('upload[]').files;
-    for (let i = 0; i < fileField.length; i++){
-      let s = i.toString();
-      console.log(s)
-    document.getElementById('result').innerHTML += "<a id='dell"+s+"' , class= 'anchor' onclick='del()'>" +JSON.stringify(fileField[i].name) + "</a>" + "<br>" ;
-      // console.log(i);
-    }
-}
-  function del() {
-  const fileField = document.getElementById('upload[]').files;
-    for (let i = 0; i < fileField.length; i++){
-    $(`#dell${i}`).remove();
-    // document.getElementById('dell"${i}"');
-}
-}
 </script>
  
 
