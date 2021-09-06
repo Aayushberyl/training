@@ -1,6 +1,6 @@
 class JoinedConfirmationMailer < ApplicationMailer
 	
-	default from: 'aayush.joshi@berylsystems.com'
+	default from: 'aayushjoshi129@gmail.com'
 
 	def joined_confirmation_email
 		@user = Pilot.find(params[:user])
