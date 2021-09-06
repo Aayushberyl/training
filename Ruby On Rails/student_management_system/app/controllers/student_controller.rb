@@ -5,7 +5,11 @@ class StudentController < ApplicationController
 		@student.build_guardian
 	end
 
-	def temp
+	def temp1
+		render :partial => 'subform' , layout: 'graybar'
+	end
+
+	def temp2
 		render :partial => 'subform'
 	end
 	

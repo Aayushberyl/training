@@ -17,3 +17,6 @@ require('src/faculty_validation.js')
 require('src/course_validation.js')
 require('src/certification_validation.js')
 require('src/feedback_validation.js')
+//= require jquery3
+//= require popper
+//= require bootstrap

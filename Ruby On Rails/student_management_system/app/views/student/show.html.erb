@@ -1,6 +1,7 @@
 <%# <button><a href='/home'><=Back</a></button> %>
 <%= link_to "Back", home_path , :class => "button" %>
 <h2>Student Details</h2>
+<button onclick="print()">Print This Page</button>
 <table>
 
   <tr>
@@ -34,5 +35,5 @@
   
 </table>
 
-<%= will_paginate @students , :class => "pages" %>
+<%= will_paginate @students , :class => "pages btn btn-primary" %>
 
