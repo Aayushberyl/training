@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/home', to: 'index#nav'
   get '/student' , to: 'student#form'
+  get '/student/template', to: 'student#temp'
   post '/student', to: 'student#create'
   get '/student/show', to: 'student#show'
   put '/student.:id' , to: 'student#edit'

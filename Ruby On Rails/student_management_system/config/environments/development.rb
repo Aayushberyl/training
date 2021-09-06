@@ -43,10 +43,12 @@ Rails.application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :user_name            => "aayushjoshi129@gmail.com",
-    :password             => "faridabad121",
-    :domain               => "@berylsystems.com",
+    :password             => "qlqjlcoyvszhkmoo",
+    :domain               => "berylsystems.com",
     :authentication       => "plain",
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true,
+    :open_timeout         =>  5,
+    :read_timeout         =>  5
   }
 
   config.action_mailer.perform_caching = true

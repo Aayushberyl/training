@@ -4,6 +4,10 @@ class StudentController < ApplicationController
 		@student = Student.new
 		@student.build_guardian
 	end
+
+	def temp
+		render :partial => 'subform'
+	end
 	
 	def show
 		# stud = Student.find(2).name
