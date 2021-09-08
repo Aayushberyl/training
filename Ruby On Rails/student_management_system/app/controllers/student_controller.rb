@@ -75,7 +75,7 @@ class StudentController < ApplicationController
       redirect_to '/student/show'
     else
       # redirect_to '/student'
-			render 'form'
+			render 'student/form'
     end
 	end
 
