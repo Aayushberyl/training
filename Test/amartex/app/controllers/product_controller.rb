@@ -41,8 +41,12 @@ class ProductController < ApplicationController
 	end
 
 	def templates
-		render :partial => 'temp1'
+		# render :partial => 'temp1'
+		render template: "product/shem", :locals => {:resource => 'Some text'}
+		# render partial: "temp1", :object => Product.all
+
 		# render 'product/shem'
+		# render :plain => "Hello World"
 	end
 
 end
