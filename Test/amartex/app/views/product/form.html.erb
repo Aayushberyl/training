@@ -1,0 +1,39 @@
+<h2>Amartex Product Form</h2>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<%#= @product.errors.messages %>
+
+<%= form_for @product , url:product_path do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+
+
+  <%= f.label :description , "Description" %>
+  <%= f.text_field :description %><br><br>
+
+ 
+  <%= f.label :price , "Price " %>
+  <%= f.number_field :price %><br><br>
+
+
+  <%= f.submit "Submit" %>
+	<%= link_to '<button>View Templates</button>'.html_safe, product_temp_path , id:'btn1' %>
+	<a id="btn2" onclick="clicked(this.id)">click me </a>
+	
+
+<% end %>
+
+
+
+<script type="text/javascript">
+	
+	function clicked(id){
+			alert(id);
+			console.log("Clicked");
+  	};
+	
+
+</script>

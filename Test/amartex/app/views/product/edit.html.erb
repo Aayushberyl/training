@@ -1,0 +1,22 @@
+<h2>Amartex Product Edit Form</h2>
+
+<%#= @product.errors.messages %>
+
+<%= form_for @product do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+
+
+  <%= f.label :description , "Description" %>
+  <%= f.text_field :description %><br><br>
+
+ 
+  <%= f.label :price , "Price " %>
+  <%= f.number_field :price %><br><br>
+
+
+  <%= f.submit "Update" , id:'btn1' %>
+
+<% end %>

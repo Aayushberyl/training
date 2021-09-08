@@ -1,0 +1,27 @@
+<%= link_to "Back", root_path %>
+<h2>Product Details</h2>
+<button onclick="print()">Print This Page</button><br><br>
+<table>
+
+  <tr>
+    <th>Product ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Modify</th>
+    <th>Delete</th>
+  </tr>
+  
+  <% @products.order(:id).each do |product| %>
+  <tr>
+    <td><%= product.id %></td>
+    <td><%= product.name %></td>
+    <td><%= product.description %></td>
+    <td><%= product.price %></td>
+    <td><%= link_to "Edit", product_path(product.id), method: :put %></td>
+    <td><%= link_to "Delete", product_path(product.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+  </tr>
+  
+  <%end%>
+  
+</table>
