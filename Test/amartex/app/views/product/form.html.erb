@@ -21,7 +21,7 @@
 
   <%= f.submit "Submit" %>
 	<%= link_to '<button>View Templates</button>'.html_safe, product_temp_path , id:'btn1' %>
-	<a id="btn2" onclick="clicked(this.id)">click me </a>
+	<a id="btn2" >click me </a>
 	
 
 <% end %>
@@ -30,10 +30,31 @@
 
 <script type="text/javascript">
 	
-	function clicked(id){
-			alert(id);
-			console.log("Clicked");
-  	};
-	
+	// function clicked(id){
+	// 		alert(id);
+	// 		console.log("Clicked");
+ //  	};
+
+    // function clicked(id)
+    //   {
+
+    $('#btn1').unbind('click').click(function(e){
+    	  e.preventDefault();
+        alert("button btn1 clicked");
+    
+      	console.log("Clicked");
+        // alert(clicked_id);
+        // tmp = document.getElementById(id).id;
+        // alert(tmp);
+        $.ajax({
+          type:"GET",
+          url:"/product/temp",
+          dataType:"json",
+          data: {description: "btn1"}
+        });
+        // clicked.stopImmediatePropagation();
+        // return false;
+      // }
+      });
 
 </script>
