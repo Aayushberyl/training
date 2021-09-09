@@ -1,6 +1,6 @@
-<%= link_to "Back", home_path %>
-<h2><%= pluralize(@customer.count , Customer)%> Details</h2>
-<button onclick="print()">Print This Page</button>
+<%= link_to "Back", root_path %>
+<h2>Customers Details</h2>
+<button onclick="print()">Print This Page</button><br><br>
 <table>
 
   <tr>
@@ -17,7 +17,7 @@
     <td><%= customer.name %></td>
     <td><%= customer.contact %></td>
     <td><%= customer.id %></td>
-    <td><%= customer.products_id></td>
+    <td><%= customer.product.name %></td>
     <td><%= link_to "Edit", customer_path(customer.id), method: :put %></td>
     <td><%= link_to "Delete", customer_path(customer.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
   </tr>

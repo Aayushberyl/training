@@ -1,0 +1,23 @@
+<%= link_to "Back" , root_path %>
+<h2>Amartex Customers Form</h2>
+
+<%#= @customer.errors.messages %>
+
+<%= form_for @customer , url:customer_path do |f| %>
+
+  
+  <%= f.label :name , "Name:" %>
+  <%= f.text_field :name %><br><br>
+
+
+  <%= f.label :contact , "Contact" %>
+  <%= f.number_field :contact %><br><br>
+
+ 
+  <%= f.label :product_id , "Product Name " %>
+  <%= f.select :product_id, [["select"] , Product.order(:id).ids.map{|i| [Product.find(i).name , i]}].flatten(1) %><br><br>
+
+
+  <%= f.submit "Submit" %>	
+
+<% end %>

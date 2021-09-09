@@ -23,7 +23,7 @@ class CustomerController < ApplicationController
 
 	def update
 		@customer = Customer.find(params[:id])
-		@customer.update(name: params[:customer][:name] , contact: params[:customer][:contact])
+		@customer.update(name: params[:customer][:name] , contact: params[:customer][:contact] , product_id: params[:customer][:product_id])
 		redirect_to '/customer/show'
 	end
 	
@@ -37,7 +37,7 @@ class CustomerController < ApplicationController
 	end
 
 	def customer_params
-		params.require(:customer).permit(:name, :age, :contact)
+		params.require(:customer).permit(:name, :age, :contact, :product_id)
 	end
 
 end
