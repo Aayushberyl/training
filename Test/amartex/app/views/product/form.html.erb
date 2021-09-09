@@ -1,8 +1,9 @@
+<%= link_to "Back" , root_path %>
 <h2>Amartex Product Form</h2>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<%#= @product.errors.messages %>
+<%= @product.errors.messages %>
 
 <%= form_for @product , url:product_path do |f| %>
 
@@ -21,7 +22,7 @@
 
   <%= f.submit "Submit" %>
 	<%= link_to '<button>View Templates</button>'.html_safe, product_temp_path , id:'btn1' %>
-	<a id="btn2" >click me </a>
+  <%= link_to '<button>Click me</button>'.html_safe, product_temp_path , id:'btn2' %>
 	
 
 <% end %>
@@ -39,9 +40,9 @@
     //   {
     $(document).ready(function(){
     $('#btn1').click(function(e){
-    	  // e.stopPropagation();
+    	  // e.stopImmediatePropagation();
         e.preventDefault();
-        
+        // $("#paragraph").load("demo.txt");
 
         alert("button btn1 clicked");
     
@@ -51,13 +52,16 @@
         // alert(tmp);
         $.ajax({
           type:"GET",
-          async: false ,
+          async: true,
           url:"/product/temp",
           dataType:"json",
           data: {description: "btn1"}
         });
-        // clicked.stopImmediatePropagation();
+        // e.stopImmediatePropagation();
         // return false;
+      // window.location.href = 'http://localhost:3000/product/temp';
+
+        // e.stopPropagation();
       // }
       });
       });

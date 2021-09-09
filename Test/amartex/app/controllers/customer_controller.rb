@@ -10,6 +10,7 @@ class CustomerController < ApplicationController
 
 	def create
 		@customer = Customer.new(customer_params) 
+		@customer.created_at = Time.zone.now.localtime if published?
 		if @customer.save
 			redirect_to '/customer/show'
 		else
@@ -23,6 +24,7 @@ class CustomerController < ApplicationController
 
 	def update
 		@customer = Customer.find(params[:id])
+		@customer.updated_at = Time.zone.now.localtime if published?
 		@customer.update(name: params[:customer][:name] , contact: params[:customer][:contact] , product_id: params[:customer][:product_id])
 		redirect_to '/customer/show'
 	end
@@ -38,6 +40,14 @@ class CustomerController < ApplicationController
 
 	def customer_params
 		params.require(:customer).permit(:name, :age, :contact, :product_id)
+	end
+
+	def published?
+		params[:commit]	== "Publish"
+	end
+
+	def save_as_draft?
+		params[:commit] == "Save as Draft"
 	end
 
 end

@@ -17,7 +17,15 @@
   <%= f.label :product_id , "Product Name " %>
   <%= f.select :product_id, [["select"] , Product.order(:id).ids.map{|i| [Product.find(i).name , i]}].flatten(1) %><br><br>
 
+    	<%#= f.submit "Publish" %>
+  	<%#= f.submit "Save as Draft" %>
 
-  <%= f.submit "Submit" %>	
+  <% if @customer.id.present? %>
+  	<%= f.submit "Update" %>
+  	<%= f.submit "Unpublish" %>
+  <% else %>
+  	<%= f.submit "Publish" %>
+  	<%= f.submit "Save as Draft" %>
+  <% end %>
 
 <% end %>

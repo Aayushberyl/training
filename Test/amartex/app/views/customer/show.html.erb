@@ -4,9 +4,9 @@
 <table>
 
   <tr>
+    <th>Customer ID </th>
     <th>Name</th>
     <th>Contact</th>
-    <th>Customer ID </th>
     <th>Product Names</th>
     <th>Modify</th>
     <th>Delete</th>
@@ -14,9 +14,9 @@
   
   <% @customers.order(:id).each do |customer| %>
   <tr>
+    <td><%= customer.id %></td>
     <td><%= customer.name %></td>
     <td><%= customer.contact %></td>
-    <td><%= customer.id %></td>
     <td><%= customer.product.name %></td>
     <td><%= link_to "Edit", customer_path(customer.id), method: :put %></td>
     <td><%= link_to "Delete", customer_path(customer.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>

@@ -16,3 +16,19 @@
 table,th,td{
   border: 1px solid black;
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+	height: 35px;
+	background-color: grey;
+  color: white;
+}
+td {
+	text-align: center;
+	height: 30px;
+
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
