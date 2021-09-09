@@ -37,9 +37,12 @@
 
     // function clicked(id)
     //   {
+    $(document).ready(function(){
+    $('#btn1').click(function(e){
+    	  // e.stopPropagation();
+        e.preventDefault();
+        
 
-    $('#btn1').unbind('click').click(function(e){
-    	  e.preventDefault();
         alert("button btn1 clicked");
     
       	console.log("Clicked");
@@ -48,6 +51,7 @@
         // alert(tmp);
         $.ajax({
           type:"GET",
+          async: false ,
           url:"/product/temp",
           dataType:"json",
           data: {description: "btn1"}
@@ -55,6 +59,7 @@
         // clicked.stopImmediatePropagation();
         // return false;
       // }
+      });
       });
 
 </script>
