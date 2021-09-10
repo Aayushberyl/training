@@ -1,0 +1,207 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h1 style="text-align: center;">This is JQuery Practice Page</h1>
+<p id="on" class="odd">One</p>
+<p id="tw">Two</p>
+<p id="th" class="odd">Three</p>
+<p id="fo">Four</p>
+<p id="fi" class="odd">Five</p>
+<button id="but">Toggle The Para Now</button>
+<div id="div1">
+Giovanni Antonio Grassi (10 September 1775 – 12 December 1849) was an Italian Jesuit who led many academic and religious institutions in the United States and Europe. Born in Lombardy, he studied at the Jesuit College in Polotsk, where he began his academic career. He was soon ordered to China as a missionary, but after traveling across Europe for two years attempting to secure passage, his orders were rescinded and he instead began teaching at Stonyhurst College in England. In 1810, Grassi was sent to the United States, where he became known as the "second founder" of Georgetown College for greatly improving its quality and reputation. Grassi returned to Italy in 1817 as Archbishop Leonard Neale's representative before the Propaganda Fide in Rome. He then spent time as a provincial superior in Turin, rector of the Turin College of Nobles, and confessor to monarchs of the House of Savoy. In 1840, he became the rector of the Pontificio Collegio Urbano de Propaganda Fide in Rome.
+</div>
+
+<script>
+	
+	$('document').ready(function(){
+		
+		$('p').click(function(){
+
+			// $(this).hide();	// this will hide the clicked paragraph
+
+			console.log('You clicked on '+this.id+' p')
+		
+		});
+		
+		// $('p.odd').click();		// clicks on class with odd elements
+
+		// $('*').click(); 	// clicks on all the elements
+	
+		// $('p:first').click();	// clicks on the first element of paragraph
+
+		// $('p:last').click();	// clicks on the last element of paragraph	
+
+
+						// EVENTS IN JQUERY
+
+// 1) Mouse Events : click , dblclick , mouseenter , mouseover , mouseleave , mousedown , mouseup , hover
+
+// 2) Keyboard Events : keypress , keydown , keyup , MediaKeyStatusMap
+
+// 3) Form Events : submit , change , focus , blur
+
+// 4) Document/Window Events : load , resize , scroll , unload
+
+
+	// $('p').dblclick(function(){
+
+	// 		console.log('You double clicked on '+this.id+' p')
+	// 		//	on double clicking this function will be called
+		
+	// 	});
+
+
+	// $('p').mouseenter(function(){
+
+	// 		console.log('You Entered in '+this.id+' p')
+	// 		//	on entering in an element this function will be called
+
+	// 	});
+
+
+	// $('p').mouseleave(function(){
+
+	// 		console.log('You Leaved From '+this.id+' p')
+	// 		//	on leaving an element this function will be called
+
+	// 	});
+
+	// $('p').mousedown(function(){
+
+	// 		console.log('You Pressed From '+this.id+' p')
+	// 		//	on Pressing an element this function will be called
+
+	// 	});
+
+
+	// $('p').mouseup(function(){
+
+	// 		console.log('You Released '+this.id+' p')
+	// 		//	on Releasing an element this function will be called
+
+	// 	});
+
+
+	// $('p').hover(function(){
+
+	// 		console.log('You Hovered '+this.id+' p')
+	// 		//	on taking mouse to an element this function will be called
+
+	// 	});
+
+
+
+			// Demoing The on Method (we can handle multiple event on multiple events using just single on )
+
+
+// $('p').on(
+// 	{
+
+// 		click: function(){
+
+// 			console.log('You clicked on '+this.id+' p');
+		
+// 		},
+
+// 		mouseleave: function () {
+		
+// 			console.log("Mouse Leaved" , this.innerHTML);
+		
+// 		}
+// 		});
+
+// 	$('#div1').hide(1000 , function(){		// it takes first argument as a time in millisec
+// 		console.log("hidden");		// this will appear in console after the element gets hide 
+// 	});
+
+	// $('#div1').toggle(1000);
+
+
+	// $('#but').click(function(){		// This will select the element with id but and on click
+	// 	$('#div1').toggle(1000);		// it will select element with id div1 and toggle(hide/show) in 1 sec
+	// });
+
+
+	// $('#but').click(function(){		// This will select the element with id but and on click
+	// 	$('#div1').fadeOut(500);		// it will select element with id div1 and fadeOut the content in 0.5 sec
+	// });
+
+	// $('#but').click(function(){		// This will select the element with id but and on click
+	// 	$('#div1').fadeIn(500);		// it will select element with id div1 and fadeIn the content in 0.5 sec
+	// });
+
+	// Here We are doing both actions in single function
+
+// $('#but').click(function(){		// This will select the element with id but and on click
+		// $('#div1').fadeOut(500);		// it will select element with id div1 and fadeOut the content in 0.5 sec
+		// $('#div1').fadeIn(500);		// it will select element with id div1 and fadeIn the content in 0.5 sec
+	// });		
+
+	$('#but').click(function(){		// This will select the element with id but and on click	
+	$('#div1').fadeToggle(500);		// This is simply toggling the fadeIn/fadeOut in 0.5 sec
+	});
+
+
+				// JQUERY SLIDING METHODS
+
+// 1) slideUp(speed,callback) , slideDown , slideToggle
+		// Both Speed and Callbacks are optional.
+	// $('#div1').slideUp(500);		// Slides the Content Up
+	// $('#div1').slideDown(500);		// Slides the Content Down
+	// $('#div1').slideToggle(500);		// Slides the Content Up/Down based on availability
+
+
+				// Animate Function in JQuery
+
+	// $('#div1').animate({
+	// 	opacity:0.5,
+	// 	height:'100px',
+	// 	width:'1000px'
+	// }, 2000);
+
+
+									// DOM MANIPULATION
+
+
+				// TO Change Value of HTML or to Manipulate HTML 
+				// we use $('selector').html("I am setting value of html");
+
+				// To Change/Manipulate Value of Form Elements
+				// we use $('selector').val('Iam setting value in form field');
+
+				// TO Change Value of HTML Text or to Manipulate HTML Text 
+				// we use $('selector').text("I am setting text of html");
+
+				// TO Remove Element From DOM 
+				// we use $('selector').remove(); 
+
+				// To Remove Content From HTML Element
+				// we use $('selector').empty();
+
+				// To Add a Class In an HTML Element
+				// we use $('selector').addClass('className');
+
+				// To Remove a Class In an HTML Element
+				// we use $('selector').removeClass('className');
+
+				// To Add/Remove a Class In an HTML Element
+				// we use $('selector').toggleClass('className');
+
+
+				// CSS Selectors
+
+				// To Add/Remove any style In an HTML Element
+				// we use $('selector').css('background-color', 'color');
+				// $('#div1').css('background-color', 'blue');
+
+
+
+				// AJAX METHOD
+				// $.get('https://code.jquery.com/jquery-3.6.0.js');	// The Very first method is get which fetches the data from the given link
+
+				// $.get('https://code.jquery.com/jquery-3.6.0.js' , function(data,status){ alert(data);});		// Get Method will alert the data fetched from the given link
+
+				// $.post('https://code.jquery.com/jquery-3.6.0.js' , {name:'anything' , age:'anything'});		// Post Request to send the data to the server
+
+	});
+
+</script>
