@@ -9,12 +9,13 @@ class CustomerController < ApplicationController
 	end
 
 	def create
-		@customer = Customer.new(customer_params) 
-		@customer.created_at = Time.zone.now.localtime if published?
-		if @customer.save
+		@customer = Customer.new(customer_params)
+		if published? 
+			@customer.created_at = Time.zone.now.localtime
+			@customer.save
 			redirect_to '/customer/show'
-		else
-		  render :form
+		elsif @customer.present?
+		  render :draft
 		end
 	end
 
@@ -24,9 +25,17 @@ class CustomerController < ApplicationController
 
 	def update
 		@customer = Customer.find(params[:id])
-		@customer.updated_at = Time.zone.now.localtime if published?
-		@customer.update(name: params[:customer][:name] , contact: params[:customer][:contact] , product_id: params[:customer][:product_id])
-		redirect_to '/customer/show'
+		if published?
+			@customer.updated_at = Time.zone.now.localtime
+			@customer.update(name: params[:customer][:name] , contact: params[:customer][:contact] , product_id: params[:customer][:product_id])
+			redirect_to '/customer/show'
+		else
+			render plain: "Data Cannot Be Unpublished" 
+		end
+	end
+
+	def temp1
+		render :temp1
 	end
 	
 	def destroy
@@ -43,7 +52,7 @@ class CustomerController < ApplicationController
 	end
 
 	def published?
-		params[:commit]	== "Publish"
+		params[:commit]	== "Publish" || params[:commit] == "Update"
 	end
 
 	def save_as_draft?

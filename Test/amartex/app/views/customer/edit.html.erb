@@ -1,4 +1,4 @@
-<%= link_to "Back" , root_path %>
+<%= link_to "Back" , customer_show_path %>
 <h2>Amartex Customers Edit Form</h2>
 
 <%#= @customer.errors.messages %>
@@ -17,7 +17,7 @@
   <%= f.label :product_id , "Product Name " %>
   <%= f.select :product_id, [["select"] , Product.order(:id).ids.map{|i| [Product.find(i).name , i]}].flatten(1) %><br><br>
 
-
-  <%= f.submit "Update" %>	
+  	<%= f.submit "Update" %>
+  	<%= f.submit "Unpublish" %>
 
 <% end %>

@@ -10,9 +10,10 @@ Rails.application.routes.draw do
  	get 'product/temp' , to: 'product#templates'
  	get '/customer/new' , to: 'customer#form'
   post 'customer/' , to: 'customer#create'
- 	get 'customer/show' , to: 'customer#show'
+  get 'customer/show' , to: 'customer#show'
  	put '/customer.:id' , to: 'customer#edit'
  	patch 'customer.:id', to: 'customer#update'
  	delete 'customer.:id' , to: 'customer#destroy'
+ 	get 'customer/temp1' , to: 'customer#temp1'
 
 end

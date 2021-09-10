@@ -1,0 +1,28 @@
+<%= link_to "Back", root_path %>
+<h1>This is draft page</h1>
+<h2>Here are the Details of Customer<h2>
+
+<style type="text/css">
+  h1,h2{
+    text-align: center;
+  }
+</style>
+
+
+<h2>Customers Draft Page</h2>
+<button onclick="print()">Print This Page</button><br><br>
+<table>
+
+  <tr>
+    <th>Name</th>
+    <th>Contact</th>
+    <th>Product Names</th>
+  </tr>
+
+  <tr>
+    <td><%= @customer.name unless @customer.name.nil? %></td>
+    <td><%= @customer.contact unless @customer.contact.nil? %></td>
+    <td><%= @customer.product.name unless @customer.product.name.nil? %></td>
+  </tr>
+  
+</table>
