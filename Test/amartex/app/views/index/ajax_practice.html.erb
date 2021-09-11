@@ -13,7 +13,8 @@
 
 	He made his Bollywood debut in 2016 with the crime thriller Udta Punjab for which he earned the Filmfare Award for Best Male Debut. However, this was followed by films that failed to propel his career forward in the Hindi film industry. This changed with his supporting role in the comedy Good Newwz (2019), for which he received nomination for Best Supporting Actor at Filmfare. As of 2020, he has won the most five PTC Award for Best Actor. He has also appeared as a judge in three seasons of the reality show Rising Star.[6] In 2020, Dosanjh entered Social 50 chart by Billboard, following the release of his 11th album G.O.A.T..[7] Also, the album entered top 20 in Canadian Albums Chart.
 </div>
-<p id="para1"><bold>This is now going to be changed</bold></p>
+<p id="para1">This is now going to be changed</p>
+<b><h2 id="para2"></h2></b>
 </div>
 
 <script type="text/javascript">
@@ -53,13 +54,17 @@
 			// syntax => $.post()
 			// syntax => $.post(url,data,callback methods)
 
-			$(document).ready(function(){
+			$(document).ready(function(){		// starting of document.ready(function(){
+
+				// This will simply load the content residing in routes('/')
 
 				// $('#but1').click(function(){
 				// 	$('#div2').load('/' , function(){
 				// 		alert("loaded");
 				// 	});		// AJAX load method will load the file with route ('/')
 				// });
+
+				// This will simply change the content of para1 with routes('/')
 
 				// $('#but2').click(function(){
 				// 	$.get('/',function(data,status){
@@ -68,29 +73,43 @@
 				// 	});
 				// });
 
+				// This is simply params passing using post method
 
 				$('#but2').click(function(){
+					$("#para2").toggle();
+					// alert("clicked");								// This will alert clicked
 
-					$.post('/' , { 
-						name:'Aayush',
-						age:21
-					} ,function(data,status){
-						$('#para1').html(data);		// changes para1 content to '/'file data
-						alert(status);
-					});
-				});
+				// This is simply params passing using jquery and using post method
 
+				// 	$.post('/' , { 
+				// 		name:'Aayush',
+				// 		age:21
+				// 	} ,function(data,status){
+				// 		$('#para1').html(data);		// changes para1 content to '/'file data
+				// 		alert(status);
+				// 	});
+				// });
 
+				// This is simply params passing using AJAX and using post method
 
-// 	Rails.ajax({
-//   type: "POST", 
-//   url: "/",
-//   data: {name: 'Aayush' , age:'21'},
-//   success: function(repsonse){...},
-//   error: function(repsonse){...}
-// })
+				$.ajax({															// using AJAX to send data
+        url:'/',
+        type:'POST',													// using POST method to send data
+        dataType:'html',
+        data:{																// passing parameters 
+            myparam1: "This is First Param value",
+            myparam2: "This is Second Param value",
+          } ,
+            // authenticity_token: window._token
+    				success: function(data,status){		// On success this function will get executed
+    					$('#para2').html(data);
+    					// alert(status);									// This will alert about status
+    				}
+        });																			// Ending of AJAX block
+				// alert("in AJAX");										// This will alert in AJAX text
+    });																					// Ending of click jquery function
 
-			});
+			});																				// Ending of document.ready(function(){});
 
 
 </script>
