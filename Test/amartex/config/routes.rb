@@ -11,7 +11,7 @@ Rails.application.routes.draw do
  	put '/product.:id' , to: 'product#edit'
  	patch 'product.:id', to: 'product#update'
  	delete 'product.:id' , to: 'product#destroy'
- 	get 'product/temp' , to: 'product#templates'
+  get 'product/temp' , to: 'product#templates'
  	get '/customer/new' , to: 'customer#form'
   post 'customer/' , to: 'customer#create'
   get 'customer/show' , to: 'customer#show'
@@ -19,5 +19,6 @@ Rails.application.routes.draw do
  	patch 'customer.:id', to: 'customer#update'
  	delete 'customer.:id' , to: 'customer#destroy'
  	get 'customer/temp1' , to: 'customer#temp1'
+  post 'customer/draft', to: 'customer#draft'
 
 end

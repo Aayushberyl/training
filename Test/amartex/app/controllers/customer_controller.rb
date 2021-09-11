@@ -10,13 +10,14 @@ class CustomerController < ApplicationController
 
 	def create
 		@customer = Customer.new(customer_params)
-		if published? 
 			@customer.created_at = Time.zone.now.localtime
 			@customer.save
 			redirect_to '/customer/show'
-		elsif @customer.present?
-		  render :draft
-		end
+	end
+
+	def draft
+		@customer = Customer.new(customer_params)
+		render :draft
 	end
 
 	def edit

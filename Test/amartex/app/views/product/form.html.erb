@@ -23,6 +23,8 @@
   <%= f.submit "Submit" %>
 	<%= link_to '<button>View Templates</button>'.html_safe, product_temp_path , id:'btn1' %>
   <%= link_to '<button>Click me</button>'.html_safe, product_temp_path , id:'btn2' %>
+
+  <p id="para3"></p>
 	
 
 <% end %>
@@ -30,6 +32,8 @@
 
 
 <script type="text/javascript">
+
+    $(document).ready(function(){
 	
 	// function clicked(id){
 	// 		alert(id);
@@ -38,25 +42,20 @@
 
     // function clicked(id)
     //   {
-    $(document).ready(function(){
-    $('#btn1').click(function(e){
-    	  // e.stopImmediatePropagation();
-        e.preventDefault();
-        // $("#paragraph").load("demo.txt");
-
-        alert("button btn1 clicked");
-    
-      	console.log("Clicked");
-        // alert(clicked_id);
-        // tmp = document.getElementById(id).id;
-        // alert(tmp);
+      $('#btn1').click(function(){
         $.ajax({
           type:"GET",
-          async: true,
           url:"/product/temp",
-          dataType:"json",
+          dataType:"html",
           data: {description: "btn1"}
-        });
+         , success: function(data,status){   // On success this function will get executed
+              $('#para3').html(data);
+              alert(status);
+            }
+          });
+      })
+
+        
         // e.stopImmediatePropagation();
         // return false;
       // window.location.href = 'http://localhost:3000/product/temp';
@@ -64,6 +63,22 @@
         // e.stopPropagation();
       // }
       });
-      });
 
 </script>
+
+
+<!-- 
+        $.ajax({                              // using AJAX to send data
+        url:'/',
+        type:'POST',                          // using POST method to send data
+        dataType:'html',
+        data:{                                // passing parameters 
+            myparam1: "This is First Param value",
+            myparam2: "This is Second Param value",
+          } ,
+            // authenticity_token: window._token
+            success: function(data,status){   // On success this function will get executed
+              $('#para2').html(data);
+              // alert(status);                 // This will alert about status
+            }
+        });  -->

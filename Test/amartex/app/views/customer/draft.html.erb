@@ -1,7 +1,8 @@
 <%= link_to "Back", customer_new_path %>
 <h1>This is draft page</h1>
 <h2>Here are the Details of Customer<h2>
-
+ <%# @myobj = @customer %>
+  <b><%#= @myobj.name %></b>
 <style type="text/css">
   h1,h2{
     text-align: center;
@@ -20,9 +21,10 @@
   </tr>
 
   <tr>
-    <td><%= @customer.name unless @customer.name.nil? %></td>
-    <td><%= @customer.contact unless @customer.contact.nil? %></td>
-    <td><%= @customer.product.name unless @customer.product.name.nil? %></td>
+
+    <td><%= @customer.name unless @customer[:name].nil? %></td>
+    <td><%= @customer.contact unless @customer[:contact].nil? %></td>
+    <td><%= @customer.product.name unless @customer[:product_id] == 0 %></td>
   </tr>
   
 </table>
