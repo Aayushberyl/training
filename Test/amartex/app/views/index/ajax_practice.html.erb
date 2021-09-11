@@ -1,0 +1,96 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h1 style="text-align: center;">This is AJAX Practice Page</h1>
+<p id="on" class="odd">One</p>
+<p id="tw">Two</p>
+<p id="th" class="odd">Three</p>
+<p id="fo">Four</p>
+<p id="fi" class="odd">Five</p>
+<!-- <button id="but1" onclick="myfun()">Change Div Content Now</button> -->
+<button id="but2">Change Para Now</button>
+<div class="container">
+<div id="div2">
+	Diljit Dosanjh (born 6 January 1984) is an Indian singer-songwriter, actor and television presenter who works in Punjabi and Hindi cinema.[2][3] He is recognised as one of the leading artists in the Indian music industry.[4] He also acts in Punjabi movies, with many of them being commercially successful, including Jatt & Juliet, Jatt & Juliet 2, Punjab 1984, Sardaar Ji, Ambarsariya, Sardaar Ji 2, Super Singh, Sajjan Singh Rangroot and Shadaa – which are among the most successful Punjabi movies in history.[5]
+
+	He made his Bollywood debut in 2016 with the crime thriller Udta Punjab for which he earned the Filmfare Award for Best Male Debut. However, this was followed by films that failed to propel his career forward in the Hindi film industry. This changed with his supporting role in the comedy Good Newwz (2019), for which he received nomination for Best Supporting Actor at Filmfare. As of 2020, he has won the most five PTC Award for Best Actor. He has also appeared as a judge in three seasons of the reality show Rising Star.[6] In 2020, Dosanjh entered Social 50 chart by Billboard, following the release of his 11th album G.O.A.T..[7] Also, the album entered top 20 in Canadian Albums Chart.
+</div>
+<p id="para1"><bold>This is now going to be changed</bold></p>
+</div>
+
+<script type="text/javascript">
+	
+									// AJAX USING JAVASCRIPT
+
+	// function myfun(){
+
+	// 	var req = new XMLHttpRequest();		// Creating a new object for XMLHttpRequest();
+	// 	req.open('GET' , '/' , true);		// To send a request to server , we use open() and send() methods of xmlHttpRequest() object --> open(method , url , async) <-- specifies type of req.
+
+	// 	// method = type of request get or post
+		
+	// 	// url = the file path (route in rails)
+		
+	// 	// async = true (asynchronous) or false (synchronous)(req respond in queue)
+		
+	// 	// send() = sends request to the server (used for GET)
+		
+	// 	req.send();		// sending request to the server
+
+
+	// 	req.onreadystatechange = function(){		// this will be called when readyState changes
+		
+	// 		if (req.readyState == 4 && req.status == 200){	// readyState (holds status of XMLHttpRequest) should be 4 & obj.status=200
+
+	// 			document.getElementById('div2').innerHTML = req.responseText;	// changes innerHTML of element by obj.responseText
+
+	// 		}
+	// 	}
+
+	// }
+
+									// AJAX USING JQUERY
+
+			// syntax => $.get(url,callback methods)
+			// syntax => $.post()
+			// syntax => $.post(url,data,callback methods)
+
+			$(document).ready(function(){
+
+				// $('#but1').click(function(){
+				// 	$('#div2').load('/' , function(){
+				// 		alert("loaded");
+				// 	});		// AJAX load method will load the file with route ('/')
+				// });
+
+				// $('#but2').click(function(){
+				// 	$.get('/',function(data,status){
+				// 		$('#para1').html(data);		// changes para1 content to '/'file data
+				// 		alert(status);
+				// 	});
+				// });
+
+
+				$('#but2').click(function(){
+
+					$.post('/' , { 
+						name:'Aayush',
+						age:21
+					} ,function(data,status){
+						$('#para1').html(data);		// changes para1 content to '/'file data
+						alert(status);
+					});
+				});
+
+
+
+// 	Rails.ajax({
+//   type: "POST", 
+//   url: "/",
+//   data: {name: 'Aayush' , age:'21'},
+//   success: function(repsonse){...},
+//   error: function(repsonse){...}
+// })
+
+			});
+
+
+</script>
