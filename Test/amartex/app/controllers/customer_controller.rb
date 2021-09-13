@@ -53,7 +53,7 @@ class CustomerController < ApplicationController
 	end
 
 	def published?
-		params[:commit]	== "Publish" || params[:commit] == "Update"
+		params[:commit]	== "Create" || params[:commit] == "Update"
 	end
 
 	def save_as_draft?

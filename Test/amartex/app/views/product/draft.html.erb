@@ -1,0 +1,23 @@
+<%= link_to "Back", product_new_path %>
+<h1 class="h2">This is draft page</h1>
+<h2 class="h2">Here are the Details of Products<h2>
+
+
+<h2 class="h2">Products Draft Page</h2>
+<button onclick="print()">Print This Page</button><br><br>
+<table>
+
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+
+  <tr>
+
+    <td><%= @product.name unless @product[:name].nil? %></td>
+    <td><%= @product.description unless @product[:description].nil? %></td>
+    <td><%= @product.price unless @product[:price] == 0 %></td>
+  </tr>
+  
+</table>

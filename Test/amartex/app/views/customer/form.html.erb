@@ -17,8 +17,8 @@
   <%= f.label :product_id , "Product Name " %>
   <%= f.select :product_id, [["select"] , Product.order(:id).ids.map{|i| [Product.find(i).name , i]}].flatten(1) %><br><br>
 
-  	<%= f.submit "Publish" %>
-  	<%= f.submit "Save as Draft" , formaction: customer_draft_path()  %>
+  	<%= f.submit "Create" %>
+  	<%= f.submit "Save as Draft" , formaction: customer_draft_path  %>
     <%= link_to "Yes", :controller => :customer, :action => :temp1, class: 'btn btn-danger', :method => :get %>
 
 <% end %>

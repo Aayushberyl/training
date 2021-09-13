@@ -21,6 +21,7 @@
 
 
   <%= f.submit "Submit" %>
+  <%= f.submit "Save as Draft" , formaction: product_draft_path  %>
 	<%= link_to '<button>View Templates</button>'.html_safe, product_temp_path , id:'btn1' %>
   <%= link_to '<button>Click me</button>'.html_safe, product_temp_path , id:'btn2' %>
 

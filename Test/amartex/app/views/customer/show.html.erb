@@ -1,5 +1,5 @@
 <%= link_to "Back", customer_new_path %>
-<h2 class="h2">Customers Details</h2>
+<h2 class="h2"><%= "Customer".pluralize(@customers.size)%> Details</h2>
 <button onclick="print()">Print This Page</button><br><br>
 <table>
 
